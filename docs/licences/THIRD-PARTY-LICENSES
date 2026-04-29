@@ -1,0 +1,104 @@
+# Third-Party License Attributions
+
+NEXUS Support System uses the following open-source libraries:
+
+## Dependencies and Their Licenses
+
+### axios@1.15.2
+- **License**: MIT
+- **Copyright**: Copyright (c) 2014-2023 Matt Zabriskie and contributors
+- **Repository**: https://github.com/axios/axios
+- **License File**: https://github.com/axios/axios/blob/main/LICENSE
+
+### bcryptjs@2.4.3
+- **License**: MIT
+- **Copyright**: Copyright (c) 2011-2018, Daniel Wirtz
+- **Repository**: https://github.com/dcodeIO/bcrypt.js
+- **License File**: https://github.com/dcodeIO/bcrypt.js/blob/master/LICENSE
+
+### cors@2.8.6
+- **License**: MIT
+- **Copyright**: Copyright (c) 2013 Douglas Christopher Wilson
+- **Repository**: https://github.com/expressjs/cors
+- **License File**: https://github.com/expressjs/cors/blob/master/LICENSE
+
+### dotenv@16.6.1
+- **License**: BSD-2-Clause
+- **Copyright**: Copyright (c) 2015, Scott Motte
+- **Repository**: https://github.com/motdotla/dotenv
+- **License File**: https://github.com/motdotla/dotenv/blob/master/LICENSE
+
+### express-mongo-sanitize@2.2.0
+- **License**: MIT
+- **Copyright**: Copyright (c) 2018 Federico Romero
+- **Repository**: https://github.com/federico-romero/express-mongo-sanitize
+- **License File**: https://github.com/federico-romero/express-mongo-sanitize/blob/master/LICENSE
+
+### express-rate-limit@7.5.1
+- **License**: MIT
+- **Copyright**: Copyright (c) 2016 Nathan Friedly
+- **Repository**: https://github.com/express-rate-limit/express-rate-limit
+- **License File**: https://github.com/express-rate-limit/express-rate-limit/blob/master/LICENSE
+
+### express@4.22.1
+- **License**: MIT
+- **Copyright**: Copyright (c) 2009-2014 TJ Holowaychuk
+- **Repository**: https://github.com/expressjs/express
+- **License File**: https://github.com/expressjs/express/blob/master/LICENSE
+
+### helmet@7.2.0
+- **License**: MIT
+- **Copyright**: Copyright (c) 2012-2016, Adam Baldwin
+- **Repository**: https://github.com/helmetjs/helmet
+- **License File**: https://github.com/helmetjs/helmet/blob/master/LICENSE
+
+### hpp@0.2.3
+- **License**: MIT
+- **Copyright**: Copyright (c) 2016, Evan Hahn
+- **Repository**: https://github.com/ExpressMiddleware/hpp
+- **License File**: https://github.com/ExpressMiddleware/hpp/blob/master/LICENSE
+
+### jsonwebtoken@9.0.3
+- **License**: MIT
+- **Copyright**: Copyright (c) 2011-2016, Auth0, Inc.
+- **Repository**: https://github.com/auth0/node-jsonwebtoken
+- **License File**: https://github.com/auth0/node-jsonwebtoken/blob/master/LICENSE
+
+### mongoose@8.23.1
+- **License**: MIT
+- **Copyright**: Copyright (c) 2010 LearnBoost
+- **Repository**: https://github.com/Automattic/mongoose
+- **License File**: https://github.com/Automattic/mongoose/blob/master/LICENSE
+
+### nodemon@3.1.14
+- **License**: MIT
+- **Copyright**: Copyright (c) 2010-2014, Remy Sharp
+- **Repository**: https://github.com/remy/nodemon
+- **License File**: https://github.com/remy/nodemon/blob/master/LICENSE
+
+### validator@13.15.35
+- **License**: MIT
+- **Copyright**: Copyright (c) 2018, Chris O'Hara
+- **Repository**: https://github.com/validatorjs/validator.js
+- **License File**: https://github.com/validatorjs/validator.js/blob/master/LICENSE
+
+### xss-clean@0.1.4
+- **License**: MIT
+- **Copyright**: Copyright (c) 2018, Aditya Yadav
+- **Repository**: https://github.com/ivanvereyke/xss-clean
+- **License File**: https://github.com/ivanvereyke/xss-clean/blob/master/LICENSE
+
+## License Summary
+
+The NEXUS Support System is distributed under the MIT License. All third-party dependencies are also distributed under permissive open-source licenses (MIT, BSD-2-Clause), which allow for commercial use, modification, distribution, and private use.
+
+## Attribution Notice
+
+This project includes software developed by the following organizations and individuals:
+- The Node.js community and contributors
+- Express.js team
+- MongoDB Inc. and Mongoose contributors
+- Auth0 Inc.
+- And many other open-source contributors
+
+For detailed license information, please refer to the individual package repositories and license files listed above.

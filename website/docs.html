@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation | NEXUS Support System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <div class="logo">
+                <span class="logo-text">NEXUS</span>
+                <span class="logo-subtitle">SUPPORT SYSTEM</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">HOME</a></li>
+                <li><a href="features.html" class="nav-link">FEATURES</a></li>
+                <li><a href="docs.html" class="nav-link">DOCS</a></li>
+                <li><a href="contact.html" class="nav-link">CONTACT</a></li>
+            </ul>
+            <button class="cta-button" onclick="window.location.href='docs.html'">GET STARTED</button>
+        </div>
+    </nav>
+
+    <!-- Docs Header -->
+    <section class="page-header">
+        <h1 class="page-title">DOCUMENTATION</h1>
+        <p class="page-subtitle">Comprehensive Guides for Integration and Deployment</p>
+    </section>
+
+    <!-- Documentation Content -->
+    <section class="docs-content">
+        <div class="docs-sidebar">
+            <h3 class="sidebar-title">TABLE OF CONTENTS</h3>
+            <ul class="sidebar-links">
+                <li><a href="#quick-start" class="sidebar-link">Quick Start</a></li>
+                <li><a href="#installation" class="sidebar-link">Installation</a></li>
+                <li><a href="#configuration" class="sidebar-link">Configuration</a></li>
+                <li><a href="#api" class="sidebar-link">API Reference</a></li>
+                <li><a href="#security" class="sidebar-link">Security</a></li>
+                <li><a href="#deployment" class="sidebar-link">Deployment</a></li>
+            </ul>
+        </div>
+
+        <div class="docs-main">
+            <div class="doc-section" id="quick-start">
+                <h2 class="doc-section-title">Quick Start</h2>
+                <p class="doc-section-text">
+                    Get NEXUS Support System up and running in minutes with this quick start guide.
+                </p>
+                <div class="code-block">
+                    <pre><code># Clone the repository
+git clone https://github.com/AutoBotSolutions/NEXUS-Support-Ticket-System.git
+cd nexus-support-system
+
+# Install dependencies
+npm install
+
+# Configure environment
+cp .env.example .env
+# Edit .env with your settings
+
+# Start the server
+npm start</code></pre>
+                </div>
+            </div>
+
+            <div class="doc-section" id="installation">
+                <h2 class="doc-section-title">Installation</h2>
+                <p class="doc-section-text">
+                    Detailed installation instructions for various platforms including Linux, macOS, and Windows.
+                </p>
+                <ul class="doc-list">
+                    <li>Node.js 14.0.0 or higher</li>
+                    <li>MongoDB 4.4 or higher</li>
+                    <li>npm 6.0.0 or higher</li>
+                    <li>Git (optional)</li>
+                </ul>
+            </div>
+
+            <div class="doc-section" id="configuration">
+                <h2 class="doc-section-title">Configuration</h2>
+                <p class="doc-section-text">
+                    Configure NEXUS by setting environment variables in the .env file.
+                </p>
+                <div class="code-block">
+                    <pre><code>PORT=3000
+NODE_ENV=development
+MONGODB_URI=mongodb://localhost:27017/nexus-support
+JWT_SECRET=your_jwt_secret_here
+GITHUB_WEBHOOK_SECRET=your_webhook_secret_here
+GITHUB_TOKEN=your_github_token_here</code></pre>
+                </div>
+            </div>
+
+            <div class="doc-section" id="api">
+                <h2 class="doc-section-title">API Reference</h2>
+                <p class="doc-section-text">
+                    Complete API documentation with endpoints for tickets, users, and GitHub integration.
+                </p>
+                <div class="api-endpoint">
+                    <h3 class="api-method">GET /api/tickets</h3>
+                    <p class="api-description">Retrieve all tickets</p>
+                </div>
+                <div class="api-endpoint">
+                    <h3 class="api-method">POST /api/tickets</h3>
+                    <p class="api-description">Create a new ticket</p>
+                </div>
+                <div class="api-endpoint">
+                    <h3 class="api-method">GET /api/tickets/:id</h3>
+                    <p class="api-description">Retrieve a specific ticket</p>
+                </div>
+            </div>
+
+            <div class="doc-section" id="security">
+                <h2 class="doc-section-title">Security</h2>
+                <p class="doc-section-text">
+                    NEXUS includes comprehensive security features including:
+                </p>
+                <ul class="doc-list">
+                    <li>JWT authentication with 1-hour token expiration</li>
+                    <li>Bcrypt password hashing with 10 salt rounds</li>
+                    <li>Password complexity requirements</li>
+                    <li>Rate limiting (100 requests/15min general, 5 login attempts/15min)</li>
+                    <li>HTTPS enforcement in production</li>
+                    <li>Content Security Policy (CSP)</li>
+                    <li>MongoDB SSL/TLS support</li>
+                    <li>Security audit logging</li>
+                    <li>Input sanitization (NoSQL injection, XSS protection)</li>
+                </ul>
+            </div>
+
+            <div class="doc-section" id="deployment">
+                <h2 class="doc-section-title">Deployment</h2>
+                <p class="doc-section-text">
+                    Deploy NEXUS to any cloud platform with Docker support.
+                </p>
+                <div class="code-block">
+                    <pre><code># Using Docker Compose
+docker-compose up -d
+
+# Using Docker
+docker build -t nexus-support .
+docker run -p 3000:3000 nexus-support</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-title">NEXUS</h3>
+                <p class="footer-text">Advanced Support Ticket System</p>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-title">RESOURCES</h3>
+                <ul class="footer-links">
+                    <li><a href="docs.html">Documentation</a></li>
+                    <li><a href="api-reference.html">API Reference</a></li>
+                    <li><a href="https://github.com/AutoBotSolutions/NEXUS-Support-Ticket-System">GitHub</a></li>
+                    <li><a href="../licences/MIT">License</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-title">LEGAL</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">License</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-title">CONNECT</h3>
+                <ul class="footer-links">
+                    <li><a href="https://twitter.com">Twitter</a></li>
+                    <li><a href="https://github.com/AutoBotSolutions/NEXUS-Support-Ticket-System">GitHub</a></li>
+                    <li><a href="#">Discord</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NEXUS Support System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
