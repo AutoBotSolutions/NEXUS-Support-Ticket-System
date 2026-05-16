@@ -1,0 +1,21 @@
+{
+  "replacement": {
+    "repository": "https://github.com/AutoBotSolutions/NEXUS-Support-Ticket-System.git",
+    "timestamp": "2026-05-16T22:19:01.895Z",
+    "status": "REPOSITORY REPLACED",
+    "files": "374",
+    "commit": "37f5ee9c5efe17cd45bf7304e60b60217fe878f2"
+  },
+  "components": {
+    "verified": 9,
+    "total": 9,
+    "status": "COMPLETE"
+  },
+  "project": {
+    "backend": true,
+    "website": true,
+    "ai": true,
+    "workflows": true,
+    "documentation": true
+  }
+}
