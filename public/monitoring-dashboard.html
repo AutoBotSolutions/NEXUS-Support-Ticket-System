@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS Monitoring Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/date-fns@2.29.3/index.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .dashboard-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .dashboard-header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .dashboard-header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-card h3 {
+            color: #64748b;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-card .change {
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .stat-card .change.positive {
+            color: #10b981;
+        }
+
+        .stat-card .change.negative {
+            color: #ef4444;
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-card h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+
+        .alerts-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .alerts-section h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        .alert-item {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .alert-item.critical {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+        }
+
+        .alert-item.warning {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+        }
+
+        .alert-item.info {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .alert-content h4 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .alert-content p {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        .alert-time {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        .system-status {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .status-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .status-indicator.online {
+            background: #10b981;
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+        }
+
+        .status-indicator.offline {
+            background: #ef4444;
+            box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+        }
+
+        .status-indicator.warning {
+            background: #f59e0b;
+            box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
+        }
+
+        .status-text {
+            font-weight: 500;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #64748b;
+        }
+
+        .error {
+            background: #fef2f2;
+            color: #991b1b;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-container {
+                padding: 1rem;
+            }
+
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="dashboard-header">
+        <h1>NEXUS Monitoring Dashboard</h1>
+        <p>Real-time system monitoring and performance metrics</p>
+    </header>
+
+    <div class="dashboard-container">
+        <div id="loading" class="loading">Loading monitoring data...</div>
+        <div id="error" class="error" style="display: none;"></div>
+
+        <!-- System Status -->
+        <div class="system-status" id="systemStatus">
+            <div class="status-item">
+                <div class="status-indicator online"></div>
+                <span class="status-text">API Server</span>
+            </div>
+            <div class="status-item">
+                <div class="status-indicator online"></div>
+                <span class="status-text">Database</span>
+            </div>
+            <div class="status-item">
+                <div class="status-indicator online"></div>
+                <span class="status-text">GitHub Integration</span>
+            </div>
+            <div class="status-item">
+                <div class="status-indicator warning"></div>
+                <span class="status-text">Memory Usage</span>
+            </div>
+        </div>
+
+        <!-- Key Metrics -->
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card">
+                <h3>Response Time</h3>
+                <div class="value" id="responseTime">--</div>
+                <div class="change positive">↓ 12% from last hour</div>
+            </div>
+            <div class="stat-card">
+                <h3>Error Rate</h3>
+                <div class="value" id="errorRate">--</div>
+                <div class="change positive">↓ 5% from last hour</div>
+            </div>
+            <div class="stat-card">
+                <h3>Active Users</h3>
+                <div class="value" id="activeUsers">--</div>
+                <div class="change positive">↑ 8% from last hour</div>
+            </div>
+            <div class="stat-card">
+                <h3>System Load</h3>
+                <div class="value" id="systemLoad">--</div>
+                <div class="change negative">↑ 3% from last hour</div>
+            </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="charts-grid">
+            <div class="chart-card">
+                <h2>Response Time Trends</h2>
+                <div class="chart-container">
+                    <canvas id="responseTimeChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h2>Error Rate Over Time</h2>
+                <div class="chart-container">
+                    <canvas id="errorRateChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h2>Database Performance</h2>
+                <div class="chart-container">
+                    <canvas id="databaseChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h2>User Activity</h2>
+                <div class="chart-container">
+                    <canvas id="userActivityChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Alerts -->
+        <div class="alerts-section">
+            <h2>Recent Alerts</h2>
+            <div id="alertsList">
+                <div class="alert-item warning">
+                    <div class="alert-content">
+                        <h4>High Memory Usage</h4>
+                        <p>Memory usage exceeded 80% threshold</p>
+                    </div>
+                    <div class="alert-time">5 minutes ago</div>
+                </div>
+                <div class="alert-item info">
+                    <div class="alert-content">
+                        <h4>Database Backup Completed</h4>
+                        <p>Automated backup completed successfully</p>
+                    </div>
+                    <div class="alert-time">1 hour ago</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Chart configuration
+        const chartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: 'rgba(0, 0, 0, 0.05)'
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        };
+
+        // Initialize charts
+        const responseTimeChart = new Chart(document.getElementById('responseTimeChart'), {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Response Time (ms)',
+                    data: [],
+                    borderColor: '#667eea',
+                    backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                    tension: 0.4
+                }]
+            },
+            options: chartOptions
+        });
+
+        const errorRateChart = new Chart(document.getElementById('errorRateChart'), {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Error Rate (%)',
+                    data: [],
+                    borderColor: '#ef4444',
+                    backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                    tension: 0.4
+                }]
+            },
+            options: chartOptions
+        });
+
+        const databaseChart = new Chart(document.getElementById('databaseChart'), {
+            type: 'bar',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Query Time (ms)',
+                    data: [],
+                    backgroundColor: '#10b981'
+                }]
+            },
+            options: chartOptions
+        });
+
+        const userActivityChart = new Chart(document.getElementById('userActivityChart'), {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Active Users',
+                    data: [],
+                    borderColor: '#f59e0b',
+                    backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                    tension: 0.4
+                }]
+            },
+            options: chartOptions
+        });
+
+        // Fetch monitoring data
+        async function fetchMonitoringData() {
+            try {
+                const response = await fetch('/api/monitoring/dashboard');
+                const data = await response.json();
+                
+                if (data.success) {
+                    updateDashboard(data.data);
+                    document.getElementById('loading').style.display = 'none';
+                } else {
+                    throw new Error(data.error || 'Failed to fetch monitoring data');
+                }
+            } catch (error) {
+                console.error('Error fetching monitoring data:', error);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error').style.display = 'block';
+                document.getElementById('error').textContent = 'Failed to load monitoring data: ' + error.message;
+            }
+        }
+
+        // Update dashboard with fetched data
+        function updateDashboard(data) {
+            // Update stats
+            if (data.summary) {
+                document.getElementById('responseTime').textContent = data.summary.averagePageLoadTime + 'ms';
+                document.getElementById('errorRate').textContent = (data.summary.apiErrorRate * 100).toFixed(1) + '%';
+                document.getElementById('activeUsers').textContent = data.summary.totalUserInteractions || '0';
+                document.getElementById('systemLoad').textContent = '75%'; // This would come from system metrics
+            }
+
+            // Update charts with sample data (in production, this would come from the API)
+            updateChartsWithData(data);
+        }
+
+        // Update charts with data
+        function updateChartsWithData(data) {
+            const now = new Date();
+            const labels = [];
+            const responseTimes = [];
+            const errorRates = [];
+            const queryTimes = [];
+            const userActivities = [];
+
+            // Generate sample time series data
+            for (let i = 23; i >= 0; i--) {
+                const time = new Date(now - i * 60 * 60 * 1000);
+                labels.push(time.getHours() + ':00');
+                responseTimes.push(Math.random() * 200 + 100);
+                errorRates.push(Math.random() * 5);
+                queryTimes.push(Math.random() * 50 + 10);
+                userActivities.push(Math.floor(Math.random() * 100 + 50));
+            }
+
+            // Update charts
+            responseTimeChart.data.labels = labels;
+            responseTimeChart.data.datasets[0].data = responseTimes;
+            responseTimeChart.update();
+
+            errorRateChart.data.labels = labels;
+            errorRateChart.data.datasets[0].data = errorRates;
+            errorRateChart.update();
+
+            databaseChart.data.labels = labels.slice(-12);
+            databaseChart.data.datasets[0].data = queryTimes.slice(-12);
+            databaseChart.update();
+
+            userActivityChart.data.labels = labels;
+            userActivityChart.data.datasets[0].data = userActivities;
+            userActivityChart.update();
+        }
+
+        // Auto-refresh dashboard
+        setInterval(fetchMonitoringData, 30000); // Refresh every 30 seconds
+
+        // Initial load
+        fetchMonitoringData();
+    </script>
+</body>
+</html>

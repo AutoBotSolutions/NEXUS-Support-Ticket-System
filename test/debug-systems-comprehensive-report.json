@@ -1,0 +1,1100 @@
+{
+  "timestamp": "2026-05-16T00:47:51.728Z",
+  "duration": 0.02,
+  "summary": {
+    "totalSystems": 25,
+    "passed": 25,
+    "failed": 0,
+    "successRate": 100,
+    "serverIntegration": true
+  },
+  "results": {
+    "CORE": {
+      "categoryName": "Core Systems",
+      "results": [
+        {
+          "name": "Authentication System",
+          "fileResults": {
+            "passed": 2,
+            "failed": 0,
+            "results": [
+              {
+                "file": "middleware/auth.js",
+                "status": "PASS",
+                "size": "0.9 KB"
+              },
+              {
+                "file": "middleware/roleBasedAccess.js",
+                "status": "PASS",
+                "size": "1.5 KB"
+              }
+            ]
+          },
+          "funcResults": {
+            "passed": 3,
+            "failed": 0,
+            "results": [
+              {
+                "function": "JWT authentication",
+                "status": "PASS"
+              },
+              {
+                "function": "Role-based access control",
+                "status": "PASS"
+              },
+              {
+                "function": "Session management",
+                "status": "PASS"
+              }
+            ]
+          },
+          "overallSuccessRate": 100,
+          "status": "PASS"
+        },
+        {
+          "name": "Ticket Management System",
+          "fileResults": {
+            "passed": 2,
+            "failed": 0,
+            "results": [
+              {
+                "file": "controllers/ticketController.js",
+                "status": "PASS",
+                "size": "7.6 KB"
+              },
+              {
+                "file": "controllers/ticketController-simple.js",
+                "status": "PASS",
+                "size": "6.8 KB"
+              }
+            ]
+          },
+          "funcResults": {
+            "passed": 3,
+            "failed": 0,
+            "results": [
+              {
+                "function": "Ticket CRUD operations",
+                "status": "PASS"
+              },
+              {
+                "function": "Ticket status management",
+                "status": "PASS"
+              },
+              {
+                "function": "Ticket assignment",
+                "status": "PASS"
+              }
+            ]
+          },
+          "overallSuccessRate": 100,
+          "status": "PASS"
+        },
+        {
+          "name": "GitHub Integration System",
+          "fileResults": {
+            "passed": 3,
+            "failed": 0,
+            "results": [
+              {
+                "file": "controllers/githubController.js",
+                "status": "PASS",
+                "size": "6.3 KB"
+              },
+              {
+                "file": "middleware/githubWebhook.js",
+                "status": "PASS",
+                "size": "1.1 KB"
+              },
+              {
+                "file": "routes/githubRoutes.js",
+                "status": "PASS",
+                "size": "0.4 KB"
+              }
+            ]
+          },
+          "funcResults": {
+            "passed": 3,
+            "failed": 0,
+            "results": [
+              {
+                "function": "GitHub webhook handling",
+                "status": "PASS"
+              },
+              {
+                "function": "Repository integration",
+                "status": "PASS"
+              },
+              {
+                "function": "Issue synchronization",
+                "status": "PASS"
+              }
+            ]
+          },
+          "overallSuccessRate": 100,
+          "status": "PASS"
+        },
+        {
+          "name": "Database System",
+          "fileResults": {
+            "passed": 4,
+            "failed": 0,
+            "results": [
+              {
+                "file": "config/database.js",
+                "status": "PASS",
+                "size": "1.3 KB"
+              },
+              {
+                "file": "models/Ticket.js",
+                "status": "PASS",
+                "size": "1.4 KB"
+              },
+              {
+                "file": "models/User.js",
+                "status": "PASS",
+                "size": "5.6 KB"
+              },
+              {
+                "file": "models/Team.js",
+                "status": "PASS",
+                "size": "5.4 KB"
+              }
+            ]
+          },
+          "funcResults": {
+            "passed": 3,
+            "failed": 0,
+            "results": [
+              {
+                "function": "MongoDB connection",
+                "status": "PASS"
+              },
+              {
+                "function": "Mongoose models",
+                "status": "PASS"
+              },
+              {
+                "function": "Database operations",
+                "status": "PASS"
+              }
+            ]
+          },
+          "overallSuccessRate": 100,
+          "status": "PASS"
+        },
+        {
+          "name": "Frontend System",
+          "fileResults": {
+            "passed": 2,
+            "failed": 0,
+            "results": [
+              {
+                "file": "public/frontend-monitoring.js",
+                "status": "PASS",
+                "size": "11.3 KB"
+              },
+              {
+                "file": "public/session-replay.js",
+                "status": "PASS",
+                "size": "21.3 KB"
+              }
+            ]
+          },
+          "funcResults": {
+            "passed": 3,
+            "failed": 0,
+            "results": [
+              {
+                "function": "Frontend monitoring",
+                "status": "PASS"
+              },
+              {
+                "function": "Session replay",
+                "status": "PASS"
+              },
+              {
+                "function": "User interface",
+                "status": "PASS"
+              }
+            ]
+          },
+          "overallSuccessRate": 100,
+          "status": "PASS"
+        },
+        {
+          "name": "Security System",
+          "fileResults": {
+            "passed": 4,
+            "failed": 0,
+            "results": [
+              {
+                "file": "middleware/securityLogger.js",
+                "status": "PASS",
+                "size": "2.2 KB"
+              },
+              {
+                "file": "middleware/securityMonitoring.js",
+                "status": "PASS",
+                "size": "14.7 KB"
+              },
+              {
+                "file": "middleware/vulnerabilityScanning.js",
+                "status": "PASS",
+                "size": "31.5 KB"
+              },
+              {
+                "file": "middleware/threatIntelligence.js",
+                "status": "PASS",
+                "size": "28.3 KB"
+              }
+            ]
+          },
+          "funcResults": {
+            "passed": 4,
+            "failed": 0,
+            "results": [
+              {
+                "function": "Security logging",
+                "status": "PASS"
+              },
+              {
+                "function": "Security monitoring",
+                "status": "PASS"
+              },
+              {
+                "function": "Vulnerability scanning",
+                "status": "PASS"
+              },
+              {
+                "function": "Threat intelligence",
+                "status": "PASS"
+              }
+            ]
+          },
+          "overallSuccessRate": 100,
+          "status": "PASS"
+        },
+        {
+          "name": "Deployment System",
+          "fileResults": {
+            "passed": 2,
+            "failed": 0,
+            "results": [
+              {
+                "file": "install.js",
+                "status": "PASS",
+                "size": "8.9 KB"
+              },
+              {
+                "file": "jest.config.js",
+                "status": "PASS",
+                "size": "2.3 KB"
+              }
+            ]
+          },
+          "funcResults": {
+            "passed": 3,
+            "failed": 0,
+            "results": [
+              {
+                "function": "Installation scripts",
+                "status": "PASS"
+              },
+              {
+                "function": "Testing configuration",
+                "status": "PASS"
+              },
+              {
+                "function": "Deployment readiness",
+                "status": "PASS"
+              }
+            ]
+          },
+          "overallSuccessRate": 100,
+          "status": "PASS"
+        },
+        {
+          "name": "Documentation System",
+          "fileResults": {
+            "passed": 3,
+            "failed": 0,
+            "results": [
+              {
+                "file": "docs/README.md",
+                "status": "PASS",
+                "size": "17.3 KB"
+              },
+              {
+                "file": "docs/API_DOCUMENTATION.md",
+                "status": "PASS",
+                "size": "16.3 KB"
+              },
+              {
+                "file": "docs/DEPLOYMENT_GUIDE.md",
+                "status": "PASS",
+                "size": "9.7 KB"
+              }
+            ]
+          },
+          "funcResults": {
+            "passed": 3,
+            "failed": 0,
+            "results": [
+              {
+                "function": "API documentation",
+                "status": "PASS"
+              },
+              {
+                "function": "Deployment guides",
+                "status": "PASS"
+              },
+              {
+                "function": "System documentation",
+                "status": "PASS"
+              }
+            ]
+          },
+          "overallSuccessRate": 100,
+          "status": "PASS"
+        }
+      ],
+      "totalPassed": 8,
+      "totalFailed": 0,
+      "totalSystems": 8
+    },
+    "ENTERPRISE": {
+      "categoryName": "Enterprise Systems",
+      "results": [
+        {
+          "name": "User Management System",
+          "fileResults": {
+            "passed": 4,
+            "failed": 0,
+            "results": [
+              {
+                "file": "models/User.js",
+                "status": "PASS",
+                "size": "5.6 KB"
+              },
+              {
+                "file": "models/Team.js",
+                "status": "PASS",
+                "size": "5.4 KB"
+              },
+              {
+                "file": "controllers/userManagementController.js",
+                "status": "PASS",
+                "size": "14.4 KB"
+              },
+              {
+                "file": "routes/userManagementEnhancedRoutes.js",
+                "status": "PASS",
+                "size": "12.4 KB"
+              }
+            ]
+          },
+          "funcResults": {
+            "passed": 4,
+            "failed": 0,
+            "results": [
+              {
+                "function": "User profiles",
+                "status": "PASS"
+              },
+              {
+                "function": "Team management",
+                "status": "PASS"
+              },
+              {
+                "function": "User analytics",
+                "status": "PASS"
+              },
+              {
+                "function": "Advanced search",
+                "status": "PASS"
+              }
+            ]
+          },
+          "overallSuccessRate": 100,
+          "status": "PASS"
+        },
+        {
+          "name": "Testing System",
+          "fileResults": {
+            "passed": 3,
+            "failed": 0,
+            "results": [
+              {
+                "file": "jest.config.js",
+                "status": "PASS",
+                "size": "2.3 KB"
+              },
+              {
+                "file": "docs/TESTING_SYSTEM.md",
+                "status": "PASS",
+                "size": "6.8 KB"
+              },
+              {
+                "file": "docs/TESTING_SYSTEM_COMPLETE.md",
+                "status": "PASS",
+                "size": "14.4 KB"
+              }
+            ]
+          },
+          "funcResults": {
+            "passed": 3,
+            "failed": 0,
+            "results": [
+              {
+                "function": "Unit testing",
+                "status": "PASS"
+              },
+              {
+                "function": "Integration testing",
+                "status": "PASS"
+              },
+              {
+                "function": "Test configuration",
+                "status": "PASS"
+              }
+            ]
+          },
+          "overallSuccessRate": 100,
+          "status": "PASS"
+        },
+        {
+          "name": "Monitoring System",
+          "fileResults": {
+            "passed": 6,
+            "failed": 0,
+            "results": [
+              {
+                "file": "middleware/apmMonitoring.js",
+                "status": "PASS",
+                "size": "7.6 KB"
+              },
+              {
+                "file": "middleware/apmMonitoringSimple.js",
+                "status": "PASS",
+                "size": "7.2 KB"
+              },
+              {
+                "file": "middleware/databaseMonitoring.js",
+                "status": "PASS",
+                "size": "4.0 KB"
+              },
+              {
+                "file": "middleware/systemMetrics.js",
+                "status": "PASS",
+                "size": "9.1 KB"
+              },
+              {
+                "file": "routes/comprehensiveMonitoringRoutes.js",
+                "status": "PASS",
+                "size": "14.5 KB"
+              },
+              {
+                "file": "routes/monitoringRoutes.js",
+                "status": "PASS",
+                "size": "8.8 KB"
+              }
+            ]
+          },
+          "funcResults": {
+            "passed": 4,
+            "failed": 0,
+            "results": [
+              {
+                "function": "APM monitoring",
+                "status": "PASS"
+              },
+              {
+                "function": "Database monitoring",
+                "status": "PASS"
+              },
+              {
+                "function": "System metrics",
+                "status": "PASS"
+              },
+              {
+                "function": "Performance tracking",
+                "status": "PASS"
+              }
+            ]
+          },
+          "overallSuccessRate": 100,
+          "status": "PASS"
+        },
+        {
+          "name": "Search System",
+          "fileResults": {
+            "passed": 2,
+            "failed": 0,
+            "results": [
+              {
+                "file": "middleware/searchSystemEnhanced.js",
+                "status": "PASS",
+                "size": "30.6 KB"
+              },
+              {
+                "file": "routes/searchEnhancedRoutes.js",
+                "status": "PASS",
+                "size": "16.4 KB"
+              }
+            ]
+          },
+          "funcResults": {
+            "passed": 4,
+            "failed": 0,
+            "results": [
+              {
+                "function": "Full-text search",
+                "status": "PASS"
+              },
+              {
+                "function": "Advanced faceting",
+                "status": "PASS"
+              },
+              {
+                "function": "Search analytics",
+                "status": "PASS"
+              },
+              {
+                "function": "Fuzzy matching",
+                "status": "PASS"
+              }
+            ]
+          },
+          "overallSuccessRate": 100,
+          "status": "PASS"
+        },
+        {
+          "name": "Reporting System",
+          "fileResults": {
+            "passed": 2,
+            "failed": 0,
+            "results": [
+              {
+                "file": "middleware/reportingSystemEnhanced.js",
+                "status": "PASS",
+                "size": "57.6 KB"
+              },
+              {
+                "file": "routes/reportingEnhancedRoutes.js",
+                "status": "PASS",
+                "size": "18.5 KB"
+              }
+            ]
+          },
+          "funcResults": {
+            "passed": 4,
+            "failed": 0,
+            "results": [
+              {
+                "function": "Report generation",
+                "status": "PASS"
+              },
+              {
+                "function": "Business intelligence",
+                "status": "PASS"
+              },
+              {
+                "function": "Data visualization",
+                "status": "PASS"
+              },
+              {
+                "function": "Custom reports",
+                "status": "PASS"
+              }
+            ]
+          },
+          "overallSuccessRate": 100,
+          "status": "PASS"
+        },
+        {
+          "name": "Notification System",
+          "fileResults": {
+            "passed": 3,
+            "failed": 0,
+            "results": [
+              {
+                "file": "middleware/notificationSystem.js",
+                "status": "PASS",
+                "size": "32.3 KB"
+              },
+              {
+                "file": "routes/notificationRoutes.js",
+                "status": "PASS",
+                "size": "10.4 KB"
+              },
+              {
+                "file": "middleware/notificationDatabasePool.js",
+                "status": "PASS",
+                "size": "12.2 KB"
+              }
+            ]
+          },
+          "funcResults": {
+            "passed": 4,
+            "failed": 0,
+            "results": [
+              {
+                "function": "Multi-channel notifications",
+                "status": "PASS"
+              },
+              {
+                "function": "Template system",
+                "status": "PASS"
+              },
+              {
+                "function": "Queue management",
+                "status": "PASS"
+              },
+              {
+                "function": "User preferences",
+                "status": "PASS"
+              }
+            ]
+          },
+          "overallSuccessRate": 100,
+          "status": "PASS"
+        },
+        {
+          "name": "Workflow Automation System",
+          "fileResults": {
+            "passed": 2,
+            "failed": 0,
+            "results": [
+              {
+                "file": "middleware/workflowAutomation.js",
+                "status": "PASS",
+                "size": "23.2 KB"
+              },
+              {
+                "file": "routes/workflowAutomationRoutes.js",
+                "status": "PASS",
+                "size": "14.0 KB"
+              }
+            ]
+          },
+          "funcResults": {
+            "passed": 4,
+            "failed": 0,
+            "results": [
+              {
+                "function": "Event triggers",
+                "status": "PASS"
+              },
+              {
+                "function": "Condition evaluation",
+                "status": "PASS"
+              },
+              {
+                "function": "Action execution",
+                "status": "PASS"
+              },
+              {
+                "function": "Workflow templates",
+                "status": "PASS"
+              }
+            ]
+          },
+          "overallSuccessRate": 100,
+          "status": "PASS"
+        }
+      ],
+      "totalPassed": 7,
+      "totalFailed": 0,
+      "totalSystems": 7
+    },
+    "SUPPORTING": {
+      "categoryName": "Supporting Systems",
+      "results": [
+        {
+          "name": "Business Intelligence System",
+          "fileResults": {
+            "passed": 1,
+            "failed": 0,
+            "results": [
+              {
+                "file": "middleware/businessIntelligence.js",
+                "status": "PASS",
+                "size": "21.2 KB"
+              }
+            ]
+          },
+          "funcResults": {
+            "passed": 3,
+            "failed": 0,
+            "results": [
+              {
+                "function": "Data analytics",
+                "status": "PASS"
+              },
+              {
+                "function": "Business insights",
+                "status": "PASS"
+              },
+              {
+                "function": "Reporting dashboards",
+                "status": "PASS"
+              }
+            ]
+          },
+          "overallSuccessRate": 100,
+          "status": "PASS"
+        },
+        {
+          "name": "Alerting System",
+          "fileResults": {
+            "passed": 1,
+            "failed": 0,
+            "results": [
+              {
+                "file": "middleware/alertingSystem.js",
+                "status": "PASS",
+                "size": "28.7 KB"
+              }
+            ]
+          },
+          "funcResults": {
+            "passed": 3,
+            "failed": 0,
+            "results": [
+              {
+                "function": "Alert management",
+                "status": "PASS"
+              },
+              {
+                "function": "Notification alerts",
+                "status": "PASS"
+              },
+              {
+                "function": "System alerts",
+                "status": "PASS"
+              }
+            ]
+          },
+          "overallSuccessRate": 100,
+          "status": "PASS"
+        },
+        {
+          "name": "Session Replay System",
+          "fileResults": {
+            "passed": 2,
+            "failed": 0,
+            "results": [
+              {
+                "file": "middleware/sessionReplay.js",
+                "status": "PASS",
+                "size": "10.6 KB"
+              },
+              {
+                "file": "public/session-replay.js",
+                "status": "PASS",
+                "size": "21.3 KB"
+              }
+            ]
+          },
+          "funcResults": {
+            "passed": 3,
+            "failed": 0,
+            "results": [
+              {
+                "function": "Session recording",
+                "status": "PASS"
+              },
+              {
+                "function": "User session replay",
+                "status": "PASS"
+              },
+              {
+                "function": "Performance analysis",
+                "status": "PASS"
+              }
+            ]
+          },
+          "overallSuccessRate": 100,
+          "status": "PASS"
+        },
+        {
+          "name": "Distributed Tracing",
+          "fileResults": {
+            "passed": 3,
+            "failed": 0,
+            "results": [
+              {
+                "file": "middleware/distributedTracing.js",
+                "status": "PASS",
+                "size": "12.5 KB"
+              },
+              {
+                "file": "docs/DISTRIBUTED_TRACING.md",
+                "status": "PASS",
+                "size": "8.1 KB"
+              },
+              {
+                "file": "docs/DISTRIBUTED_TRACING_ENHANCED.md",
+                "status": "PASS",
+                "size": "18.3 KB"
+              }
+            ]
+          },
+          "funcResults": {
+            "passed": 3,
+            "failed": 0,
+            "results": [
+              {
+                "function": "Request tracing",
+                "status": "PASS"
+              },
+              {
+                "function": "Performance monitoring",
+                "status": "PASS"
+              },
+              {
+                "function": "Distributed system tracking",
+                "status": "PASS"
+              }
+            ]
+          },
+          "overallSuccessRate": 100,
+          "status": "PASS"
+        },
+        {
+          "name": "Vulnerability Scanning",
+          "fileResults": {
+            "passed": 1,
+            "failed": 0,
+            "results": [
+              {
+                "file": "middleware/vulnerabilityScanning.js",
+                "status": "PASS",
+                "size": "31.5 KB"
+              }
+            ]
+          },
+          "funcResults": {
+            "passed": 3,
+            "failed": 0,
+            "results": [
+              {
+                "function": "Security scanning",
+                "status": "PASS"
+              },
+              {
+                "function": "Vulnerability detection",
+                "status": "PASS"
+              },
+              {
+                "function": "Security assessment",
+                "status": "PASS"
+              }
+            ]
+          },
+          "overallSuccessRate": 100,
+          "status": "PASS"
+        },
+        {
+          "name": "Threat Intelligence",
+          "fileResults": {
+            "passed": 1,
+            "failed": 0,
+            "results": [
+              {
+                "file": "middleware/threatIntelligence.js",
+                "status": "PASS",
+                "size": "28.3 KB"
+              }
+            ]
+          },
+          "funcResults": {
+            "passed": 3,
+            "failed": 0,
+            "results": [
+              {
+                "function": "Threat detection",
+                "status": "PASS"
+              },
+              {
+                "function": "Security intelligence",
+                "status": "PASS"
+              },
+              {
+                "function": "Risk assessment",
+                "status": "PASS"
+              }
+            ]
+          },
+          "overallSuccessRate": 100,
+          "status": "PASS"
+        },
+        {
+          "name": "OnCall Management",
+          "fileResults": {
+            "passed": 2,
+            "failed": 0,
+            "results": [
+              {
+                "file": "middleware/onCallManagement.js",
+                "status": "PASS",
+                "size": "26.1 KB"
+              },
+              {
+                "file": "docs/ONCALL_MANAGEMENT.md",
+                "status": "PASS",
+                "size": "12.4 KB"
+              }
+            ]
+          },
+          "funcResults": {
+            "passed": 3,
+            "failed": 0,
+            "results": [
+              {
+                "function": "On-call scheduling",
+                "status": "PASS"
+              },
+              {
+                "function": "Alert routing",
+                "status": "PASS"
+              },
+              {
+                "function": "Incident management",
+                "status": "PASS"
+              }
+            ]
+          },
+          "overallSuccessRate": 100,
+          "status": "PASS"
+        },
+        {
+          "name": "Automated Reporting",
+          "fileResults": {
+            "passed": 2,
+            "failed": 0,
+            "results": [
+              {
+                "file": "middleware/automatedReporting.js",
+                "status": "PASS",
+                "size": "31.7 KB"
+              },
+              {
+                "file": "docs/AUTOMATED_REPORTING.md",
+                "status": "PASS",
+                "size": "13.0 KB"
+              }
+            ]
+          },
+          "funcResults": {
+            "passed": 3,
+            "failed": 0,
+            "results": [
+              {
+                "function": "Automated report generation",
+                "status": "PASS"
+              },
+              {
+                "function": "Scheduled reports",
+                "status": "PASS"
+              },
+              {
+                "function": "Report distribution",
+                "status": "PASS"
+              }
+            ]
+          },
+          "overallSuccessRate": 100,
+          "status": "PASS"
+        },
+        {
+          "name": "Logging Infrastructure",
+          "fileResults": {
+            "passed": 3,
+            "failed": 0,
+            "results": [
+              {
+                "file": "middleware/loggingInfrastructure.js",
+                "status": "PASS",
+                "size": "16.4 KB"
+              },
+              {
+                "file": "middleware/loggingInfrastructureSimple.js",
+                "status": "PASS",
+                "size": "7.5 KB"
+              },
+              {
+                "file": "docs/LOGGING_INFRASTRUCTURE.md",
+                "status": "PASS",
+                "size": "16.1 KB"
+              }
+            ]
+          },
+          "funcResults": {
+            "passed": 3,
+            "failed": 0,
+            "results": [
+              {
+                "function": "System logging",
+                "status": "PASS"
+              },
+              {
+                "function": "Log aggregation",
+                "status": "PASS"
+              },
+              {
+                "function": "Log analysis",
+                "status": "PASS"
+              }
+            ]
+          },
+          "overallSuccessRate": 100,
+          "status": "PASS"
+        },
+        {
+          "name": "Database Monitoring",
+          "fileResults": {
+            "passed": 2,
+            "failed": 0,
+            "results": [
+              {
+                "file": "middleware/databaseMonitoring.js",
+                "status": "PASS",
+                "size": "4.0 KB"
+              },
+              {
+                "file": "docs/DATABASE_MONITORING.md",
+                "status": "PASS",
+                "size": "15.1 KB"
+              }
+            ]
+          },
+          "funcResults": {
+            "passed": 3,
+            "failed": 0,
+            "results": [
+              {
+                "function": "Database performance monitoring",
+                "status": "PASS"
+              },
+              {
+                "function": "Query analysis",
+                "status": "PASS"
+              },
+              {
+                "function": "Database health checks",
+                "status": "PASS"
+              }
+            ]
+          },
+          "overallSuccessRate": 100,
+          "status": "PASS"
+        }
+      ],
+      "totalPassed": 10,
+      "totalFailed": 0,
+      "totalSystems": 10
+    }
+  }
+}

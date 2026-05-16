@@ -1,0 +1,359 @@
+{
+  "timestamp": "2026-05-16T00:48:20.642Z",
+  "duration": 0.07,
+  "summary": {
+    "totalTests": 29,
+    "passed": 0,
+    "failed": 29,
+    "successRate": 0
+  },
+  "results": {
+    "AUTHENTICATION": {
+      "suiteName": "AUTHENTICATION",
+      "passed": 0,
+      "failed": 2,
+      "total": 2,
+      "successRate": 0,
+      "results": [
+        {
+          "endpoint": "/api/health",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "System health check"
+        },
+        {
+          "endpoint": "/api/auth/login",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "Auth login endpoint"
+        }
+      ]
+    },
+    "TICKET_MANAGEMENT": {
+      "suiteName": "TICKET_MANAGEMENT",
+      "passed": 0,
+      "failed": 2,
+      "total": 2,
+      "successRate": 0,
+      "results": [
+        {
+          "endpoint": "/api/tickets",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "Tickets list endpoint"
+        },
+        {
+          "endpoint": "/api/tickets/1",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "Single ticket endpoint"
+        }
+      ]
+    },
+    "GITHUB_INTEGRATION": {
+      "suiteName": "GITHUB_INTEGRATION",
+      "passed": 0,
+      "failed": 2,
+      "total": 2,
+      "successRate": 0,
+      "results": [
+        {
+          "endpoint": "/api/github/webhook",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "GitHub webhook endpoint"
+        },
+        {
+          "endpoint": "/api/github/status",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "GitHub status endpoint"
+        }
+      ]
+    },
+    "DATABASE_SYSTEM": {
+      "suiteName": "DATABASE_SYSTEM",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "successRate": 0,
+      "results": [
+        {
+          "endpoint": "/api/health/database",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "Database health check"
+        }
+      ]
+    },
+    "USER_MANAGEMENT": {
+      "suiteName": "USER_MANAGEMENT",
+      "passed": 0,
+      "failed": 2,
+      "total": 2,
+      "successRate": 0,
+      "results": [
+        {
+          "endpoint": "/api/users",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "Users list endpoint"
+        },
+        {
+          "endpoint": "/api/users/profile",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "User profile endpoint"
+        }
+      ]
+    },
+    "MONITORING_SYSTEM": {
+      "suiteName": "MONITORING_SYSTEM",
+      "passed": 0,
+      "failed": 2,
+      "total": 2,
+      "successRate": 0,
+      "results": [
+        {
+          "endpoint": "/api/monitoring/status",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "Monitoring status"
+        },
+        {
+          "endpoint": "/api/monitoring/metrics",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "System metrics"
+        }
+      ]
+    },
+    "SEARCH_SYSTEM": {
+      "suiteName": "SEARCH_SYSTEM",
+      "passed": 0,
+      "failed": 2,
+      "total": 2,
+      "successRate": 0,
+      "results": [
+        {
+          "endpoint": "/api/search",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "Search endpoint"
+        },
+        {
+          "endpoint": "/api/search/index",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "Search index status"
+        }
+      ]
+    },
+    "REPORTING_SYSTEM": {
+      "suiteName": "REPORTING_SYSTEM",
+      "passed": 0,
+      "failed": 2,
+      "total": 2,
+      "successRate": 0,
+      "results": [
+        {
+          "endpoint": "/api/reports",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "Reports endpoint"
+        },
+        {
+          "endpoint": "/api/reports/summary",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "Report summary"
+        }
+      ]
+    },
+    "NOTIFICATION_SYSTEM": {
+      "suiteName": "NOTIFICATION_SYSTEM",
+      "passed": 0,
+      "failed": 2,
+      "total": 2,
+      "successRate": 0,
+      "results": [
+        {
+          "endpoint": "/api/notifications",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "Notifications endpoint"
+        },
+        {
+          "endpoint": "/api/notifications/status",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "Notification status"
+        }
+      ]
+    },
+    "WORKFLOW_AUTOMATION": {
+      "suiteName": "WORKFLOW_AUTOMATION",
+      "passed": 0,
+      "failed": 2,
+      "total": 2,
+      "successRate": 0,
+      "results": [
+        {
+          "endpoint": "/api/workflows",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "Workflows endpoint"
+        },
+        {
+          "endpoint": "/api/workflows/trigger",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "Workflow trigger"
+        }
+      ]
+    },
+    "BUSINESS_INTELLIGENCE": {
+      "suiteName": "BUSINESS_INTELLIGENCE",
+      "passed": 0,
+      "failed": 2,
+      "total": 2,
+      "successRate": 0,
+      "results": [
+        {
+          "endpoint": "/api/bi/analytics",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "BI analytics"
+        },
+        {
+          "endpoint": "/api/bi/dashboard",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "BI dashboard"
+        }
+      ]
+    },
+    "ALERTING_SYSTEM": {
+      "suiteName": "ALERTING_SYSTEM",
+      "passed": 0,
+      "failed": 2,
+      "total": 2,
+      "successRate": 0,
+      "results": [
+        {
+          "endpoint": "/api/alerts",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "Alerts endpoint"
+        },
+        {
+          "endpoint": "/api/alerts/rules",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "Alert rules"
+        }
+      ]
+    },
+    "SESSION_REPLAY": {
+      "suiteName": "SESSION_REPLAY",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "successRate": 0,
+      "results": [
+        {
+          "endpoint": "/api/replay",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "Session replay endpoint"
+        }
+      ]
+    },
+    "DISTRIBUTED_TRACING": {
+      "suiteName": "DISTRIBUTED_TRACING",
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "successRate": 0,
+      "results": [
+        {
+          "endpoint": "/api/tracing",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "Distributed tracing"
+        }
+      ]
+    },
+    "SECURITY_SYSTEM": {
+      "suiteName": "SECURITY_SYSTEM",
+      "passed": 0,
+      "failed": 2,
+      "total": 2,
+      "successRate": 0,
+      "results": [
+        {
+          "endpoint": "/api/security/dashboard",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "Security dashboard"
+        },
+        {
+          "endpoint": "/api/security/scan",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "Security scan"
+        }
+      ]
+    },
+    "LOGGING_INFRASTRUCTURE": {
+      "suiteName": "LOGGING_INFRASTRUCTURE",
+      "passed": 0,
+      "failed": 2,
+      "total": 2,
+      "successRate": 0,
+      "results": [
+        {
+          "endpoint": "/api/logs",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "Logs endpoint"
+        },
+        {
+          "endpoint": "/api/logs/level",
+          "success": false,
+          "error": "",
+          "statusCode": 0,
+          "description": "Log level endpoint"
+        }
+      ]
+    }
+  }
+}

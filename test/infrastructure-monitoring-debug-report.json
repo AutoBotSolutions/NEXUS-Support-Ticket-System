@@ -1,0 +1,190 @@
+{
+  "timestamp": "2026-05-16T03:47:34.705Z",
+  "summary": {
+    "totalTests": 20,
+    "passedTests": 20,
+    "failedTests": 0,
+    "successRate": 100,
+    "avgResponseTime": 5.4,
+    "infrastructureMonitoring": true,
+    "overallSuccess": true
+  },
+  "results": [
+    {
+      "name": "System Overview",
+      "path": "/overview",
+      "success": true,
+      "responseTime": 30,
+      "statusCode": 200,
+      "priority": "high"
+    },
+    {
+      "name": "System Metrics",
+      "path": "/metrics",
+      "success": true,
+      "responseTime": 3,
+      "statusCode": 200,
+      "priority": "high"
+    },
+    {
+      "name": "Database Monitoring",
+      "path": "/database",
+      "success": true,
+      "responseTime": 3,
+      "statusCode": 200,
+      "priority": "high"
+    },
+    {
+      "name": "Security Monitoring",
+      "path": "/security",
+      "success": true,
+      "responseTime": 4,
+      "statusCode": 200,
+      "priority": "high"
+    },
+    {
+      "name": "Business Intelligence",
+      "path": "/business",
+      "success": true,
+      "responseTime": 5,
+      "statusCode": 200,
+      "priority": "high"
+    },
+    {
+      "name": "Alerting System",
+      "path": "/alerts",
+      "success": true,
+      "responseTime": 7,
+      "statusCode": 200,
+      "priority": "high"
+    },
+    {
+      "name": "Logging Infrastructure",
+      "path": "/logging",
+      "success": true,
+      "responseTime": 2,
+      "statusCode": 200,
+      "priority": "high"
+    },
+    {
+      "name": "Distributed Tracing",
+      "path": "/tracing",
+      "success": true,
+      "responseTime": 3,
+      "statusCode": 200,
+      "priority": "high"
+    },
+    {
+      "name": "Session Replay",
+      "path": "/session-replay",
+      "success": true,
+      "responseTime": 3,
+      "statusCode": 200,
+      "priority": "high"
+    },
+    {
+      "name": "Comprehensive Dashboard",
+      "path": "/dashboard",
+      "success": true,
+      "responseTime": 5,
+      "statusCode": 200,
+      "priority": "high"
+    },
+    {
+      "name": "On-call Scheduling",
+      "path": "/oncall",
+      "success": true,
+      "responseTime": 4,
+      "statusCode": 200,
+      "priority": "medium"
+    },
+    {
+      "name": "Threat Intelligence",
+      "path": "/threat-intelligence",
+      "success": true,
+      "responseTime": 5,
+      "statusCode": 200,
+      "priority": "medium"
+    },
+    {
+      "name": "Automated Reporting",
+      "path": "/automated-reporting",
+      "success": true,
+      "responseTime": 3,
+      "statusCode": 200,
+      "priority": "medium"
+    },
+    {
+      "name": "Vulnerability Scanning",
+      "path": "/vulnerability-scanning",
+      "success": true,
+      "responseTime": 4,
+      "statusCode": 200,
+      "priority": "medium"
+    },
+    {
+      "name": "System Metrics (Enhanced)",
+      "path": "/system-metrics",
+      "success": true,
+      "responseTime": 2,
+      "statusCode": 200,
+      "priority": "medium"
+    },
+    {
+      "name": "Workflow Automation",
+      "path": "/workflow-automation",
+      "success": true,
+      "responseTime": 13,
+      "statusCode": 200,
+      "priority": "medium"
+    },
+    {
+      "name": "Enhanced Search System",
+      "path": "/enhanced-search",
+      "success": true,
+      "responseTime": 3,
+      "statusCode": 200,
+      "priority": "medium"
+    },
+    {
+      "name": "Enhanced Reporting System",
+      "path": "/enhanced-reporting",
+      "success": true,
+      "responseTime": 2,
+      "statusCode": 200,
+      "priority": "medium"
+    },
+    {
+      "name": "APM Monitoring System",
+      "path": "/apm-monitoring",
+      "success": true,
+      "responseTime": 2,
+      "statusCode": 200,
+      "priority": "medium"
+    },
+    {
+      "name": "Infrastructure Monitoring",
+      "path": "/infrastructure",
+      "success": true,
+      "responseTime": 5,
+      "statusCode": 200,
+      "priority": "high"
+    }
+  ],
+  "slowest": {
+    "name": "System Overview",
+    "path": "/overview",
+    "success": true,
+    "responseTime": 30,
+    "statusCode": 200,
+    "priority": "high"
+  },
+  "fastest": {
+    "name": "Logging Infrastructure",
+    "path": "/logging",
+    "success": true,
+    "responseTime": 2,
+    "statusCode": 200,
+    "priority": "high"
+  }
+}

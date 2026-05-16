@@ -1,0 +1,243 @@
+{
+  "systems": {
+    "notification": {
+      "filesExist": 3,
+      "filesMissing": 0,
+      "totalFiles": 3,
+      "fileDetails": [
+        {
+          "file": "middleware/notificationSystem.js",
+          "exists": true,
+          "size": 33047,
+          "modified": "2026-05-15T21:58:28.948Z",
+          "isFile": true
+        },
+        {
+          "file": "routes/notificationRoutes.js",
+          "exists": true,
+          "size": 10721,
+          "modified": "2026-05-14T04:39:52.470Z",
+          "isFile": true
+        },
+        {
+          "file": "middleware/notificationDatabasePool.js",
+          "exists": true,
+          "size": 12530,
+          "modified": "2026-05-15T22:15:52.601Z",
+          "isFile": true
+        }
+      ],
+      "overallStatus": "PASSED"
+    },
+    "userManagement": {
+      "filesExist": 4,
+      "filesMissing": 0,
+      "totalFiles": 4,
+      "fileDetails": [
+        {
+          "file": "models/User.js",
+          "exists": true,
+          "size": 5709,
+          "modified": "2026-05-15T20:51:41.908Z",
+          "isFile": true
+        },
+        {
+          "file": "models/Team.js",
+          "exists": true,
+          "size": 5485,
+          "modified": "2026-05-15T20:55:59.116Z",
+          "isFile": true
+        },
+        {
+          "file": "controllers/userManagementController.js",
+          "exists": true,
+          "size": 14744,
+          "modified": "2026-05-15T20:52:09.832Z",
+          "isFile": true
+        },
+        {
+          "file": "routes/userManagementEnhancedRoutes.js",
+          "exists": true,
+          "size": 12735,
+          "modified": "2026-05-15T20:52:28.082Z",
+          "isFile": true
+        }
+      ],
+      "overallStatus": "PASSED"
+    },
+    "search": {
+      "filesExist": 2,
+      "filesMissing": 0,
+      "totalFiles": 2,
+      "fileDetails": [
+        {
+          "file": "middleware/searchSystemEnhanced.js",
+          "exists": true,
+          "size": 31363,
+          "modified": "2026-05-15T21:12:13.451Z",
+          "isFile": true
+        },
+        {
+          "file": "routes/searchEnhancedRoutes.js",
+          "exists": true,
+          "size": 16814,
+          "modified": "2026-05-15T21:07:04.568Z",
+          "isFile": true
+        }
+      ],
+      "overallStatus": "PASSED"
+    },
+    "reporting": {
+      "filesExist": 2,
+      "filesMissing": 0,
+      "totalFiles": 2,
+      "fileDetails": [
+        {
+          "file": "middleware/reportingSystemEnhanced.js",
+          "exists": true,
+          "size": 59020,
+          "modified": "2026-05-15T21:18:45.703Z",
+          "isFile": true
+        },
+        {
+          "file": "routes/reportingEnhancedRoutes.js",
+          "exists": true,
+          "size": 18982,
+          "modified": "2026-05-15T21:19:08.351Z",
+          "isFile": true
+        }
+      ],
+      "overallStatus": "PASSED"
+    },
+    "workflow": {
+      "filesExist": 2,
+      "filesMissing": 0,
+      "totalFiles": 2,
+      "fileDetails": [
+        {
+          "file": "middleware/workflowAutomation.js",
+          "exists": true,
+          "size": 23778,
+          "modified": "2026-05-15T21:48:50.133Z",
+          "isFile": true
+        },
+        {
+          "file": "routes/workflowAutomationRoutes.js",
+          "exists": true,
+          "size": 14852,
+          "modified": "2026-05-15T21:49:05.869Z",
+          "isFile": true
+        }
+      ],
+      "overallStatus": "PASSED"
+    },
+    "databasePool": {
+      "filesExist": 1,
+      "filesMissing": 0,
+      "totalFiles": 1,
+      "fileDetails": [
+        {
+          "file": "middleware/notificationDatabasePool.js",
+          "exists": true,
+          "size": 12530,
+          "modified": "2026-05-15T22:15:52.601Z",
+          "isFile": true
+        }
+      ],
+      "overallStatus": "PASSED"
+    },
+    "websocket": {
+      "filesExist": 4,
+      "filesMissing": 0,
+      "totalFiles": 4,
+      "fileDetails": [
+        {
+          "file": "middleware/websocketServer.js",
+          "exists": true,
+          "size": 16508,
+          "modified": "2026-05-15T22:22:21.461Z",
+          "isFile": true
+        },
+        {
+          "file": "middleware/realtimeNotifications.js",
+          "exists": true,
+          "size": 15312,
+          "modified": "2026-05-15T22:22:39.716Z",
+          "isFile": true
+        },
+        {
+          "file": "routes/websocketRoutes.js",
+          "exists": true,
+          "size": 11393,
+          "modified": "2026-05-15T22:22:59.612Z",
+          "isFile": true
+        },
+        {
+          "file": "public/js/websocket-client.js",
+          "exists": true,
+          "size": 13877,
+          "modified": "2026-05-15T22:23:44.339Z",
+          "isFile": true
+        }
+      ],
+      "overallStatus": "PASSED"
+    }
+  },
+  "serverIntegration": {
+    "integratedCount": 5,
+    "totalSystems": 5,
+    "integrationRate": 100,
+    "integrations": {
+      "notification": true,
+      "userManagement": true,
+      "search": true,
+      "reporting": true,
+      "workflow": true
+    }
+  },
+  "dependencies": {
+    "installedCount": 9,
+    "totalRequired": 9,
+    "installationRate": 100,
+    "dependencyDetails": {
+      "express": {
+        "installed": true,
+        "version": "^4.18.2"
+      },
+      "mongoose": {
+        "installed": true,
+        "version": "^8.0.3"
+      },
+      "nodemailer": {
+        "installed": true,
+        "version": "^8.0.7"
+      },
+      "twilio": {
+        "installed": true,
+        "version": "^6.0.2"
+      },
+      "jsonwebtoken": {
+        "installed": true,
+        "version": "^9.0.2"
+      },
+      "bcryptjs": {
+        "installed": true,
+        "version": "^2.4.3"
+      },
+      "cors": {
+        "installed": true,
+        "version": "^2.8.5"
+      },
+      "helmet": {
+        "installed": true,
+        "version": "^7.1.0"
+      },
+      "dotenv": {
+        "installed": true,
+        "version": "^16.3.1"
+      }
+    }
+  },
+  "overallStatus": "EXCELLENT",
+  "timestamp": "2026-05-15T22:25:08.778Z"
+}

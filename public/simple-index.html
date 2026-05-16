@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS Support System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background: linear-gradient(180deg, #0a0a1a 0%, #1a1a2e 50%, #0f0f23 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #00ffff;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: rgba(10, 10, 30, 0.9);
+            padding: 25px 35px;
+            border: 1px solid #00ffff;
+            border-radius: 0;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3), inset 0 0 20px rgba(0, 255, 255, 0.1);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ffff, transparent);
+            animation: scanline 3s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        h1 {
+            color: #00ffff;
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+        }
+
+        .subtitle {
+            color: #00a0a0;
+            margin-top: 10px;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 12px 25px;
+            background: rgba(10, 10, 30, 0.8);
+            border: 1px solid #004444;
+            color: #00ffff;
+            cursor: pointer;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .tab:hover {
+            background: rgba(0, 255, 255, 0.1);
+            border-color: #00ffff;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+
+        .tab.active {
+            background: rgba(0, 255, 255, 0.2);
+            border-color: #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.6), inset 0 0 10px rgba(0, 255, 255, 0.2);
+        }
+
+        .panel {
+            display: none;
+            background: rgba(10, 10, 30, 0.95);
+            padding: 30px;
+            border: 1px solid #00ffff;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2), inset 0 0 30px rgba(0, 255, 255, 0.05);
+        }
+
+        .panel.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #00ffff;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 12px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 15px;
+            background: rgba(0, 20, 40, 0.8);
+            border: 1px solid #004444;
+            color: #00ffff;
+            font-size: 14px;
+            font-family: 'Courier New', Courier, monospace;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #00ffff;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5), inset 0 0 10px rgba(0, 255, 255, 0.1);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #006666;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        select option {
+            background: #0a0a1a;
+            color: #00ffff;
+        }
+
+        button {
+            padding: 15px 30px;
+            background: rgba(0, 50, 80, 0.8);
+            color: #00ffff;
+            border: 1px solid #00ffff;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        button:hover {
+            background: rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+        }
+
+        .ticket-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .ticket-card {
+            background: rgba(10, 20, 40, 0.9);
+            padding: 20px;
+            border: 1px solid #004444;
+            border-left: 3px solid #00ffff;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ticket-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(0, 255, 255, 0.05), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .ticket-card:hover {
+            transform: translateX(10px);
+            border-color: #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+        }
+
+        .ticket-card:hover::before {
+            opacity: 1;
+        }
+
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .ticket-id {
+            font-weight: bold;
+            color: #00ffff;
+            text-shadow: 0 0 5px #00ffff;
+        }
+
+        .ticket-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #00cccc;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .ticket-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 12px;
+            color: #008888;
+        }
+
+        .status {
+            padding: 5px 15px;
+            border: 1px solid;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status.open { 
+            border-color: #00ff00; 
+            color: #00ff00; 
+            background: rgba(0, 255, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+        .status.in_progress { 
+            border-color: #ffff00; 
+            color: #ffff00; 
+            background: rgba(255, 255, 0, 0.1);
+            box-shadow: 0 0 10px rgba(255, 255, 0, 0.3);
+        }
+        .status.resolved { 
+            border-color: #00aaff; 
+            color: #00aaff; 
+            background: rgba(0, 170, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 170, 255, 0.3);
+        }
+        .status.closed { 
+            border-color: #888888; 
+            color: #888888; 
+            background: rgba(136, 136, 136, 0.1);
+        }
+
+        .priority {
+            padding: 5px 15px;
+            border: 1px solid;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .priority.low { 
+            border-color: #00aaff; 
+            color: #00aaff; 
+            background: rgba(0, 170, 255, 0.1);
+        }
+        .priority.medium { 
+            border-color: #ffff00; 
+            color: #ffff00; 
+            background: rgba(255, 255, 0, 0.1);
+        }
+        .priority.high { 
+            border-color: #ff8800; 
+            color: #ff8800; 
+            background: rgba(255, 136, 0, 0.1);
+            box-shadow: 0 0 10px rgba(255, 136, 0, 0.3);
+        }
+        .priority.critical { 
+            border-color: #ff0000; 
+            color: #ff0000; 
+            background: rgba(255, 0, 0, 0.1);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .filters select {
+            width: auto;
+            min-width: 180px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: rgba(10, 10, 30, 0.98);
+            padding: 35px;
+            border: 1px solid #00ffff;
+            max-width: 850px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.3), inset 0 0 30px rgba(0, 255, 255, 0.05);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #004444;
+            padding-bottom: 15px;
+        }
+
+        .close-btn {
+            background: none;
+            border: 1px solid #00ffff;
+            font-size: 28px;
+            cursor: pointer;
+            color: #00ffff;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .close-btn:hover {
+            background: rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+
+        .comments-section {
+            margin-top: 35px;
+            padding-top: 35px;
+            border-top: 1px solid #004444;
+        }
+
+        .comment {
+            background: rgba(0, 30, 50, 0.8);
+            padding: 18px;
+            border: 1px solid #003333;
+            margin-bottom: 15px;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 12px;
+            color: #008888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: rgba(0, 50, 80, 0.8);
+            color: #00ffff;
+            text-decoration: none;
+            border: 1px solid #00ffff;
+            font-size: 14px;
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .github-link:hover {
+            background: rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #00ffff;
+            font-size: 16px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .error {
+            background: rgba(80, 0, 0, 0.3);
+            color: #ff4444;
+            padding: 18px;
+            border: 1px solid #ff0000;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            color: #00ffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: #00cccc;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #00cccc;
+            line-height: 1.6;
+        }
+
+        strong {
+            color: #00ffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>NEXUS Support System</h1>
+            <p class="subtitle">Manage and sync support tickets with GitHub issues</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showPanel('create')">Create Ticket</button>
+            <button class="tab" onclick="showPanel('list')">View Tickets</button>
+        </div>
+
+        <div id="createPanel" class="panel active">
+            <h2>Create New Ticket</h2>
+            <br>
+            <form id="createTicketForm">
+                <div class="form-group">
+                    <label>Title *</label>
+                    <input type="text" id="title" required placeholder="Enter ticket title">
+                </div>
+                <div class="form-group">
+                    <label>Description *</label>
+                    <textarea id="description" required placeholder="Describe the issue in detail"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Your Name *</label>
+                    <input type="text" id="createdBy" required placeholder="Your name">
+                </div>
+                <div class="form-group">
+                    <label>Your Email *</label>
+                    <input type="email" id="createdByEmail" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Priority</label>
+                    <select id="priority">
+                        <option value="low">Low</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="high">High</option>
+                        <option value="critical">Critical</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <input type="text" id="category" placeholder="e.g., bug, feature, question">
+                </div>
+                <div class="form-group">
+                    <label>Tags (comma-separated)</label>
+                    <input type="text" id="tags" placeholder="e.g., frontend, api, urgent">
+                </div>
+                <button type="submit">Create Ticket</button>
+                <button type="button" onclick="quickTest()" style="margin-left: 10px; background: #28a745;">Quick Test</button>
+            </form>
+        </div>
+
+        <div id="listPanel" class="panel">
+            <h2>All Tickets</h2>
+            <br>
+            <div class="filters">
+                <select id="filterStatus" onchange="loadTickets()">
+                    <option value="">All Status</option>
+                    <option value="open">Open</option>
+                    <option value="in_progress">In Progress</option>
+                    <option value="resolved">Resolved</option>
+                    <option value="closed">Closed</option>
+                </select>
+                <select id="filterPriority" onchange="loadTickets()">
+                    <option value="">All Priority</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                    <option value="critical">Critical</option>
+                </select>
+                <button onclick="loadTickets()">Refresh</button>
+            </div>
+            <div id="ticketList" class="ticket-list">
+                <div class="loading">Loading tickets...</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="ticketModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Ticket Details</h2>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = '/api';
+
+        function showPanel(panel) {
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(panel + 'Panel').classList.add('active');
+            event.target.classList.add('active');
+            
+            if (panel === 'list') {
+                loadTickets();
+            }
+        }
+
+        document.getElementById('createTicketForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            console.log('🎫 Form submission started');
+            
+            // Get all form values
+            const title = document.getElementById('title').value;
+            const description = document.getElementById('description').value;
+            const createdBy = document.getElementById('createdBy').value;
+            const createdByEmail = document.getElementById('createdByEmail').value;
+            const priority = document.getElementById('priority').value;
+            const category = document.getElementById('category').value || 'general';
+            const tags = document.getElementById('tags').value.split(',').map(t => t.trim()).filter(t => t);
+            
+            console.log('📝 Form values:', { title, description, createdBy, createdByEmail, priority, category, tags });
+            
+            // Validate
+            if (!title || !description || !createdBy || !createdByEmail) {
+                console.error('❌ Validation failed - missing fields');
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            const ticket = {
+                title: title.trim(),
+                description: description.trim(),
+                createdBy: createdBy.trim(),
+                createdByEmail: createdByEmail.trim(),
+                priority: priority,
+                category: category.trim(),
+                tags: tags
+            };
+
+            console.log('📦 Sending ticket:', ticket);
+
+            try {
+                console.log('🌐 Making request to:', `${API_BASE}/tickets`);
+                const response = await fetch(`${API_BASE}/tickets`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(ticket)
+                });
+
+                console.log('📡 Response status:', response.status);
+                console.log('📡 Response headers:', response.headers);
+
+                if (!response.ok) {
+                    console.error('❌ HTTP error:', response.status, response.statusText);
+                    const errorText = await response.text();
+                    console.error('❌ Error response:', errorText);
+                    alert(`HTTP Error: ${response.status} - ${response.statusText}`);
+                    return;
+                }
+
+                const data = await response.json();
+                console.log('📋 Response data:', data);
+                
+                if (data.success) {
+                    console.log('✅ Ticket created successfully!');
+                    alert('✅ Ticket created! ID: ' + data.data.ticketId);
+                    document.getElementById('createTicketForm').reset();
+                    showPanel('list');
+                    document.querySelectorAll('.tab')[1].click();
+                    loadTickets();
+                } else {
+                    console.error('❌ API error:', data.error);
+                    alert('❌ Error: ' + data.error);
+                }
+            } catch (error) {
+                console.error('❌ Network error:', error);
+                alert('❌ Network Error: ' + error.message);
+            }
+        });
+
+        async function loadTickets() {
+            console.log('🔄 Loading tickets...');
+            const status = document.getElementById('filterStatus').value;
+            const priority = document.getElementById('filterPriority').value;
+            
+            let url = `${API_BASE}/tickets`;
+            const params = [];
+            if (status) params.push(`status=${status}`);
+            if (priority) params.push(`priority=${priority}`);
+            if (params.length) url += '?' + params.join('&');
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                console.log('📋 Tickets loaded:', data);
+
+                if (data.success) {
+                    displayTickets(data.data);
+                } else {
+                    document.getElementById('ticketList').innerHTML = 
+                        `<div class="error">Error loading tickets: ${data.error}</div>`;
+                }
+            } catch (error) {
+                console.error('❌ Error loading tickets:', error);
+                document.getElementById('ticketList').innerHTML = 
+                    `<div class="error">Error: ${error.message}</div>`;
+            }
+        }
+
+        function displayTickets(tickets) {
+            const container = document.getElementById('ticketList');
+            
+            if (tickets.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #008888;">No tickets found</p>';
+                return;
+            }
+
+            container.innerHTML = tickets.map(ticket => `
+                <div class="ticket-card" onclick="viewTicket('${ticket.ticketId}')">
+                    <div class="ticket-header">
+                        <span class="ticket-id">${ticket.ticketId}</span>
+                        <span class="status ${ticket.status}">${ticket.status.replace('_', ' ')}</span>
+                    </div>
+                    <div class="ticket-title">${escapeHtml(ticket.title)}</div>
+                    <div class="ticket-meta">
+                        <span class="priority ${ticket.priority}">${ticket.priority}</span>
+                        <span>Date: ${new Date(ticket.createdAt).toLocaleDateString()}</span>
+                        <span>Created by: ${escapeHtml(ticket.createdBy)}</span>
+                        ${ticket.githubIssueNumber ? `<span>GitHub #${ticket.githubIssueNumber}</span>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function viewTicket(ticketId) {
+            console.log('👁️ Viewing ticket:', ticketId);
+            try {
+                const response = await fetch(`${API_BASE}/tickets/${ticketId}`);
+                const data = await response.json();
+
+                if (data.success) {
+                    showTicketModal(data.data);
+                } else {
+                    alert('Error loading ticket: ' + data.error);
+                }
+            } catch (error) {
+                console.error('❌ Error viewing ticket:', error);
+                alert('Error: ' + error.message);
+            }
+        }
+
+        function showTicketModal(ticket) {
+            const modal = document.getElementById('ticketModal');
+            const body = document.getElementById('modalBody');
+            
+            body.innerHTML = `
+                <div class="ticket-header">
+                    <span class="ticket-id">${ticket.ticketId}</span>
+                    <span class="status ${ticket.status}">${ticket.status.replace('_', ' ')}</span>
+                </div>
+                <h3>${escapeHtml(ticket.title)}</h3>
+                <br>
+                <p><strong>Description:</strong></p>
+                <p>${escapeHtml(ticket.description)}</p>
+                <br>
+                <div class="ticket-meta">
+                    <p><strong>Priority:</strong> <span class="priority ${ticket.priority}">${ticket.priority}</span></p>
+                    <p><strong>Category:</strong> ${escapeHtml(ticket.category)}</p>
+                    <p><strong>Created by:</strong> ${escapeHtml(ticket.createdBy)} (${escapeHtml(ticket.createdByEmail)})</p>
+                    <p><strong>Created at:</strong> ${new Date(ticket.createdAt).toLocaleString()}</p>
+                    ${ticket.assignedTo ? `<p><strong>Assigned to:</strong> ${escapeHtml(ticket.assignedTo)}</p>` : ''}
+                </div>
+                ${ticket.tags.length ? `<p><strong>Tags:</strong> ${ticket.tags.map(t => escapeHtml(t)).join(', ')}</p>` : ''}
+                ${ticket.githubIssueUrl ? `
+                    <br>
+                    <a href="${ticket.githubIssueUrl}" target="_blank" class="github-link">
+                        View on GitHub #${ticket.githubIssueNumber}
+                    </a>
+                ` : ''}
+                ${ticket.githubIssueUrl ? `
+                    <br><br>
+                    <button onclick="syncTicket('${ticket.ticketId}')">Sync with GitHub</button>
+                ` : ''}
+                <div class="comments-section">
+                    <h3>Comments (${ticket.comments.length})</h3>
+                    <br>
+                    ${ticket.comments.length ? ticket.comments.map(c => `
+                        <div class="comment">
+                            <div class="comment-header">
+                                <strong>${escapeHtml(c.author)}</strong>
+                                <span>${new Date(c.createdAt).toLocaleString()}</span>
+                            </div>
+                            <p>${escapeHtml(c.content)}</p>
+                        </div>
+                    `).join('') : '<p style="color: #008888;">No comments yet</p>'}
+                    <br>
+                    <form onsubmit="addComment(event, '${ticket.ticketId}')">
+                        <div class="form-group">
+                            <textarea id="commentContent" placeholder="Add a comment..." style="min-height: 80px;"></textarea>
+                        </div>
+                        <button type="submit">Add Comment</button>
+                    </form>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+        }
+
+        async function addComment(e, ticketId) {
+            e.preventDefault();
+            const content = document.getElementById('commentContent').value;
+            
+            if (!content.trim()) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/tickets/${ticketId}/comments`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        content,
+                        author: 'User',
+                        authorEmail: 'user@example.com'
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    viewTicket(ticketId);
+                } else {
+                    alert('Error adding comment: ' + data.error);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        async function syncTicket(ticketId) {
+            try {
+                const response = await fetch(`${API_BASE}/github/sync-ticket/${ticketId}`, {
+                    method: 'POST'
+                });
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert('Ticket synced with GitHub!');
+                    viewTicket(ticketId);
+                } else {
+                    alert('Error syncing: ' + data.error);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('ticketModal').classList.remove('active');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function quickTest() {
+            const testTicket = {
+                title: 'Quick Test Ticket',
+                description: 'This is a quick test to verify the system works',
+                createdBy: 'Test User',
+                createdByEmail: 'test@example.com',
+                priority: 'medium',
+                category: 'test',
+                tags: ['test']
+            };
+
+            fetch(`${API_BASE}/tickets`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(testTicket)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('✅ System works! Ticket created: ' + data.data.ticketId);
+                    loadTickets();
+                } else {
+                    alert('❌ System error: ' + data.error);
+                }
+            })
+            .catch(error => {
+                alert('❌ Network error: ' + error.message);
+            });
+        }
+
+        // Load tickets on page load
+        window.onload = () => {
+            console.log('🚀 Page loaded, initializing...');
+            loadTickets();
+        };
+    </script>
+</body>
+</html>

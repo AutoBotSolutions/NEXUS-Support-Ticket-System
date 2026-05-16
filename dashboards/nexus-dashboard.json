@@ -1,0 +1,176 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "NEXUS Support System Dashboard",
+    "tags": ["nexus", "support"],
+    "timezone": "browser",
+    "panels": [
+      {
+        "id": 1,
+        "title": "Request Rate",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(http_requests_total[5m])",
+            "legendFormat": "{{method}} {{route}}"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": 2,
+        "title": "Response Time",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m]))",
+            "legendFormat": "95th percentile"
+          },
+          {
+            "expr": "histogram_quantile(0.50, rate(http_request_duration_seconds_bucket[5m]))",
+            "legendFormat": "50th percentile"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 0
+        }
+      },
+      {
+        "id": 3,
+        "title": "Error Rate",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(http_requests_total{status_code=~\"4..\"}[5m])",
+            "legendFormat": "4xx errors"
+          },
+          {
+            "expr": "rate(http_requests_total{status_code=~\"5..\"}[5m])",
+            "legendFormat": "5xx errors"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 8
+        }
+      },
+      {
+        "id": 4,
+        "title": "Active Connections",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "active_connections",
+            "legendFormat": "Active Connections"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 12,
+          "y": 8
+        }
+      },
+      {
+        "id": 5,
+        "title": "Database Connections",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "database_connections",
+            "legendFormat": "DB Connections"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 18,
+          "y": 8
+        }
+      },
+      {
+        "id": 6,
+        "title": "Tickets Created",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(tickets_created_total[5m])",
+            "legendFormat": "{{priority}} - {{category}}"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 16
+        }
+      },
+      {
+        "id": 7,
+        "title": "User Registrations",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(users_registered_total[5m])",
+            "legendFormat": "Registrations/sec"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 16
+        }
+      },
+      {
+        "id": 8,
+        "title": "Authentication Attempts",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(authentication_attempts_total[5m])",
+            "legendFormat": "{{success}} - {{method}}"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 24
+        }
+      },
+      {
+        "id": 9,
+        "title": "GitHub API Calls",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(github_api_calls_total[5m])",
+            "legendFormat": "{{endpoint}} - {{status}}"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 24
+        }
+      }
+    ],
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "refresh": "5s"
+  }
+}

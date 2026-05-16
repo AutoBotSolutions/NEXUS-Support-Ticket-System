@@ -1,0 +1,80 @@
+# NEXUS Support System - Licenses Directory
+
+This directory contains all license information for the NEXUS Support System project.
+
+## License Files
+
+### Project License
+- **MIT** - The default license for the NEXUS Support System project
+
+### Commercial License
+- **COMMERCIAL-LICENSE** - Commercial license for profit/commercial use with support tiers
+
+### Common Open Source Licenses
+- **APACHE-2.0** - Apache License 2.0
+- **GPL-3.0** - GNU General Public License v3.0
+- **BSD-2-Clause** - BSD 2-Clause "Simplified" License
+- **BSD-3-Clause** - BSD 3-Clause "New" or "Revised" License
+
+### Third-Party Licenses
+- **THIRD-PARTY-LICENSES** - Attribution and license information for all third-party dependencies
+
+## License Selection
+
+The NEXUS Support System is dual-licensed:
+
+1. **MIT License (Default)** - Free for open source and commercial use
+2. **Commercial License** - For organizations requiring support, SLA guarantees, and additional features
+
+## Third-Party Dependencies
+
+All third-party dependencies used in NEXUS are distributed under permissive open-source licenses (MIT, BSD-2-Clause), which allow for:
+- Commercial use
+- Modification
+- Distribution
+- Private use
+- Sublicensing
+
+For detailed information about each dependency's license, see the THIRD-PARTY-LICENSES file.
+
+## License Compliance
+
+When using or distributing NEXUS Support System:
+
+1. **For MIT License Users**:
+   - Include the MIT license text in your distribution
+   - Preserve copyright notices
+   - Acknowledge the original project
+
+2. **For Commercial License Users**:
+   - Use your provided license key
+   - Adhere to the terms in COMMERCIAL-LICENSE
+   - Contact support for any questions
+
+3. **For Modified Versions**:
+   - Clearly indicate modifications
+   - Include original license notices
+   - Do not remove copyright information
+
+## License Changes
+
+To change from MIT to Commercial license:
+
+1. Contact commercial@nexus-support.com
+2. Purchase appropriate license tier
+3. Receive license key
+4. Update configuration with license key
+5. Follow commercial license terms
+
+## Questions
+
+For license-related questions:
+- **Open Source/MIT**: See GitHub Issues
+- **Commercial**: commercial@nexus-support.com
+- **General**: support@nexus-support.com
+
+## Additional Resources
+
+- [Open Source Initiative](https://opensource.org/licenses)
+- [Choose a License](https://choosealicense.com/)
+- [SPDX License List](https://spdx.org/licenses/)

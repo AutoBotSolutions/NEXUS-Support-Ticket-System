@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS Ticket System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-title h1 {
+            color: #667eea;
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .header-title p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: #f8f9fa;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .user-details {
+            font-size: 14px;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .user-email {
+            color: #666;
+            font-size: 12px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab {
+            padding: 15px 25px;
+            background: transparent;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s;
+        }
+
+        .tab:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .panel {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .panel.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-sizing: border-box;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        button {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+        }
+
+        .ticket-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .ticket-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .ticket-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .ticket-number {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 18px;
+        }
+
+        .ticket-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .ticket-description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .ticket-meta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 14px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status.open {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status.in_progress {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status.resolved {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .priority {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .priority.low {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .priority.medium {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .priority.high {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .priority.critical {
+            background: #f5c6cb;
+            color: #721c24;
+        }
+
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .filters select {
+            min-width: 200px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .close-btn:hover {
+            background: #f0f0f0;
+        }
+
+        .message {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .comment-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .comment {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .comment-author {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .logout-btn {
+            background: #dc3545;
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-title">
+                <h1>NEXUS Ticket System</h1>
+                <p>Create and manage your support tickets</p>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar" id="userAvatar">U</div>
+                <div class="user-details">
+                    <div class="user-name" id="userName">Loading...</div>
+                    <div class="user-email" id="userEmail">Loading...</div>
+                </div>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </header>
+
+        <div id="message"></div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showPanel('create', this)">Create Ticket</button>
+            <button class="tab" onclick="showPanel('list', this)">My Tickets</button>
+        </div>
+
+        <!-- Create Ticket Panel -->
+        <div id="createPanel" class="panel active">
+            <h2>Create New Ticket</h2>
+            <form id="createTicketForm">
+                <div class="form-group">
+                    <label for="title">Title *</label>
+                    <input type="text" id="title" required placeholder="Brief description of the issue">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description *</label>
+                    <textarea id="description" required placeholder="Detailed description of the issue"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="priority">Priority</label>
+                    <select id="priority">
+                        <option value="low">Low</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="high">High</option>
+                        <option value="critical">Critical</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <input type="text" id="category" placeholder="e.g., bug, feature, question">
+                </div>
+                <button type="submit" id="createBtn">Create Ticket</button>
+            </form>
+        </div>
+
+        <!-- List Tickets Panel -->
+        <div id="listPanel" class="panel">
+            <h2>My Tickets</h2>
+            <div class="filters">
+                <select id="filterStatus" onchange="loadTickets()">
+                    <option value="">All Status</option>
+                    <option value="open">Open</option>
+                    <option value="in_progress">In Progress</option>
+                    <option value="resolved">Resolved</option>
+                </select>
+                <select id="filterPriority" onchange="loadTickets()">
+                    <option value="">All Priority</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                    <option value="critical">Critical</option>
+                </select>
+                <button class="btn-secondary" onclick="loadTickets()">Refresh</button>
+            </div>
+            <div id="ticketList" class="ticket-list">
+                <div class="loading">
+                    <div class="spinner"></div> Loading tickets...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ticket Detail Modal -->
+    <div id="ticketModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Ticket Details</h2>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = '/api';
+        let authToken = null;
+        let currentUser = null;
+
+        // Get token from URL parameter or localStorage
+        window.onload = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            authToken = urlParams.get('token') || localStorage.getItem('nexus_token');
+            
+            if (!authToken) {
+                window.location.href = '/auth-index.html';
+                return;
+            }
+
+            // Store token in localStorage
+            localStorage.setItem('nexus_token', authToken);
+            
+            // Verify token and load user info
+            verifyToken();
+        };
+
+        async function verifyToken() {
+            try {
+                const response = await fetch(`${API_BASE}/users/profile`, {
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    currentUser = data.data.user;
+                    updateUserInfo();
+                    loadTickets();
+                } else {
+                    logout();
+                }
+            } catch (error) {
+                console.error('Token verification failed:', error);
+                logout();
+            }
+        }
+
+        function updateUserInfo() {
+            if (!currentUser) return;
+            
+            document.getElementById('userName').textContent = currentUser.fullName;
+            document.getElementById('userEmail').textContent = currentUser.email;
+            document.getElementById('userAvatar').textContent = currentUser.fullName.charAt(0).toUpperCase();
+        }
+
+        function showPanel(panel, buttonElement) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            
+            // Activate the clicked button
+            if (buttonElement) {
+                buttonElement.classList.add('active');
+            }
+            
+            document.getElementById(panel + 'Panel').classList.add('active');
+            
+            if (panel === 'list') {
+                loadTickets();
+            }
+            
+            clearMessage();
+        }
+
+        function showMessage(text, type) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.innerHTML = `<div class="message ${type}">${text}</div>`;
+            
+            setTimeout(() => {
+                clearMessage();
+            }, 5000);
+        }
+
+        function clearMessage() {
+            document.getElementById('message').innerHTML = '';
+        }
+
+        // Create ticket form handler
+        document.getElementById('createTicketForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const ticketData = {
+                title: document.getElementById('title').value,
+                description: document.getElementById('description').value,
+                priority: document.getElementById('priority').value,
+                category: document.getElementById('category').value || 'general'
+            };
+            
+            const createBtn = document.getElementById('createBtn');
+            createBtn.disabled = true;
+            createBtn.innerHTML = '<span class="spinner"></span> Creating...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/tickets`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify(ticketData)
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showMessage('Ticket created successfully!', 'success');
+                    document.getElementById('createTicketForm').reset();
+                    
+                    // Switch to tickets list
+                    setTimeout(() => {
+                        document.querySelectorAll('.tab')[1].click();
+                    }, 1500);
+                } else {
+                    showMessage('Error creating ticket: ' + data.error, 'error');
+                }
+            } catch (error) {
+                showMessage('Network error: ' + error.message, 'error');
+            } finally {
+                createBtn.disabled = false;
+                createBtn.innerHTML = 'Create Ticket';
+            }
+        });
+
+        async function loadTickets() {
+            const ticketList = document.getElementById('ticketList');
+            ticketList.innerHTML = '<div class="loading"><div class="spinner"></div> Loading tickets...</div>';
+            
+            const status = document.getElementById('filterStatus').value;
+            const priority = document.getElementById('filterPriority').value;
+            
+            let url = `${API_BASE}/tickets`;
+            const params = [];
+            if (status) params.push(`status=${status}`);
+            if (priority) params.push(`priority=${priority}`);
+            if (params.length) url += '?' + params.join('&');
+            
+            try {
+                const response = await fetch(url, {
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    displayTickets(data.data.tickets);
+                } else {
+                    ticketList.innerHTML = `<div class="message error">Error loading tickets: ${data.error}</div>`;
+                }
+            } catch (error) {
+                ticketList.innerHTML = `<div class="message error">Network error: ${error.message}</div>`;
+            }
+        }
+
+        function displayTickets(tickets) {
+            const container = document.getElementById('ticketList');
+            
+            if (tickets.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666; padding: 40px;">No tickets found</p>';
+                return;
+            }
+            
+            container.innerHTML = tickets.map(ticket => `
+                <div class="ticket-card" onclick="viewTicket('${ticket.id}')">
+                    <div class="ticket-header">
+                        <span class="ticket-number">${ticket.ticketNumber}</span>
+                        <span class="status ${ticket.status}">${ticket.status.replace('_', ' ')}</span>
+                    </div>
+                    <div class="ticket-title">${escapeHtml(ticket.title)}</div>
+                    <div class="ticket-description">${escapeHtml(ticket.description.substring(0, 150))}${ticket.description.length > 150 ? '...' : ''}</div>
+                    <div class="ticket-meta">
+                        <div class="meta-item">
+                            <span class="priority ${ticket.priority}">${ticket.priority}</span>
+                        </div>
+                        <div class="meta-item">
+                            <span>📁 ${escapeHtml(ticket.category)}</span>
+                        </div>
+                        <div class="meta-item">
+                            <span>📅 ${new Date(ticket.createdAt).toLocaleDateString()}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function viewTicket(ticketId) {
+            try {
+                const response = await fetch(`${API_BASE}/tickets/${ticketId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showTicketModal(data.data.ticket);
+                } else {
+                    showMessage('Error loading ticket: ' + data.error, 'error');
+                }
+            } catch (error) {
+                showMessage('Network error: ' + error.message, 'error');
+            }
+        }
+
+        function showTicketModal(ticket) {
+            const modal = document.getElementById('ticketModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+            
+            modalTitle.textContent = `${ticket.ticketNumber} - ${escapeHtml(ticket.title)}`;
+            
+            modalBody.innerHTML = `
+                <div style="margin-bottom: 20px;">
+                    <div class="ticket-header">
+                        <span class="status ${ticket.status}">${ticket.status.replace('_', ' ')}</span>
+                        <span class="priority ${ticket.priority}">${ticket.priority}</span>
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <h3>Description</h3>
+                    <p style="line-height: 1.6; color: #666;">${escapeHtml(ticket.description)}</p>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <h3>Details</h3>
+                    <div style="display: grid; gap: 10px;">
+                        <p><strong>Category:</strong> ${escapeHtml(ticket.category)}</p>
+                        <p><strong>Created:</strong> ${new Date(ticket.createdAt).toLocaleString()}</p>
+                        <p><strong>Last Updated:</strong> ${new Date(ticket.updatedAt).toLocaleString()}</p>
+                    </div>
+                </div>
+                
+                <div class="comment-section">
+                    <h3>Comments (${ticket.comments.length})</h3>
+                    ${ticket.comments.length > 0 ? ticket.comments.map(comment => `
+                        <div class="comment">
+                            <div class="comment-header">
+                                <span class="comment-author">${escapeHtml(comment.author.fullName)}</span>
+                                <span>${new Date(comment.createdAt).toLocaleString()}</span>
+                            </div>
+                            <p style="margin: 0; line-height: 1.5;">${escapeHtml(comment.text)}</p>
+                        </div>
+                    `).join('') : '<p style="color: #666; text-align: center; padding: 20px;">No comments yet</p>'}
+                    
+                    <form onsubmit="addComment(event, '${ticket.id}')" style="margin-top: 20px;">
+                        <div class="form-group">
+                            <textarea id="commentText" placeholder="Add a comment..." required style="min-height: 80px;"></textarea>
+                        </div>
+                        <button type="submit">Add Comment</button>
+                    </form>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+        }
+
+        async function addComment(e, ticketId) {
+            e.preventDefault();
+            
+            const commentText = document.getElementById('commentText').value;
+            
+            try {
+                const response = await fetch(`${API_BASE}/tickets/${ticketId}/comments`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify({ text: commentText })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showMessage('Comment added successfully!', 'success');
+                    viewTicket(ticketId); // Refresh the modal
+                } else {
+                    showMessage('Error adding comment: ' + data.error, 'error');
+                }
+            } catch (error) {
+                showMessage('Network error: ' + error.message, 'error');
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('ticketModal').classList.remove('active');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function logout() {
+            localStorage.removeItem('nexus_token');
+            authToken = null;
+            currentUser = null;
+            window.location.href = '/auth-index.html';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = (event) => {
+            const modal = document.getElementById('ticketModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+    </script>
+</body>
+</html>

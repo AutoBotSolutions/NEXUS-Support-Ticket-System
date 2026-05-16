@@ -1,0 +1,55 @@
+{
+  "timestamp": "2026-05-16T01:27:14.611Z",
+  "duration": 714014,
+  "results": {
+    "unit": {
+      "passed": 0,
+      "failed": 0,
+      "total": 0,
+      "duration": 342325
+    },
+    "integration": {
+      "passed": 0,
+      "failed": 0,
+      "total": 0,
+      "duration": 4872
+    },
+    "e2e": {
+      "passed": 0,
+      "failed": 0,
+      "total": 0,
+      "duration": 4233
+    },
+    "performance": {
+      "passed": 0,
+      "failed": 0,
+      "total": 0,
+      "duration": 3666
+    },
+    "security": {
+      "passed": 0,
+      "failed": 0,
+      "total": 0,
+      "duration": 3559
+    },
+    "coverage": {
+      "overall": 0
+    },
+    "summary": {
+      "totalTests": 0,
+      "totalPassed": 0,
+      "totalFailed": 0,
+      "totalDuration": 358655,
+      "successRate": 0
+    }
+  },
+  "assessment": "CRITICAL",
+  "recommendations": [
+    {
+      "priority": "HIGH",
+      "category": "Test Coverage",
+      "message": "Overall test success rate is below 90%",
+      "action": "Fix failing tests and improve test coverage"
+    }
+  ]
+}

@@ -1,0 +1,449 @@
+{
+  "timestamp": "2026-05-16T02:55:42.960Z",
+  "summary": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0,
+    "successRate": "100.0",
+    "averageResponseTime": "13.40"
+  },
+  "tests": [
+    {
+      "name": "Server Health Check",
+      "url": "http://localhost:3000/api/health",
+      "status": "passed",
+      "statusCode": 200,
+      "responseTime": 42,
+      "data": {
+        "success": true,
+        "status": "ok",
+        "timestamp": "2026-05-16T02:55:42.915Z",
+        "uptime": 7.048815977
+      },
+      "error": null
+    },
+    {
+      "name": "Vulnerability Scanning Endpoint",
+      "url": "http://localhost:3000/api/comprehensive-monitoring/vulnerability-scanning",
+      "status": "passed",
+      "statusCode": 200,
+      "responseTime": 10,
+      "data": {
+        "success": true,
+        "data": {
+          "vulnerabilities": [],
+          "scanResults": [],
+          "knownVulnerabilities": [
+            {
+              "id": "CVE-2021-22959",
+              "severity": "high",
+              "title": "Node.js HTTP Request Smuggling",
+              "description": "HTTP request smuggling vulnerability in Node.js",
+              "affectedVersions": "<14.21.1, <16.5.2",
+              "fixedVersions": ">=14.21.1, >=16.5.2",
+              "category": "network",
+              "cwe": "CWE-444"
+            },
+            {
+              "id": "CVE-2021-22960",
+              "severity": "high",
+              "title": "Node.js HTTP2 Denial of Service",
+              "description": "Denial of service vulnerability in HTTP2 implementation",
+              "affectedVersions": "<14.21.1, <16.5.2",
+              "fixedVersions": ">=14.21.1, >=16.5.2",
+              "category": "network",
+              "cwe": "CWE-400"
+            },
+            {
+              "id": "CVE-2022-32213",
+              "severity": "medium",
+              "title": "Node.js Prototype Pollution",
+              "description": "Prototype pollution vulnerability in Node.js",
+              "affectedVersions": "<16.16.0, <18.6.0",
+              "fixedVersions": ">=16.16.0, >=18.6.0",
+              "category": "injection",
+              "cwe": "CWE-1321"
+            },
+            {
+              "id": "npm:lodash:20180130",
+              "severity": "high",
+              "title": "Lodash Prototype Pollution",
+              "description": "Prototype pollution vulnerability in Lodash",
+              "affectedVersions": "<4.17.11",
+              "fixedVersions": ">=4.17.11",
+              "category": "injection",
+              "cwe": "CWE-1321",
+              "packageName": "lodash"
+            },
+            {
+              "id": "npm:express:20220809",
+              "severity": "medium",
+              "title": "Express.js Path Traversal",
+              "description": "Path traversal vulnerability in Express.js",
+              "affectedVersions": "<4.18.2",
+              "fixedVersions": ">=4.18.2",
+              "category": "path_traversal",
+              "cwe": "CWE-22",
+              "packageName": "express"
+            },
+            {
+              "id": "npm:axios:20210906",
+              "severity": "medium",
+              "title": "Axios SSRF Protection Bypass",
+              "description": "Server-Side Request Forgery protection bypass",
+              "affectedVersions": "<0.21.1",
+              "fixedVersions": ">=0.21.1",
+              "category": "ssrf",
+              "cwe": "CWE-918",
+              "packageName": "axios"
+            }
+          ],
+          "securityPolicies": [
+            {
+              "id": "default",
+              "name": "Default Security Policy",
+              "severityThresholds": {
+                "critical": "block",
+                "high": "warn",
+                "medium": "warn",
+                "low": "info"
+              },
+              "scanCategories": [
+                "dependencies",
+                "code_quality",
+                "security_headers",
+                "input_validation",
+                "authentication",
+                "authorization",
+                "data_protection"
+              ],
+              "exclusions": [
+                "test_files",
+                "documentation",
+                "node_modules"
+              ],
+              "autoRemediation": {
+                "enabled": true,
+                "categories": [
+                  "dependencies"
+                ]
+              }
+            },
+            {
+              "id": "strict",
+              "name": "Strict Security Policy",
+              "severityThresholds": {
+                "critical": "block",
+                "high": "block",
+                "medium": "warn",
+                "low": "warn"
+              },
+              "scanCategories": [
+                "dependencies",
+                "code_quality",
+                "security_headers",
+                "input_validation",
+                "authentication",
+                "authorization",
+                "data_protection",
+                "encryption",
+                "logging",
+                "error_handling"
+              ],
+              "exclusions": [
+                "test_files",
+                "documentation"
+              ],
+              "autoRemediation": {
+                "enabled": true,
+                "categories": [
+                  "dependencies",
+                  "security_headers"
+                ]
+              }
+            }
+          ],
+          "vulnerabilitySummary": {
+            "total": 0,
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0,
+            "byType": {},
+            "byFile": {},
+            "bySeverity": {}
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "name": "System Metrics Endpoint",
+      "url": "http://localhost:3000/api/comprehensive-monitoring/system-metrics",
+      "status": "passed",
+      "statusCode": 200,
+      "responseTime": 5,
+      "data": {
+        "success": true,
+        "data": {
+          "metrics": {},
+          "performanceMetrics": {},
+          "resourceMetrics": {},
+          "networkMetrics": {}
+        }
+      },
+      "error": null
+    },
+    {
+      "name": "Workflow Automation Endpoint",
+      "url": "http://localhost:3000/api/comprehensive-monitoring/workflow-automation",
+      "status": "passed",
+      "statusCode": 200,
+      "responseTime": 5,
+      "data": {
+        "success": true,
+        "data": {
+          "workflows": [
+            {
+              "id": "ticket-assignment",
+              "name": "Automatic Ticket Assignment",
+              "description": "Automatically assign tickets to appropriate agents based on rules",
+              "category": "ticket-management",
+              "enabled": true,
+              "trigger": {
+                "type": "event",
+                "event": "ticket.created"
+              },
+              "conditions": [
+                {
+                  "type": "field",
+                  "field": "priority",
+                  "operator": "equals",
+                  "value": "high"
+                }
+              ],
+              "actions": [
+                {
+                  "type": "assignment",
+                  "assignTo": "least-busy-agent",
+                  "priority": "high"
+                },
+                {
+                  "type": "notification",
+                  "template": "ticket-assignment-notification",
+                  "recipients": [
+                    "assigned-agent",
+                    "team-lead"
+                  ]
+                }
+              ],
+              "createdAt": "2026-05-16T02:55:36.959Z",
+              "updatedAt": "2026-05-16T02:55:36.959Z",
+              "executionCount": 0,
+              "lastExecuted": null,
+              "status": "active"
+            },
+            {
+              "id": "ticket-escalation",
+              "name": "Ticket Escalation",
+              "description": "Escalate tickets that exceed SLA",
+              "category": "sla-management",
+              "enabled": true,
+              "trigger": {
+                "type": "schedule",
+                "schedule": "*/5 * * * *"
+              },
+              "conditions": [
+                {
+                  "type": "sla",
+                  "field": "response-time",
+                  "operator": "exceeds",
+                  "value": 3600
+                }
+              ],
+              "actions": [
+                {
+                  "type": "escalation",
+                  "level": "team-lead"
+                },
+                {
+                  "type": "notification",
+                  "template": "sla-escalation-notification",
+                  "recipients": [
+                    "team-lead",
+                    "manager"
+                  ]
+                }
+              ],
+              "createdAt": "2026-05-16T02:55:36.959Z",
+              "updatedAt": "2026-05-16T02:55:36.959Z",
+              "executionCount": 0,
+              "lastExecuted": null,
+              "status": "active"
+            },
+            {
+              "id": "user-welcome",
+              "name": "User Welcome Sequence",
+              "description": "Send welcome sequence to new users",
+              "category": "user-onboarding",
+              "enabled": true,
+              "trigger": {
+                "type": "event",
+                "event": "user.created"
+              },
+              "conditions": [
+                {
+                  "type": "field",
+                  "field": "role",
+                  "operator": "equals",
+                  "value": "user"
+                }
+              ],
+              "actions": [
+                {
+                  "type": "notification",
+                  "template": "welcome-email",
+                  "recipients": [
+                    "user"
+                  ]
+                },
+                {
+                  "type": "delay",
+                  "delay": 3600
+                },
+                {
+                  "type": "notification",
+                  "template": "onboarding-guide",
+                  "recipients": [
+                    "user"
+                  ]
+                }
+              ],
+              "createdAt": "2026-05-16T02:55:36.959Z",
+              "updatedAt": "2026-05-16T02:55:36.959Z",
+              "executionCount": 0,
+              "lastExecuted": null,
+              "status": "active"
+            },
+            {
+              "id": "system-health-check",
+              "name": "System Health Check",
+              "description": "Monitor system health and send alerts",
+              "category": "system-monitoring",
+              "enabled": true,
+              "trigger": {
+                "type": "schedule",
+                "schedule": "0 */6 * * *"
+              },
+              "conditions": [
+                {
+                  "type": "system",
+                  "field": "cpu-usage",
+                  "operator": "greater-than",
+                  "value": 80
+                }
+              ],
+              "actions": [
+                {
+                  "type": "notification",
+                  "template": "system-alert",
+                  "recipients": [
+                    "admin",
+                    "devops"
+                  ]
+                }
+              ],
+              "createdAt": "2026-05-16T02:55:36.959Z",
+              "updatedAt": "2026-05-16T02:55:36.959Z",
+              "executionCount": 0,
+              "lastExecuted": null,
+              "status": "active"
+            }
+          ],
+          "executions": [],
+          "metrics": {
+            "totalWorkflows": 4,
+            "activeWorkflows": 4,
+            "totalExecutions": 0,
+            "successfulExecutions": 0,
+            "failedExecutions": 0,
+            "averageExecutionTime": 0,
+            "recentExecutions": 0
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "name": "Comprehensive Dashboard",
+      "url": "http://localhost:3000/api/comprehensive-monitoring/dashboard",
+      "status": "passed",
+      "statusCode": 200,
+      "responseTime": 5,
+      "data": {
+        "success": true,
+        "data": {
+          "overview": {
+            "status": "healthy",
+            "uptime": 7.08978255
+          },
+          "metrics": {
+            "requests": {
+              "total": 100,
+              "errors": 0
+            },
+            "database": {
+              "connections": 1
+            }
+          },
+          "database": {
+            "status": "healthy",
+            "queryTime": 25
+          },
+          "security": {
+            "threats": 0,
+            "status": "secure"
+          },
+          "business": {
+            "tickets": 50,
+            "users": 10,
+            "engagement": 85
+          },
+          "alerts": {
+            "active": 0,
+            "critical": 0
+          },
+          "logging": {
+            "totalLogs": 100,
+            "errorRate": 5
+          },
+          "tracing": {
+            "traces": [],
+            "serviceMap": {}
+          },
+          "sessionReplay": {
+            "sessions": [],
+            "averageDuration": 1800000
+          },
+          "onCallScheduling": {
+            "currentOnCallPerson": null,
+            "totalUsers": 3,
+            "totalIncidents": 0,
+            "activeIncidents": 0
+          },
+          "threatIntelligence": {
+            "threatFeeds": [],
+            "totalIndicators": 0,
+            "threatSummary": {}
+          },
+          "automatedReporting": {
+            "reportTemplates": [],
+            "totalReports": 0,
+            "activeSchedules": 0
+          }
+        }
+      },
+      "error": null
+    }
+  ]
+}

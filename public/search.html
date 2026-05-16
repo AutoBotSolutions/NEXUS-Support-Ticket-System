@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS Search System</title>
+    <link rel="stylesheet" href="/css/search-system.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <div class="search-container">
+        <header class="search-header">
+            <h1>NEXUS Search System</h1>
+            <p>Advanced search for tickets, users, and content</p>
+        </header>
+
+        <main class="search-main">
+            <!-- Search Input Section -->
+            <section class="search-input-section">
+                <div class="search-input-wrapper">
+                    <input 
+                        type="text" 
+                        id="search-input" 
+                        class="search-input" 
+                        placeholder="Search for tickets, users, or content..."
+                        autocomplete="off"
+                    >
+                    <button id="search-button" class="search-button">
+                        <span class="search-icon">🔍</span>
+                        Search
+                    </button>
+                </div>
+                
+                <!-- Suggestions Container -->
+                <div id="suggestions-container" class="suggestions-container"></div>
+                
+                <!-- Loading Indicator -->
+                <div id="loading-indicator" class="loading-indicator" style="display: none;">
+                    <div class="spinner"></div>
+                    <span>Searching...</span>
+                </div>
+                
+                <!-- Error Message -->
+                <div id="error-message" class="error-message" style="display: none;"></div>
+                
+                <!-- No Results Message -->
+                <div id="no-results-message" class="no-results-message" style="display: none;">
+                    <h3>No results found</h3>
+                    <p>Try adjusting your search terms or filters.</p>
+                </div>
+            </section>
+
+            <!-- Advanced Search Section -->
+            <section class="advanced-search-section">
+                <button id="advanced-search-toggle" class="advanced-search-toggle">
+                    ⚙️ Advanced Search
+                </button>
+                
+                <div id="advanced-search-form" class="advanced-search-form" style="display: none;">
+                    <h3>Advanced Search Options</h3>
+                    
+                    <div class="advanced-filters">
+                        <div class="filter-group">
+                            <label for="content-type">Content Type:</label>
+                            <select id="content-type" name="contentType">
+                                <option value="all">All Content</option>
+                                <option value="ticket">Tickets</option>
+                                <option value="user">Users</option>
+                                <option value="comment">Comments</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="date-range">Date Range:</label>
+                            <div class="date-range-inputs">
+                                <input type="date" id="start-date" name="startDate">
+                                <span>to</span>
+                                <input type="date" id="end-date" name="endDate">
+                            </div>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="sort-order">Sort By:</label>
+                            <select id="sort-order" name="sort">
+                                <option value="relevance">Relevance</option>
+                                <option value="date">Date</option>
+                                <option value="title">Title</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label>
+                                <input type="checkbox" id="fuzzy-search" name="fuzzy" checked>
+                                Enable fuzzy search
+                            </label>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label>
+                                <input type="checkbox" id="highlight-results" name="highlight" checked>
+                                Highlight search terms
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="advanced-actions">
+                        <button type="button" class="btn btn-primary" onclick="searchSystem.performSearch()">
+                            Apply Filters
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="searchSystem.clearFilters()">
+                            Clear Filters
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Search Results Section -->
+            <section class="search-results-section">
+                <div class="results-header">
+                    <h2>Search Results</h2>
+                    <div class="results-info">
+                        <span id="results-count">0 results</span>
+                        <span id="search-time"></span>
+                    </div>
+                </div>
+                
+                <!-- Results Container -->
+                <div id="results-container" class="results-container"></div>
+                
+                <!-- Pagination -->
+                <div id="pagination-container" class="pagination-container"></div>
+            </section>
+
+            <!-- Sidebar Section -->
+            <aside class="search-sidebar">
+                <!-- Facets -->
+                <div class="facets-section">
+                    <h3>Filter Results</h3>
+                    <div id="facets-container" class="facets-container"></div>
+                </div>
+                
+                <!-- Saved Searches -->
+                <div class="saved-searches-section">
+                    <h3>Saved Searches</h3>
+                    <div id="saved-searches-container" class="saved-searches-container"></div>
+                </div>
+                
+                <!-- Search History -->
+                <div class="search-history-section">
+                    <h3>Recent Searches</h3>
+                    <div id="search-history-container" class="search-history-container"></div>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <script src="/js/search-system.js"></script>
+</body>
+</html>

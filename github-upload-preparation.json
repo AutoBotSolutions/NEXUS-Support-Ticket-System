@@ -1,0 +1,22 @@
+{
+  "upload": {
+    "repository": "https://github.com/AutoBotSolutions/NEXUS-Support-Ticket-System.git",
+    "targetDir": "/home/robbie/Desktop/nexus/github-commander-deployment",
+    "timestamp": "2026-05-16T22:11:20.349Z",
+    "status": "PREPARED FOR UPLOAD"
+  },
+  "system": {
+    "components": 4,
+    "totalComponents": 6,
+    "files": "790",
+    "commit": "7116d7ac088462cc13f009a65f70ddf57d1318f2"
+  },
+  "verification": {
+    "backend": true,
+    "frontend": true,
+    "ai": false,
+    "documentation": true,
+    "infrastructure": true,
+    "testing": false
+  }
+}

@@ -1,0 +1,210 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: nexus-support-app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://mongodb:27017/nexus-support
+      - PORT=3000
+      - JWT_SECRET=${JWT_SECRET}
+      - GITHUB_WEBHOOK_SECRET=${GITHUB_WEBHOOK_SECRET}
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - GITHUB_REPO_OWNER=${GITHUB_REPO_OWNER}
+      - GITHUB_REPO_NAME=${GITHUB_REPO_NAME}
+      - NEW_RELIC_LICENSE_KEY=${NEW_RELIC_LICENSE_KEY}
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - nexus-network
+
+  mongodb:
+    image: mongo:6.0
+    container_name: nexus-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=nexus-support
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - nexus-network
+
+  # Monitoring Stack
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: nexus-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./monitoring/alert_rules.yml:/etc/prometheus/alert_rules.yml
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    restart: unless-stopped
+    networks:
+      - nexus-network
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: nexus-grafana
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin123
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./dashboards:/etc/grafana/provisioning/dashboards
+    restart: unless-stopped
+    networks:
+      - nexus-network
+
+  alertmanager:
+    image: prom/alertmanager:latest
+    container_name: nexus-alertmanager
+    ports:
+      - "9093:9093"
+    volumes:
+      - ./monitoring/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+      - alertmanager-data:/alertmanager
+    restart: unless-stopped
+    networks:
+      - nexus-network
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: nexus-node-exporter
+    ports:
+      - "9100:9100"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    restart: unless-stopped
+    networks:
+      - nexus-network
+
+  mongodb-exporter:
+    image: percona/mongodb_exporter:latest
+    container_name: nexus-mongodb-exporter
+    ports:
+      - "9216:9216"
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017
+      - MONGODB_EXPORTER_WEB_LISTEN_ADDRESS=:9216
+      - MONGODB_EXPORTER_LOG_LEVEL=info
+      - MONGODB_EXPORTER_DISCOVERING_MODE=true
+      - MONGODB_EXPORTER_COMPATIBLE_MODE=true
+      - MONGODB_EXPORTER_COLLECT_DATABASE=true
+      - MONGODB_EXPORTER_COLLECT_COLLECTION=true
+      - MONGODB_EXPORTER_COLLECT_INDEXUSAGE=true
+      - MONGODB_EXPORTER_COLLECT_TOPMETRICS=true
+      - MONGODB_EXPORTER_COLLECT_QUERYSTATS=true
+    depends_on:
+      - mongodb
+    restart: unless-stopped
+    networks:
+      - nexus-network
+
+  # ELK Stack for Logging
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.8.0
+    container_name: nexus-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+      - xpack.security.enrollment.enabled=false
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+      - ./logging/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    restart: unless-stopped
+    networks:
+      - nexus-network
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.8.0
+    container_name: nexus-logstash
+    ports:
+      - "5044:5044"
+      - "9600:9600"
+    volumes:
+      - ./logging/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - ./logging/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./logs:/var/log/nexus
+    depends_on:
+      - elasticsearch
+    restart: unless-stopped
+    networks:
+      - nexus-network
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.8.0
+    container_name: nexus-kibana
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    volumes:
+      - ./logging/kibana.yml:/usr/share/kibana/config/kibana.yml
+    depends_on:
+      - elasticsearch
+    restart: unless-stopped
+    networks:
+      - nexus-network
+
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:8.8.0
+    container_name: nexus-filebeat
+    user: root
+    volumes:
+      - ./logging/filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - ./logs:/var/log/nexus
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    depends_on:
+      - logstash
+    restart: unless-stopped
+    networks:
+      - nexus-network
+
+volumes:
+  mongodb-data:
+    driver: local
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local
+  alertmanager-data:
+    driver: local
+  elasticsearch-data:
+    driver: local
+
+networks:
+  nexus-network:
+    driver: bridge

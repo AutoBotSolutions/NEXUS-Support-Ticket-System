@@ -1,0 +1,1960 @@
+{
+  "timestamp": "2026-05-16T03:11:35.135Z",
+  "summary": {
+    "totalTests": 19,
+    "passed": 19,
+    "failed": 0,
+    "successRate": 100,
+    "totalTime": 2021,
+    "averageResponseTime": 3.68
+  },
+  "results": [
+    {
+      "endpoint": "/api/comprehensive-monitoring/overview",
+      "url": "http://localhost:3000/api/comprehensive-monitoring/overview",
+      "success": true,
+      "statusCode": 200,
+      "responseTime": 4,
+      "data": {
+        "success": true,
+        "data": {
+          "system": {
+            "status": "healthy",
+            "uptime": 7.723146153,
+            "memory": {
+              "rss": 113631232,
+              "heapTotal": 55418880,
+              "heapUsed": 24068464,
+              "external": 20526721,
+              "arrayBuffers": 18263051
+            },
+            "cpu": {
+              "user": 1002200,
+              "system": 96186
+            }
+          },
+          "application": {
+            "metrics": {
+              "requests": {
+                "total": 100
+              },
+              "errors": 0
+            },
+            "responseTime": 50,
+            "errorRate": 0,
+            "throughput": 10
+          },
+          "database": {
+            "status": {
+              "status": "healthy"
+            },
+            "connections": 1,
+            "queryTime": 25,
+            "health": "healthy"
+          },
+          "security": {
+            "threats": 0,
+            "vulnerabilities": 0,
+            "authFailures": 0,
+            "status": "secure"
+          },
+          "business": {
+            "tickets": 50,
+            "users": 10,
+            "githubSyncs": 45,
+            "engagement": 85
+          },
+          "alerts": {
+            "active": 0,
+            "critical": 0,
+            "warning": 0,
+            "info": 0
+          },
+          "sessions": {
+            "active": 5,
+            "total": 100,
+            "averageDuration": 300000,
+            "completionRate": 95
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "endpoint": "/api/comprehensive-monitoring/metrics",
+      "url": "http://localhost:3000/api/comprehensive-monitoring/metrics",
+      "success": true,
+      "statusCode": 200,
+      "responseTime": 3,
+      "data": {
+        "success": true,
+        "data": {
+          "requests": {
+            "total": 100,
+            "errors": 0,
+            "responseTimes": [
+              10,
+              20,
+              30
+            ]
+          },
+          "database": {
+            "connections": 1,
+            "queries": 50,
+            "queryTimes": [
+              5,
+              10,
+              15
+            ]
+          },
+          "business": {
+            "ticketsCreated": 10,
+            "usersRegistered": 5,
+            "githubApiCalls": 25
+          },
+          "system": {
+            "memoryUsage": {
+              "rss": 113631232,
+              "heapTotal": 55418880,
+              "heapUsed": 24124312,
+              "external": 20526721,
+              "arrayBuffers": 18263051
+            },
+            "uptime": 7.827562721
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "endpoint": "/api/comprehensive-monitoring/database",
+      "url": "http://localhost:3000/api/comprehensive-monitoring/database",
+      "success": true,
+      "statusCode": 200,
+      "responseTime": 2,
+      "data": {
+        "success": true,
+        "data": {
+          "metrics": {
+            "status": "healthy",
+            "connections": 1,
+            "queries": 50,
+            "avgQueryTime": 25
+          },
+          "health": {
+            "status": "healthy",
+            "connectionState": 1,
+            "host": "localhost",
+            "port": 27017
+          },
+          "performance": {
+            "status": "good",
+            "avgResponseTime": 25
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "endpoint": "/api/comprehensive-monitoring/security",
+      "url": "http://localhost:3000/api/comprehensive-monitoring/security",
+      "success": true,
+      "statusCode": 200,
+      "responseTime": 4,
+      "data": {
+        "success": true,
+        "data": {
+          "dashboard": {
+            "data": {
+              "stats": {
+                "totalEvents": 0,
+                "eventsByType": {
+                  "sql_injection": 0,
+                  "xss": 0,
+                  "path_traversal": 0
+                },
+                "recentEvents": [],
+                "threatsDetected": 0,
+                "blockedIPs": 0
+              }
+            }
+          },
+          "authentication": {
+            "status": "good",
+            "failedAttempts": 0,
+            "activeSessions": 5
+          },
+          "threats": {
+            "count": 0,
+            "lastThreat": null
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "endpoint": "/api/comprehensive-monitoring/business",
+      "url": "http://localhost:3000/api/comprehensive-monitoring/business",
+      "success": true,
+      "statusCode": 200,
+      "responseTime": 3,
+      "data": {
+        "success": true,
+        "data": {
+          "analytics": {
+            "data": {
+              "dailyStats": {
+                "ticketsCreated": 10,
+                "ticketsResolved": 8,
+                "newUsers": 2,
+                "activeUsers": 15
+              },
+              "weeklyStats": {
+                "ticketsCreated": 70,
+                "ticketsResolved": 65,
+                "newUsers": 14,
+                "activeUsers": 105
+              },
+              "monthlyStats": {
+                "ticketsCreated": 300,
+                "ticketsResolved": 280,
+                "newUsers": 60,
+                "activeUsers": 450
+              },
+              "userSegments": {
+                "new": 20,
+                "active": 150,
+                "inactive": 30
+              },
+              "trendingTopics": [
+                "API Issues",
+                "Login Problems",
+                "Feature Requests"
+              ]
+            }
+          },
+          "kpis": {
+            "data": {
+              "currentKPIs": {
+                "ticketResolutionRate": 93.3,
+                "customerSatisfaction": 4.5,
+                "avgResponseTime": 2.5,
+                "systemUptime": 99.9
+              },
+              "kpiTrends": {
+                "resolutionRate": [
+                  90,
+                  92,
+                  93.3
+                ],
+                "satisfaction": [
+                  4.2,
+                  4.4,
+                  4.5
+                ],
+                "responseTime": [
+                  3,
+                  2.8,
+                  2.5
+                ]
+              },
+              "performanceScore": 85
+            }
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "endpoint": "/api/comprehensive-monitoring/alerts",
+      "url": "http://localhost:3000/api/comprehensive-monitoring/alerts",
+      "success": true,
+      "statusCode": 200,
+      "responseTime": 8,
+      "data": {
+        "success": true,
+        "data": {
+          "activeAlerts": [],
+          "alertRules": [
+            {
+              "id": "high_error_rate",
+              "name": "High Error Rate",
+              "condition": "error_rate > 0.1",
+              "severity": "critical",
+              "threshold": 0.1,
+              "duration": 300,
+              "enabled": true,
+              "description": "Error rate exceeds 10%"
+            },
+            {
+              "id": "high_response_time",
+              "name": "High Response Time",
+              "condition": "response_time_p95 > 1000",
+              "severity": "warning",
+              "threshold": 1000,
+              "duration": 300,
+              "enabled": true,
+              "description": "95th percentile response time exceeds 1 second"
+            }
+          ],
+          "escalationPolicies": [
+            {
+              "id": "critical_escalation",
+              "name": "Critical Alert Escalation",
+              "severity": "critical",
+              "steps": [
+                {
+                  "delay": 0,
+                  "channels": [
+                    "email",
+                    "slack"
+                  ],
+                  "message": "Critical alert requiring immediate attention"
+                }
+              ]
+            }
+          ],
+          "notificationHistory": [],
+          "statistics": {
+            "totalAlerts": 0,
+            "activeAlerts": 0,
+            "resolvedAlerts": 0,
+            "averageResolutionTime": 0
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "endpoint": "/api/comprehensive-monitoring/logging",
+      "url": "http://localhost:3000/api/comprehensive-monitoring/logging",
+      "success": true,
+      "statusCode": 200,
+      "responseTime": 3,
+      "data": {
+        "success": true,
+        "data": {
+          "stats": {
+            "totalLogs": 100,
+            "logsByLevel": {
+              "error": 5,
+              "warn": 15,
+              "info": 70,
+              "debug": 10
+            },
+            "recentLogs": [
+              {
+                "timestamp": "2026-05-16T03:11:33.783Z",
+                "level": "info",
+                "message": "Server started successfully",
+                "metadata": {
+                  "component": "server"
+                }
+              },
+              {
+                "timestamp": "2026-05-16T03:11:33.783Z",
+                "level": "warn",
+                "message": "High memory usage detected",
+                "metadata": {
+                  "component": "monitoring",
+                  "memoryUsage": "85%"
+                }
+              }
+            ],
+            "errorRate": 5,
+            "warningRate": 15
+          },
+          "trends": {
+            "hourlyLogCounts": {
+              "10": 5,
+              "11": 10,
+              "12": 15,
+              "13": 20,
+              "14": 18,
+              "15": 12
+            },
+            "levelTrends": {
+              "10": {
+                "error": 1,
+                "warn": 2,
+                "info": 2
+              },
+              "11": {
+                "error": 0,
+                "warn": 3,
+                "info": 7
+              },
+              "12": {
+                "error": 2,
+                "warn": 4,
+                "info": 9
+              }
+            },
+            "recentErrors": [
+              {
+                "timestamp": "2026-05-16T03:11:33.783Z",
+                "level": "error",
+                "message": "Database connection failed",
+                "metadata": {
+                  "component": "database"
+                }
+              }
+            ]
+          },
+          "levels": {
+            "ERROR": "error",
+            "WARN": "warn",
+            "INFO": "info",
+            "DEBUG": "debug"
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "endpoint": "/api/comprehensive-monitoring/tracing",
+      "url": "http://localhost:3000/api/comprehensive-monitoring/tracing",
+      "success": true,
+      "statusCode": 200,
+      "responseTime": 4,
+      "data": {
+        "success": true,
+        "data": {
+          "traces": [
+            {
+              "traceId": "trace-123",
+              "spanId": "span-456",
+              "operationName": "api_request",
+              "serviceName": "nexus-app",
+              "startTime": 1778901092887,
+              "endTime": 1778901093387,
+              "duration": 500,
+              "status": "success",
+              "tags": {
+                "http.method": "GET",
+                "http.url": "/api/health",
+                "http.status_code": 200
+              }
+            },
+            {
+              "traceId": "trace-789",
+              "spanId": "span-012",
+              "operationName": "database_query",
+              "serviceName": "mongodb",
+              "startTime": 1778901093087,
+              "endTime": 1778901093137,
+              "duration": 50,
+              "status": "success",
+              "tags": {
+                "db.collection": "tickets",
+                "db.operation": "find"
+              }
+            }
+          ],
+          "serviceMap": {
+            "services": {
+              "nexus-app": {
+                "name": "NEXUS Application",
+                "type": "application",
+                "version": "1.0.0",
+                "endpoints": [
+                  "/api/health",
+                  "/api/tickets",
+                  "/api/users"
+                ],
+                "dependencies": [
+                  "mongodb",
+                  "github-api"
+                ],
+                "health": "healthy",
+                "metrics": {
+                  "requestCount": 100,
+                  "averageDuration": 250,
+                  "errorCount": 2,
+                  "errorRate": 2
+                }
+              },
+              "mongodb": {
+                "name": "MongoDB",
+                "type": "database",
+                "version": "5.0",
+                "endpoints": [
+                  "mongodb://localhost:27017"
+                ],
+                "dependencies": [],
+                "health": "healthy"
+              }
+            },
+            "connections": [
+              {
+                "from": "nexus-app",
+                "to": "mongodb",
+                "type": "dependency"
+              }
+            ],
+            "timestamp": "2026-05-16T03:11:33.887Z"
+          },
+          "performanceBudgets": {
+            "status": "good",
+            "budgets": {
+              "api_request": {
+                "maxDuration": 500,
+                "compliance": 80
+              },
+              "database_query": {
+                "maxDuration": 100,
+                "compliance": 95
+              }
+            }
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "endpoint": "/api/comprehensive-monitoring/session-replay",
+      "url": "http://localhost:3000/api/comprehensive-monitoring/session-replay",
+      "success": true,
+      "statusCode": 200,
+      "responseTime": 5,
+      "data": {
+        "success": true,
+        "data": {
+          "sessions": [
+            {
+              "id": "session-123",
+              "startTime": "2026-05-16T02:11:33.993Z",
+              "endTime": "2026-05-16T02:41:33.993Z",
+              "duration": 1800000,
+              "eventCount": 45,
+              "userId": "user-456",
+              "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+              "url": "http://localhost:3000/dashboard",
+              "metadata": {
+                "screenResolution": "1920x1080",
+                "viewport": "1200x800",
+                "platform": "Windows",
+                "language": "en-US"
+              }
+            }
+          ],
+          "analytics": {
+            "totalSessions": 1,
+            "averageSessionDuration": 1800000,
+            "averageEventsPerSession": 45,
+            "topPages": {
+              "http://localhost:3000/dashboard": 1,
+              "http://localhost:3000/tickets": 0
+            },
+            "topUserAgents": {
+              "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36": 1
+            },
+            "errorRate": 0,
+            "completionRate": 100,
+            "userEngagement": {
+              "clicks": 20,
+              "scrolls": 10,
+              "formInteractions": 5,
+              "navigationEvents": 10
+            },
+            "timeDistribution": {
+              "lessThan1Min": 0,
+              "oneTo5Min": 0,
+              "fiveTo15Min": 1,
+              "moreThan15Min": 0
+            }
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "endpoint": "/api/comprehensive-monitoring/dashboard",
+      "url": "http://localhost:3000/api/comprehensive-monitoring/dashboard",
+      "success": true,
+      "statusCode": 200,
+      "responseTime": 3,
+      "data": {
+        "success": true,
+        "data": {
+          "overview": {
+            "status": "healthy",
+            "uptime": 8.667397787
+          },
+          "metrics": {
+            "requests": {
+              "total": 100,
+              "errors": 0
+            },
+            "database": {
+              "connections": 1
+            }
+          },
+          "database": {
+            "status": "healthy",
+            "queryTime": 25
+          },
+          "security": {
+            "threats": 0,
+            "status": "secure"
+          },
+          "business": {
+            "tickets": 50,
+            "users": 10,
+            "engagement": 85
+          },
+          "alerts": {
+            "active": 0,
+            "critical": 0
+          },
+          "logging": {
+            "totalLogs": 100,
+            "errorRate": 5
+          },
+          "tracing": {
+            "traces": [],
+            "serviceMap": {}
+          },
+          "sessionReplay": {
+            "sessions": [],
+            "averageDuration": 1800000
+          },
+          "onCallScheduling": {
+            "currentOnCallPerson": null,
+            "totalUsers": 3,
+            "totalIncidents": 0,
+            "activeIncidents": 0
+          },
+          "threatIntelligence": {
+            "threatFeeds": [],
+            "totalIndicators": 0,
+            "threatSummary": {}
+          },
+          "automatedReporting": {
+            "reportTemplates": [],
+            "totalReports": 0,
+            "activeSchedules": 0
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "endpoint": "/api/comprehensive-monitoring/oncall",
+      "url": "http://localhost:3000/api/comprehensive-monitoring/oncall",
+      "success": true,
+      "statusCode": 200,
+      "responseTime": 5,
+      "data": {
+        "success": true,
+        "data": {
+          "currentOnCallPerson": null,
+          "incidents": [],
+          "users": [
+            {
+              "id": "user-1",
+              "name": "Alice Johnson",
+              "email": "alice@nexus-support.com",
+              "phone": "+1234567890",
+              "role": "senior_engineer",
+              "timezone": "America/New_York",
+              "skills": [
+                "backend",
+                "database",
+                "security"
+              ],
+              "maxConcurrentShifts": 2,
+              "preferences": {
+                "shiftLength": 8,
+                "preferredDays": [
+                  "monday",
+                  "tuesday",
+                  "wednesday",
+                  "thursday",
+                  "friday"
+                ],
+                "avoidDays": [
+                  "saturday",
+                  "sunday"
+                ],
+                "preferredHours": {
+                  "start": 9,
+                  "end": 17
+                }
+              },
+              "createdAt": "2026-05-16T03:11:25.704Z",
+              "currentIncidents": [],
+              "totalIncidents": 0,
+              "averageResolutionTime": 0,
+              "onCallHours": 0,
+              "lastOnCall": null
+            },
+            {
+              "id": "user-2",
+              "name": "Bob Smith",
+              "email": "bob@nexus-support.com",
+              "phone": "+1234567891",
+              "role": "senior_engineer",
+              "timezone": "America/New_York",
+              "skills": [
+                "frontend",
+                "api",
+                "performance"
+              ],
+              "maxConcurrentShifts": 2,
+              "preferences": {
+                "shiftLength": 8,
+                "preferredDays": [
+                  "monday",
+                  "tuesday",
+                  "wednesday",
+                  "thursday",
+                  "friday"
+                ],
+                "avoidDays": [
+                  "saturday",
+                  "sunday"
+                ],
+                "preferredHours": {
+                  "start": 9,
+                  "end": 17
+                }
+              },
+              "createdAt": "2026-05-16T03:11:25.704Z",
+              "currentIncidents": [],
+              "totalIncidents": 0,
+              "averageResolutionTime": 0,
+              "onCallHours": 0,
+              "lastOnCall": null
+            },
+            {
+              "id": "user-3",
+              "name": "Charlie Davis",
+              "email": "charlie@nexus-support.com",
+              "phone": "+1234567892",
+              "role": "lead_engineer",
+              "timezone": "America/New_York",
+              "skills": [
+                "backend",
+                "database",
+                "security",
+                "frontend"
+              ],
+              "maxConcurrentShifts": 3,
+              "preferences": {
+                "shiftLength": 12,
+                "preferredDays": [
+                  "monday",
+                  "tuesday",
+                  "wednesday",
+                  "thursday",
+                  "friday"
+                ],
+                "avoidDays": [],
+                "preferredHours": {
+                  "start": 8,
+                  "end": 20
+                }
+              },
+              "createdAt": "2026-05-16T03:11:25.704Z",
+              "currentIncidents": [],
+              "totalIncidents": 0,
+              "averageResolutionTime": 0,
+              "onCallHours": 0,
+              "lastOnCall": null,
+              "availability": [
+                {
+                  "date": "2026-05-16T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-05-17T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-05-18T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-05-19T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-05-20T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-05-21T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-05-22T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-05-23T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-05-24T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-05-25T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-05-26T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-05-27T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-05-28T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-05-29T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-05-30T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-05-31T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-06-01T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-06-02T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-06-03T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-06-04T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-06-05T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-06-06T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-06-07T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-06-08T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-06-09T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-06-10T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-06-11T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-06-12T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-06-13T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                },
+                {
+                  "date": "2026-06-14T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16
+                }
+              ]
+            }
+          ],
+          "escalationPolicies": [
+            {
+              "id": "default_critical",
+              "name": "Default Critical Alert Escalation",
+              "severity": "critical",
+              "rules": [
+                {
+                  "level": 1,
+                  "timeout": 300,
+                  "action": "notify_oncall"
+                },
+                {
+                  "level": 2,
+                  "timeout": 600,
+                  "action": "notify_secondary"
+                },
+                {
+                  "level": 3,
+                  "timeout": 900,
+                  "action": "notify_manager"
+                },
+                {
+                  "level": 4,
+                  "timeout": 1800,
+                  "action": "notify_all"
+                }
+              ],
+              "createdAt": "2026-05-16T03:11:25.704Z",
+              "active": true
+            },
+            {
+              "id": "default_warning",
+              "name": "Default Warning Alert Escalation",
+              "severity": "warning",
+              "rules": [
+                {
+                  "level": 1,
+                  "timeout": 1800,
+                  "action": "notify_oncall"
+                },
+                {
+                  "level": 2,
+                  "timeout": 3600,
+                  "action": "notify_secondary"
+                },
+                {
+                  "level": 3,
+                  "timeout": 7200,
+                  "action": "notify_manager"
+                }
+              ],
+              "createdAt": "2026-05-16T03:11:25.704Z",
+              "active": true
+            }
+          ],
+          "schedules": [
+            {
+              "id": "schedule-1778901085745",
+              "startDate": "2026-05-16T03:11:25.704Z",
+              "endDate": "2026-06-15T03:11:25.704Z",
+              "shifts": [
+                {
+                  "id": "shift-1778901085719-8",
+                  "date": "2026-05-16T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085720-8",
+                  "date": "2026-05-17T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085720-8",
+                  "date": "2026-05-18T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085721-8",
+                  "date": "2026-05-19T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085722-8",
+                  "date": "2026-05-20T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085723-8",
+                  "date": "2026-05-21T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085723-8",
+                  "date": "2026-05-22T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085724-8",
+                  "date": "2026-05-23T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085725-8",
+                  "date": "2026-05-24T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085726-8",
+                  "date": "2026-05-25T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085726-8",
+                  "date": "2026-05-26T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085727-8",
+                  "date": "2026-05-27T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085728-8",
+                  "date": "2026-05-28T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085728-8",
+                  "date": "2026-05-29T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085730-8",
+                  "date": "2026-05-30T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085731-8",
+                  "date": "2026-05-31T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085732-8",
+                  "date": "2026-06-01T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085734-8",
+                  "date": "2026-06-02T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085736-8",
+                  "date": "2026-06-03T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085737-8",
+                  "date": "2026-06-04T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085738-8",
+                  "date": "2026-06-05T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085739-8",
+                  "date": "2026-06-06T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085739-8",
+                  "date": "2026-06-07T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085740-8",
+                  "date": "2026-06-08T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085741-8",
+                  "date": "2026-06-09T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085742-8",
+                  "date": "2026-06-10T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085743-8",
+                  "date": "2026-06-11T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085743-8",
+                  "date": "2026-06-12T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085744-8",
+                  "date": "2026-06-13T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                },
+                {
+                  "id": "shift-1778901085745-8",
+                  "date": "2026-06-14T03:11:25.704Z",
+                  "startTime": 8,
+                  "endTime": 16,
+                  "userId": "user-3",
+                  "userName": "Charlie Davis",
+                  "role": "lead_engineer",
+                  "status": "scheduled",
+                  "coverage": [
+                    "primary"
+                  ],
+                  "handoffFrom": null,
+                  "handoffTo": null
+                }
+              ],
+              "generatedAt": "2026-05-16T03:11:25.745Z"
+            }
+          ],
+          "statistics": {
+            "totalUsers": 3,
+            "totalIncidents": 0,
+            "activeIncidents": 0,
+            "escalationPolicies": 2
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "endpoint": "/api/comprehensive-monitoring/threat-intelligence",
+      "url": "http://localhost:3000/api/comprehensive-monitoring/threat-intelligence",
+      "success": true,
+      "statusCode": 200,
+      "responseTime": 5,
+      "data": {
+        "success": true,
+        "data": {
+          "threatFeeds": [],
+          "indicators": [],
+          "threatActors": [],
+          "campaigns": [],
+          "vulnerabilityDatabase": [],
+          "threatSummary": {}
+        }
+      },
+      "error": null
+    },
+    {
+      "endpoint": "/api/comprehensive-monitoring/automated-reporting",
+      "url": "http://localhost:3000/api/comprehensive-monitoring/automated-reporting",
+      "success": true,
+      "statusCode": 200,
+      "responseTime": 2,
+      "data": {
+        "success": true,
+        "data": {
+          "reportTemplates": [],
+          "schedules": [],
+          "subscriptions": [],
+          "reportHistory": [],
+          "statistics": {
+            "totalReports": 0,
+            "activeSchedules": 0,
+            "subscribers": 0,
+            "lastReportGenerated": null
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "endpoint": "/api/comprehensive-monitoring/vulnerability-scanning",
+      "url": "http://localhost:3000/api/comprehensive-monitoring/vulnerability-scanning",
+      "success": true,
+      "statusCode": 200,
+      "responseTime": 3,
+      "data": {
+        "success": true,
+        "data": {
+          "vulnerabilities": [],
+          "scanResults": [],
+          "knownVulnerabilities": [
+            {
+              "id": "CVE-2021-22959",
+              "severity": "high",
+              "title": "Node.js HTTP Request Smuggling",
+              "description": "HTTP request smuggling vulnerability in Node.js",
+              "affectedVersions": "<14.21.1, <16.5.2",
+              "fixedVersions": ">=14.21.1, >=16.5.2",
+              "category": "network",
+              "cwe": "CWE-444"
+            },
+            {
+              "id": "CVE-2021-22960",
+              "severity": "high",
+              "title": "Node.js HTTP2 Denial of Service",
+              "description": "Denial of service vulnerability in HTTP2 implementation",
+              "affectedVersions": "<14.21.1, <16.5.2",
+              "fixedVersions": ">=14.21.1, >=16.5.2",
+              "category": "network",
+              "cwe": "CWE-400"
+            },
+            {
+              "id": "CVE-2022-32213",
+              "severity": "medium",
+              "title": "Node.js Prototype Pollution",
+              "description": "Prototype pollution vulnerability in Node.js",
+              "affectedVersions": "<16.16.0, <18.6.0",
+              "fixedVersions": ">=16.16.0, >=18.6.0",
+              "category": "injection",
+              "cwe": "CWE-1321"
+            },
+            {
+              "id": "npm:lodash:20180130",
+              "severity": "high",
+              "title": "Lodash Prototype Pollution",
+              "description": "Prototype pollution vulnerability in Lodash",
+              "affectedVersions": "<4.17.11",
+              "fixedVersions": ">=4.17.11",
+              "category": "injection",
+              "cwe": "CWE-1321",
+              "packageName": "lodash"
+            },
+            {
+              "id": "npm:express:20220809",
+              "severity": "medium",
+              "title": "Express.js Path Traversal",
+              "description": "Path traversal vulnerability in Express.js",
+              "affectedVersions": "<4.18.2",
+              "fixedVersions": ">=4.18.2",
+              "category": "path_traversal",
+              "cwe": "CWE-22",
+              "packageName": "express"
+            },
+            {
+              "id": "npm:axios:20210906",
+              "severity": "medium",
+              "title": "Axios SSRF Protection Bypass",
+              "description": "Server-Side Request Forgery protection bypass",
+              "affectedVersions": "<0.21.1",
+              "fixedVersions": ">=0.21.1",
+              "category": "ssrf",
+              "cwe": "CWE-918",
+              "packageName": "axios"
+            }
+          ],
+          "securityPolicies": [
+            {
+              "id": "default",
+              "name": "Default Security Policy",
+              "severityThresholds": {
+                "critical": "block",
+                "high": "warn",
+                "medium": "warn",
+                "low": "info"
+              },
+              "scanCategories": [
+                "dependencies",
+                "code_quality",
+                "security_headers",
+                "input_validation",
+                "authentication",
+                "authorization",
+                "data_protection"
+              ],
+              "exclusions": [
+                "test_files",
+                "documentation",
+                "node_modules"
+              ],
+              "autoRemediation": {
+                "enabled": true,
+                "categories": [
+                  "dependencies"
+                ]
+              }
+            },
+            {
+              "id": "strict",
+              "name": "Strict Security Policy",
+              "severityThresholds": {
+                "critical": "block",
+                "high": "block",
+                "medium": "warn",
+                "low": "warn"
+              },
+              "scanCategories": [
+                "dependencies",
+                "code_quality",
+                "security_headers",
+                "input_validation",
+                "authentication",
+                "authorization",
+                "data_protection",
+                "encryption",
+                "logging",
+                "error_handling"
+              ],
+              "exclusions": [
+                "test_files",
+                "documentation"
+              ],
+              "autoRemediation": {
+                "enabled": true,
+                "categories": [
+                  "dependencies",
+                  "security_headers"
+                ]
+              }
+            }
+          ],
+          "vulnerabilitySummary": {
+            "total": 0,
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0,
+            "byType": {},
+            "byFile": {},
+            "bySeverity": {}
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "endpoint": "/api/comprehensive-monitoring/system-metrics",
+      "url": "http://localhost:3000/api/comprehensive-monitoring/system-metrics",
+      "success": true,
+      "statusCode": 200,
+      "responseTime": 2,
+      "data": {
+        "success": true,
+        "data": {
+          "metrics": {},
+          "performanceMetrics": {},
+          "resourceMetrics": {},
+          "networkMetrics": {}
+        }
+      },
+      "error": null
+    },
+    {
+      "endpoint": "/api/comprehensive-monitoring/workflow-automation",
+      "url": "http://localhost:3000/api/comprehensive-monitoring/workflow-automation",
+      "success": true,
+      "statusCode": 200,
+      "responseTime": 3,
+      "data": {
+        "success": true,
+        "data": {
+          "workflows": [
+            {
+              "id": "ticket-assignment",
+              "name": "Automatic Ticket Assignment",
+              "description": "Automatically assign tickets to appropriate agents based on rules",
+              "category": "ticket-management",
+              "enabled": true,
+              "trigger": {
+                "type": "event",
+                "event": "ticket.created"
+              },
+              "conditions": [
+                {
+                  "type": "field",
+                  "field": "priority",
+                  "operator": "equals",
+                  "value": "high"
+                }
+              ],
+              "actions": [
+                {
+                  "type": "assignment",
+                  "assignTo": "least-busy-agent",
+                  "priority": "high"
+                },
+                {
+                  "type": "notification",
+                  "template": "ticket-assignment-notification",
+                  "recipients": [
+                    "assigned-agent",
+                    "team-lead"
+                  ]
+                }
+              ],
+              "createdAt": "2026-05-16T03:11:26.238Z",
+              "updatedAt": "2026-05-16T03:11:26.238Z",
+              "executionCount": 0,
+              "lastExecuted": null,
+              "status": "active"
+            },
+            {
+              "id": "ticket-escalation",
+              "name": "Ticket Escalation",
+              "description": "Escalate tickets that exceed SLA",
+              "category": "sla-management",
+              "enabled": true,
+              "trigger": {
+                "type": "schedule",
+                "schedule": "*/5 * * * *"
+              },
+              "conditions": [
+                {
+                  "type": "sla",
+                  "field": "response-time",
+                  "operator": "exceeds",
+                  "value": 3600
+                }
+              ],
+              "actions": [
+                {
+                  "type": "escalation",
+                  "level": "team-lead"
+                },
+                {
+                  "type": "notification",
+                  "template": "sla-escalation-notification",
+                  "recipients": [
+                    "team-lead",
+                    "manager"
+                  ]
+                }
+              ],
+              "createdAt": "2026-05-16T03:11:26.239Z",
+              "updatedAt": "2026-05-16T03:11:26.239Z",
+              "executionCount": 0,
+              "lastExecuted": null,
+              "status": "active"
+            },
+            {
+              "id": "user-welcome",
+              "name": "User Welcome Sequence",
+              "description": "Send welcome sequence to new users",
+              "category": "user-onboarding",
+              "enabled": true,
+              "trigger": {
+                "type": "event",
+                "event": "user.created"
+              },
+              "conditions": [
+                {
+                  "type": "field",
+                  "field": "role",
+                  "operator": "equals",
+                  "value": "user"
+                }
+              ],
+              "actions": [
+                {
+                  "type": "notification",
+                  "template": "welcome-email",
+                  "recipients": [
+                    "user"
+                  ]
+                },
+                {
+                  "type": "delay",
+                  "delay": 3600
+                },
+                {
+                  "type": "notification",
+                  "template": "onboarding-guide",
+                  "recipients": [
+                    "user"
+                  ]
+                }
+              ],
+              "createdAt": "2026-05-16T03:11:26.239Z",
+              "updatedAt": "2026-05-16T03:11:26.239Z",
+              "executionCount": 0,
+              "lastExecuted": null,
+              "status": "active"
+            },
+            {
+              "id": "system-health-check",
+              "name": "System Health Check",
+              "description": "Monitor system health and send alerts",
+              "category": "system-monitoring",
+              "enabled": true,
+              "trigger": {
+                "type": "schedule",
+                "schedule": "0 */6 * * *"
+              },
+              "conditions": [
+                {
+                  "type": "system",
+                  "field": "cpu-usage",
+                  "operator": "greater-than",
+                  "value": 80
+                }
+              ],
+              "actions": [
+                {
+                  "type": "notification",
+                  "template": "system-alert",
+                  "recipients": [
+                    "admin",
+                    "devops"
+                  ]
+                }
+              ],
+              "createdAt": "2026-05-16T03:11:26.239Z",
+              "updatedAt": "2026-05-16T03:11:26.239Z",
+              "executionCount": 0,
+              "lastExecuted": null,
+              "status": "active"
+            }
+          ],
+          "executions": [],
+          "metrics": {
+            "totalWorkflows": 4,
+            "activeWorkflows": 4,
+            "totalExecutions": 0,
+            "successfulExecutions": 0,
+            "failedExecutions": 0,
+            "averageExecutionTime": 0,
+            "recentExecutions": 0
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "endpoint": "/api/comprehensive-monitoring/enhanced-search",
+      "url": "http://localhost:3000/api/comprehensive-monitoring/enhanced-search",
+      "success": true,
+      "statusCode": 200,
+      "responseTime": 4,
+      "data": {
+        "success": true,
+        "data": {
+          "searchIndex": [],
+          "searchAnalytics": {
+            "totalDocuments": 0,
+            "documentsByType": {},
+            "totalSearchesToday": 0,
+            "uniqueQueriesToday": 0,
+            "avgQueryLengthToday": 0,
+            "cacheSize": 0,
+            "facetCacheSize": 0,
+            "indexedAt": 1778901094827
+          },
+          "searchHistory": [],
+          "searchCache": {
+            "searchCacheSize": 0,
+            "facetCacheSize": 0,
+            "searchCacheTimeout": 300000,
+            "facetCacheTimeout": 600000
+          },
+          "facetCache": {
+            "searchCacheSize": 0,
+            "facetCacheSize": 0,
+            "searchCacheTimeout": 300000,
+            "facetCacheTimeout": 600000
+          },
+          "statistics": {
+            "totalDocuments": 0,
+            "totalSearches": 0,
+            "cacheHitRate": 0,
+            "averageSearchTime": 0,
+            "popularQueries": []
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "endpoint": "/api/comprehensive-monitoring/enhanced-reporting",
+      "url": "http://localhost:3000/api/comprehensive-monitoring/enhanced-reporting",
+      "success": true,
+      "statusCode": 200,
+      "responseTime": 5,
+      "data": {
+        "success": true,
+        "data": {
+          "reportTemplates": [],
+          "scheduledReports": [],
+          "reportHistory": [],
+          "reportCache": {},
+          "analyticsCache": {},
+          "statistics": {
+            "totalTemplates": 0,
+            "activeSchedules": 0,
+            "totalReports": 0,
+            "cacheHitRate": 0,
+            "averageReportGenerationTime": 0,
+            "popularReports": []
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "endpoint": "/api/comprehensive-monitoring/apm-monitoring",
+      "url": "http://localhost:3000/api/comprehensive-monitoring/apm-monitoring",
+      "success": true,
+      "statusCode": 200,
+      "responseTime": 2,
+      "data": {
+        "success": true,
+        "data": {
+          "apmStatus": {
+            "enabled": true,
+            "metrics": {
+              "prometheus": true,
+              "custom": true,
+              "business": true,
+              "frontend": true,
+              "security": true
+            },
+            "tracking": {
+              "requests": true,
+              "tickets": true,
+              "users": true,
+              "github": true,
+              "authentication": true,
+              "database": true,
+              "frontend": true,
+              "security": true
+            },
+            "endpoints": {
+              "metrics": "/metrics",
+              "health": "/health",
+              "apm": "/api/comprehensive-monitoring/apm-monitoring"
+            }
+          },
+          "features": {
+            "requestMetrics": "HTTP request tracking and performance metrics",
+            "businessMetrics": "Ticket, user, and GitHub API tracking",
+            "frontendMetrics": "Frontend error and performance tracking",
+            "securityMetrics": "Security event and threat tracking",
+            "databaseMetrics": "Database connection and performance tracking"
+          },
+          "statistics": {
+            "totalMetrics": 25,
+            "activeTrackers": 8,
+            "supportedEndpoints": 3,
+            "monitoringLevel": "Enterprise"
+          }
+        }
+      },
+      "error": null
+    }
+  ]
+}

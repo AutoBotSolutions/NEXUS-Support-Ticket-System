@@ -1,0 +1,19 @@
+{
+  "subject": "Security Alert",
+  "channels": [
+    "email",
+    "inapp"
+  ],
+  "templates": {
+    "email": {
+      "html": "<h2>Security Alert</h2><p>Hi {{name}},</p><p>A security event has been detected: {{event}}</p><p>Time: {{timestamp}}</p>",
+      "text": "Security Alert. Hi {{name}}, A security event has been detected: {{event}}. Time: {{timestamp}}"
+    },
+    "inapp": {
+      "title": "Security Alert",
+      "message": "A security event has been detected: {{event}}",
+      "icon": "security",
+      "priority": "high"
+    }
+  }
+}
