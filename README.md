@@ -48,7 +48,7 @@ NEXUS Support System is a comprehensive, enterprise-grade support platform provi
 │  └─────────────────────────────────────────────────────────┘ 
 │  ┌─────────────────────────────────────────────────────────┐ 
 │  │              Middleware Layer                           │ 
-│  │  Auth Middleware │ Monitoring │ Notification System    │ 
+│  │  Auth Middleware │ Monitoring │ Notification System     │ 
 │  └─────────────────────────────────────────────────────────┘ 
 │  ┌─────────────────────────────────────────────────────────┐ 
 │  │               Data Layer                                │
