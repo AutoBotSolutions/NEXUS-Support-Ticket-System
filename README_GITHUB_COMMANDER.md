@@ -69,8 +69,8 @@ NEXUS Support System is a comprehensive, enterprise-grade support platform provi
 
 ```bash
 # Clone the repository
-git clone https://github.com/AutoBotSolutions/GitHub-Commander.git
-cd GitHub-Commander
+git clone https://github.com/AutoBotSolutions/NEXUS-Support-Ticket-System.git
+cd NEXUS-Support-Ticket-System
 
 # Install dependencies
 npm install
@@ -318,7 +318,7 @@ GRAFANA_PORT=3000
 - **Commercial**: commercial@nexus-support.com
 
 ### Resources
-- **GitHub Repository**: https://github.com/AutoBotSolutions/GitHub-Commander
+- **GitHub Repository**: https://github.com/AutoBotSolutions/NEXUS-Support-Ticket-System
 - **Documentation**: Complete documentation in docs/ directory
 - **API Reference**: Comprehensive API documentation
 - **Monitoring**: Real-time system monitoring
