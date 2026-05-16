@@ -1,0 +1,173 @@
+groups:
+  - name: nexus_alerts
+    rules:
+      - alert: HighErrorRate
+        expr: rate(http_requests_total{status_code=~"5.."}[5m]) > 0.1
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High error rate detected"
+          description: "Error rate is {{ $value }} errors per second"
+
+      - alert: HighResponseTime
+        expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 1
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High response time detected"
+          description: "95th percentile response time is {{ $value }} seconds"
+
+      - alert: HighCPUUsage
+        expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High CPU usage detected"
+          description: "CPU usage is {{ $value }}%"
+
+      - alert: HighMemoryUsage
+        expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 85
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High memory usage detected"
+          description: "Memory usage is {{ $value }}%"
+
+      - alert: DiskSpaceLow
+        expr: (node_filesystem_avail_bytes / node_filesystem_size_bytes) * 100 < 15
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Low disk space detected"
+          description: "Disk space is {{ $value }}% available"
+
+      - alert: DatabaseConnectionHigh
+        expr: database_connections > 80
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High database connections"
+          description: "Database connections: {{ $value }}"
+
+      - alert: ServiceDown
+        expr: up{job="nexus-support-system"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "NEXUS service is down"
+          description: "The NEXUS support system service is not responding"
+
+      - alert: TooManyFailedLogins
+        expr: rate(authentication_attempts_total{success="false"}[5m]) > 5
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High rate of failed login attempts"
+          description: "Failed login rate: {{ $value }} per second"
+
+      - alert: MongoDBDown
+        expr: up{job="mongodb-exporter"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "MongoDB is down"
+          description: "MongoDB exporter is not responding"
+
+      - alert: MongoDBSlowQueries
+        expr: mongodb_op_counters_total{type="query"} > 100
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High number of MongoDB queries"
+          description: "Query rate: {{ $value }} queries/second"
+
+      - alert: MongoDBConnectionsHigh
+        expr: mongodb_connections_current > 80
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High MongoDB connections"
+          description: "Current connections: {{ $value }}"
+
+      - alert: MongoDBMemoryUsageHigh
+        expr: mongodb_mem_resident > 1073741824
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High MongoDB memory usage"
+          description: "Memory usage: {{ $value }} bytes"
+
+      - alert: MongoDBStorageLow
+        expr: (mongodb_db_stats_storage_size - mongodb_db_stats_data_size) / mongodb_db_stats_storage_size * 100 < 20
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "MongoDB storage running low"
+          description: "Available storage: {{ $value }}%"
+
+      - alert: HighSecurityEvents
+        expr: rate(security_events_total[5m]) > 10
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High rate of security events"
+          description: "Security event rate: {{ $value }} per second"
+
+      - alert: BruteForceAttack
+        expr: increase(security_events_total{event_type="brute_force_detected"}[5m]) > 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Brute force attack detected"
+          description: "Brute force attack in progress"
+
+      - alert: MaliciousRequestsDetected
+        expr: increase(security_events_total{event_type="malicious_request"}[5m]) > 5
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Malicious requests detected"
+          description: "Malicious request rate: {{ $value }} per 5 minutes"
+
+      - alert: SuspiciousActivity
+        expr: increase(security_events_total{event_type="suspicious_activity"}[5m]) > 10
+        for: 3m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Suspicious activity detected"
+          description: "Suspicious activity rate: {{ $value }} per 5 minutes"
+
+      - alert: UnauthorizedAccessAttempts
+        expr: increase(security_events_total{event_type="unauthorized_access"}[5m]) > 3
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Unauthorized access attempts"
+          description: "Unauthorized access attempts: {{ $value }} per 5 minutes"
+
+      - alert: HighFailedLoginRate
+        expr: rate(authentication_attempts_total{success="false"}[5m]) > 10
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High failed login rate"
+          description: "Failed login rate: {{ $value }} per second"

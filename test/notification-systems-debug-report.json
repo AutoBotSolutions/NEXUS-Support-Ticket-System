@@ -1,0 +1,481 @@
+{
+  "timestamp": "2026-05-16T04:34:40.962Z",
+  "summary": {
+    "totalSystems": 7,
+    "systemsTested": 7,
+    "operationalSystems": 0,
+    "partialSystems": 7,
+    "failedSystems": 0,
+    "overallSuccess": false
+  },
+  "results": [
+    {
+      "name": "Notification System",
+      "priority": "high",
+      "fileTests": [
+        {
+          "file": "middleware/notificationSystem.js",
+          "exists": true,
+          "size": 33047,
+          "status": "✅ PRESENT"
+        },
+        {
+          "file": "routes/notificationRoutes.js",
+          "exists": true,
+          "size": 10691,
+          "status": "✅ PRESENT"
+        }
+      ],
+      "endpointTests": [
+        {
+          "endpoint": "/notifications/preferences",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 18,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/notifications/inapp",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 3,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/notifications/history",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 1,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/notifications/templates",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 1,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/notifications/stats",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 1,
+          "status": "❌ FAILED",
+          "error": null
+        }
+      ],
+      "overallStatus": "⚠️ PARTIAL"
+    },
+    {
+      "name": "User Management System",
+      "priority": "high",
+      "fileTests": [
+        {
+          "file": "middleware/userManagement.js",
+          "exists": true,
+          "size": 23598,
+          "status": "✅ PRESENT"
+        },
+        {
+          "file": "routes/userManagementEnhancedRoutes.js",
+          "exists": true,
+          "size": 14364,
+          "status": "✅ PRESENT"
+        }
+      ],
+      "endpointTests": [
+        {
+          "endpoint": "/users/management/profile",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 2,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/users/management/preferences",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 1,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/users/management/search",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 1,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/users/management/analytics",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 2,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/users/management/stats",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 2,
+          "status": "❌ FAILED",
+          "error": null
+        }
+      ],
+      "overallStatus": "⚠️ PARTIAL"
+    },
+    {
+      "name": "Search System",
+      "priority": "high",
+      "fileTests": [
+        {
+          "file": "middleware/searchSystemEnhanced.js",
+          "exists": true,
+          "size": 31363,
+          "status": "✅ PRESENT"
+        },
+        {
+          "file": "routes/searchEnhancedRoutes.js",
+          "exists": true,
+          "size": 16784,
+          "status": "✅ PRESENT"
+        }
+      ],
+      "endpointTests": [
+        {
+          "endpoint": "/search",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 3,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/search/advanced",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 2,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/search/suggestions",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 3,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/search/stats",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 2,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/search/analytics",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 2,
+          "status": "❌ FAILED",
+          "error": null
+        }
+      ],
+      "overallStatus": "⚠️ PARTIAL"
+    },
+    {
+      "name": "Reporting System",
+      "priority": "high",
+      "fileTests": [
+        {
+          "file": "middleware/reportingSystemEnhanced.js",
+          "exists": true,
+          "size": 59020,
+          "status": "✅ PRESENT"
+        },
+        {
+          "file": "routes/reportingEnhancedRoutes.js",
+          "exists": true,
+          "size": 18952,
+          "status": "✅ PRESENT"
+        }
+      ],
+      "endpointTests": [
+        {
+          "endpoint": "/reports/templates",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 1,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/reports/analytics",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 1,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/reports/dashboard",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 1,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/reports/metrics/realtime",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 1,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/reports/performers",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 1,
+          "status": "❌ FAILED",
+          "error": null
+        }
+      ],
+      "overallStatus": "⚠️ PARTIAL"
+    },
+    {
+      "name": "Workflow Automation System",
+      "priority": "high",
+      "fileTests": [
+        {
+          "file": "middleware/workflowAutomation.js",
+          "exists": true,
+          "size": 23778,
+          "status": "✅ PRESENT"
+        },
+        {
+          "file": "routes/workflowAutomationRoutes.js",
+          "exists": true,
+          "size": 14304,
+          "status": "✅ PRESENT"
+        }
+      ],
+      "endpointTests": [
+        {
+          "endpoint": "/workflows",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 1,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/workflows/metrics",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 1,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/workflows/categories",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 1,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/workflows/templates",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 1,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/workflows/health",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 1,
+          "status": "❌ FAILED",
+          "error": null
+        }
+      ],
+      "overallStatus": "⚠️ PARTIAL"
+    },
+    {
+      "name": "Database Connection Pool",
+      "priority": "high",
+      "fileTests": [
+        {
+          "file": "middleware/notificationDatabasePool.js",
+          "exists": true,
+          "size": 12530,
+          "status": "✅ PRESENT"
+        },
+        {
+          "file": "routes/notificationDatabasePoolRoutes.js",
+          "exists": true,
+          "size": 9026,
+          "status": "✅ PRESENT"
+        }
+      ],
+      "endpointTests": [
+        {
+          "endpoint": "/notifications/pool/status",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 1,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/notifications/pool/metrics",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 1,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/notifications/pool/health",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 0,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/notifications/pool/config",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 1,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/notifications/pool/stats",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 1,
+          "status": "❌ FAILED",
+          "error": null
+        }
+      ],
+      "overallStatus": "⚠️ PARTIAL"
+    },
+    {
+      "name": "WebSocket/Real-Time System",
+      "priority": "high",
+      "fileTests": [
+        {
+          "file": "middleware/websocketServer.js",
+          "exists": true,
+          "size": 16508,
+          "status": "✅ PRESENT"
+        },
+        {
+          "file": "middleware/realtimeNotifications.js",
+          "exists": true,
+          "size": 15312,
+          "status": "✅ PRESENT"
+        },
+        {
+          "file": "routes/websocketRoutes.js",
+          "exists": true,
+          "size": 11237,
+          "status": "✅ PRESENT"
+        }
+      ],
+      "endpointTests": [
+        {
+          "endpoint": "/websocket/status",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 0,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/websocket/config",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 1,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/websocket/notifications",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 1,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/websocket/users",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 2,
+          "status": "❌ FAILED",
+          "error": null
+        },
+        {
+          "endpoint": "/websocket/health",
+          "method": "GET",
+          "success": false,
+          "statusCode": 0,
+          "responseTime": 4,
+          "status": "❌ FAILED",
+          "error": null
+        }
+      ],
+      "overallStatus": "⚠️ PARTIAL"
+    }
+  ]
+}

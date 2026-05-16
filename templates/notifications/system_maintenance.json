@@ -1,0 +1,19 @@
+{
+  "subject": "System Maintenance",
+  "channels": [
+    "email",
+    "inapp"
+  ],
+  "templates": {
+    "email": {
+      "html": "<h2>System Maintenance</h2><p>Hi {{name}},</p><p>The system will be under maintenance from {{startTime}} to {{endTime}}.</p>",
+      "text": "System Maintenance. Hi {{name}}, The system will be under maintenance from {{startTime}} to {{endTime}}."
+    },
+    "inapp": {
+      "title": "System Maintenance",
+      "message": "The system will be under maintenance from {{startTime}} to {{endTime}}.",
+      "icon": "maintenance",
+      "priority": "medium"
+    }
+  }
+}

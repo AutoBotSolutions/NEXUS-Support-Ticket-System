@@ -1,0 +1,482 @@
+{
+  "timestamp": "2026-05-15T23:20:19.427Z",
+  "duration": 898,
+  "overall": {
+    "total": 45,
+    "passed": 52,
+    "failed": 0,
+    "successRate": 116
+  },
+  "systems": {
+    "notification": {
+      "name": "Notification System",
+      "key": "notification",
+      "fileTests": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0,
+        "details": [
+          {
+            "file": "middleware/notificationSystem.js",
+            "exists": true,
+            "size": 33047
+          },
+          {
+            "file": "routes/notificationRoutes.js",
+            "exists": true,
+            "size": 10691
+          },
+          {
+            "file": "middleware/notificationDatabasePool.js",
+            "exists": true,
+            "size": 12530
+          }
+        ]
+      },
+      "functionalityTests": {
+        "total": 5,
+        "passed": 5,
+        "failed": 0,
+        "details": []
+      },
+      "apiTests": {
+        "total": 5,
+        "passed": 5,
+        "failed": 0,
+        "details": [
+          {
+            "endpoint": "/api/notifications/preferences",
+            "routeFile": "routes/notificationRoutes.js",
+            "exists": true,
+            "size": 10691
+          },
+          {
+            "endpoint": "/api/notifications/inapp",
+            "routeFile": "routes/notificationRoutes.js",
+            "exists": true,
+            "size": 10691
+          },
+          {
+            "endpoint": "/api/notifications/history",
+            "routeFile": "routes/notificationRoutes.js",
+            "exists": true,
+            "size": 10691
+          },
+          {
+            "endpoint": "/api/notifications/send",
+            "routeFile": "routes/notificationRoutes.js",
+            "exists": true,
+            "size": 10691
+          },
+          {
+            "endpoint": "/api/notifications/templates",
+            "routeFile": "routes/notificationRoutes.js",
+            "exists": true,
+            "size": 10691
+          }
+        ]
+      },
+      "successRate": 100,
+      "status": "PASS"
+    },
+    "userManagement": {
+      "name": "User Management System",
+      "key": "userManagement",
+      "fileTests": {
+        "total": 4,
+        "passed": 4,
+        "failed": 0,
+        "details": [
+          {
+            "file": "models/User.js",
+            "exists": true,
+            "size": 5709
+          },
+          {
+            "file": "models/Team.js",
+            "exists": true,
+            "size": 5485
+          },
+          {
+            "file": "controllers/userManagementController.js",
+            "exists": true,
+            "size": 14744
+          },
+          {
+            "file": "routes/userManagementEnhancedRoutes.js",
+            "exists": true,
+            "size": 12705
+          }
+        ]
+      },
+      "functionalityTests": {
+        "total": 5,
+        "passed": 5,
+        "failed": 0,
+        "details": []
+      },
+      "apiTests": {
+        "total": 4,
+        "passed": 4,
+        "failed": 0,
+        "details": [
+          {
+            "endpoint": "/api/users/management/profile",
+            "routeFile": "routes/userManagementEnhancedRoutes.js",
+            "exists": true,
+            "size": 12705
+          },
+          {
+            "endpoint": "/api/users/management/preferences",
+            "routeFile": "routes/userManagementEnhancedRoutes.js",
+            "exists": true,
+            "size": 12705
+          },
+          {
+            "endpoint": "/api/users/management/search",
+            "routeFile": "routes/userManagementEnhancedRoutes.js",
+            "exists": true,
+            "size": 12705
+          },
+          {
+            "endpoint": "/api/users/management/analytics",
+            "routeFile": "routes/userManagementEnhancedRoutes.js",
+            "exists": true,
+            "size": 12705
+          }
+        ]
+      },
+      "successRate": 100,
+      "status": "PASS"
+    },
+    "search": {
+      "name": "Search System",
+      "key": "search",
+      "fileTests": {
+        "total": 2,
+        "passed": 2,
+        "failed": 0,
+        "details": [
+          {
+            "file": "middleware/searchSystemEnhanced.js",
+            "exists": true,
+            "size": 31363
+          },
+          {
+            "file": "routes/searchEnhancedRoutes.js",
+            "exists": true,
+            "size": 16784
+          }
+        ]
+      },
+      "functionalityTests": {
+        "total": 5,
+        "passed": 5,
+        "failed": 0,
+        "details": []
+      },
+      "apiTests": {
+        "total": 4,
+        "passed": 4,
+        "failed": 0,
+        "details": [
+          {
+            "endpoint": "/api/search",
+            "routeFile": "routes/searchEnhancedRoutes.js",
+            "exists": true,
+            "size": 16784
+          },
+          {
+            "endpoint": "/api/search/advanced",
+            "routeFile": "routes/searchEnhancedRoutes.js",
+            "exists": true,
+            "size": 16784
+          },
+          {
+            "endpoint": "/api/search/suggestions",
+            "routeFile": "routes/searchEnhancedRoutes.js",
+            "exists": true,
+            "size": 16784
+          },
+          {
+            "endpoint": "/api/search/stats",
+            "routeFile": "routes/searchEnhancedRoutes.js",
+            "exists": true,
+            "size": 16784
+          }
+        ]
+      },
+      "successRate": 100,
+      "status": "PASS"
+    },
+    "reporting": {
+      "name": "Reporting System",
+      "key": "reporting",
+      "fileTests": {
+        "total": 2,
+        "passed": 2,
+        "failed": 0,
+        "details": [
+          {
+            "file": "middleware/reportingSystemEnhanced.js",
+            "exists": true,
+            "size": 59020
+          },
+          {
+            "file": "routes/reportingEnhancedRoutes.js",
+            "exists": true,
+            "size": 18952
+          }
+        ]
+      },
+      "functionalityTests": {
+        "total": 5,
+        "passed": 5,
+        "failed": 0,
+        "details": []
+      },
+      "apiTests": {
+        "total": 4,
+        "passed": 4,
+        "failed": 0,
+        "details": [
+          {
+            "endpoint": "/api/reports/templates",
+            "routeFile": "routes/reportingEnhancedRoutes.js",
+            "exists": true,
+            "size": 18952
+          },
+          {
+            "endpoint": "/api/reports/generate",
+            "routeFile": "routes/reportingEnhancedRoutes.js",
+            "exists": true,
+            "size": 18952
+          },
+          {
+            "endpoint": "/api/reports/analytics",
+            "routeFile": "routes/reportingEnhancedRoutes.js",
+            "exists": true,
+            "size": 18952
+          },
+          {
+            "endpoint": "/api/reports/dashboard",
+            "routeFile": "routes/reportingEnhancedRoutes.js",
+            "exists": true,
+            "size": 18952
+          }
+        ]
+      },
+      "successRate": 100,
+      "status": "PASS"
+    },
+    "workflow": {
+      "name": "Workflow Automation System",
+      "key": "workflow",
+      "fileTests": {
+        "total": 2,
+        "passed": 2,
+        "failed": 0,
+        "details": [
+          {
+            "file": "middleware/workflowAutomation.js",
+            "exists": true,
+            "size": 23778
+          },
+          {
+            "file": "routes/workflowAutomationRoutes.js",
+            "exists": true,
+            "size": 14304
+          }
+        ]
+      },
+      "functionalityTests": {
+        "total": 5,
+        "passed": 5,
+        "failed": 0,
+        "details": []
+      },
+      "apiTests": {
+        "total": 4,
+        "passed": 4,
+        "failed": 0,
+        "details": [
+          {
+            "endpoint": "/api/workflows",
+            "routeFile": "routes/workflowAutomationRoutes.js",
+            "exists": true,
+            "size": 14304
+          },
+          {
+            "endpoint": "/api/workflows/:id",
+            "routeFile": "routes/workflowAutomationRoutes.js",
+            "exists": true,
+            "size": 14304
+          },
+          {
+            "endpoint": "/api/workflows/:id/execute",
+            "routeFile": "routes/workflowAutomationRoutes.js",
+            "exists": true,
+            "size": 14304
+          },
+          {
+            "endpoint": "/api/workflows/metrics",
+            "routeFile": "routes/workflowAutomationRoutes.js",
+            "exists": true,
+            "size": 14304
+          }
+        ]
+      },
+      "successRate": 100,
+      "status": "PASS"
+    },
+    "databasePool": {
+      "name": "Database Connection Pool",
+      "key": "databasePool",
+      "fileTests": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0,
+        "details": [
+          {
+            "file": "middleware/notificationDatabasePool.js",
+            "exists": true,
+            "size": 12530
+          }
+        ]
+      },
+      "functionalityTests": {
+        "total": 5,
+        "passed": 5,
+        "failed": 0,
+        "details": []
+      },
+      "apiTests": {
+        "total": 2,
+        "passed": 2,
+        "failed": 0,
+        "details": [
+          {
+            "endpoint": "/api/notifications/pool/status",
+            "routeFile": "routes/notificationRoutes.js",
+            "exists": true,
+            "size": 10691
+          },
+          {
+            "endpoint": "/api/notifications/pool/metrics",
+            "routeFile": "routes/notificationRoutes.js",
+            "exists": true,
+            "size": 10691
+          }
+        ]
+      },
+      "successRate": 100,
+      "status": "PASS"
+    },
+    "websocket": {
+      "name": "WebSocket/Real-Time System",
+      "key": "websocket",
+      "fileTests": {
+        "total": 4,
+        "passed": 4,
+        "failed": 0,
+        "details": [
+          {
+            "file": "middleware/websocketServer.js",
+            "exists": true,
+            "size": 16508
+          },
+          {
+            "file": "middleware/realtimeNotifications.js",
+            "exists": true,
+            "size": 15312
+          },
+          {
+            "file": "routes/websocketRoutes.js",
+            "exists": true,
+            "size": 11237
+          },
+          {
+            "file": "public/js/websocket-client.js",
+            "exists": true,
+            "size": 13877
+          }
+        ]
+      },
+      "functionalityTests": {
+        "total": 5,
+        "passed": 5,
+        "failed": 0,
+        "details": []
+      },
+      "apiTests": {
+        "total": 4,
+        "passed": 4,
+        "failed": 0,
+        "details": [
+          {
+            "endpoint": "/api/websocket/status",
+            "routeFile": "routes/websocketRoutes.js",
+            "exists": true,
+            "size": 11237
+          },
+          {
+            "endpoint": "/api/websocket/health",
+            "routeFile": "routes/websocketRoutes.js",
+            "exists": true,
+            "size": 11237
+          },
+          {
+            "endpoint": "/api/websocket/config",
+            "routeFile": "routes/websocketRoutes.js",
+            "exists": true,
+            "size": 11237
+          },
+          {
+            "endpoint": "/api/websocket/connected-users",
+            "routeFile": "routes/websocketRoutes.js",
+            "exists": true,
+            "size": 11237
+          }
+        ]
+      },
+      "successRate": 100,
+      "status": "PASS"
+    }
+  },
+  "serverIntegration": {
+    "total": 7,
+    "passed": 7,
+    "failed": 0,
+    "details": [
+      {
+        "system": "Notification System",
+        "integrated": true
+      },
+      {
+        "system": "User Management System",
+        "integrated": true
+      },
+      {
+        "system": "Search System",
+        "integrated": true
+      },
+      {
+        "system": "Reporting System",
+        "integrated": true
+      },
+      {
+        "system": "Workflow Automation System",
+        "integrated": true
+      },
+      {
+        "system": "Database Connection Pool",
+        "integrated": true
+      },
+      {
+        "system": "WebSocket/Real-Time System",
+        "integrated": true
+      }
+    ]
+  },
+  "assessment": "EXCELLENT"
+}

@@ -1,0 +1,408 @@
+# AlertManager Production Configuration
+# Production-ready AlertManager configuration for NEXUS monitoring
+
+global:
+  smtp_smarthost: '${SMTP_HOST}:${SMTP_PORT}'
+  smtp_from: '${SMTP_FROM}'
+  smtp_auth_username: '${SMTP_USERNAME}'
+  smtp_auth_password: '${SMTP_PASSWORD}'
+  smtp_require_tls: true
+
+# Route configuration
+route:
+  group_by: ['alertname', 'cluster', 'service']
+  group_wait: 10s
+  group_interval: 10s
+  repeat_interval: 12h
+  receiver: 'default'
+  routes:
+    # Critical alerts
+    - match:
+        severity: 'critical'
+      receiver: 'critical-alerts'
+      group_wait: 5s
+      group_interval: 5s
+      repeat_interval: 5m
+      routes:
+        - match:
+            service: 'nexus-app'
+          receiver: 'nexus-critical'
+        - match:
+            service: 'mongodb'
+          receiver: 'database-critical'
+        - match:
+            service: 'prometheus'
+          receiver: 'monitoring-critical'
+
+    # High severity alerts
+    - match:
+        severity: 'high'
+      receiver: 'high-alerts'
+      group_wait: 10s
+      group_interval: 10s
+      repeat_interval: 30m
+
+    # Warning alerts
+    - match:
+        severity: 'warning'
+      receiver: 'warning-alerts'
+      group_wait: 30s
+      group_interval: 30s
+      repeat_interval: 2h
+
+    # Info alerts
+    - match:
+        severity: 'info'
+      receiver: 'info-alerts'
+      group_wait: 60s
+      group_interval: 60s
+      repeat_interval: 6h
+
+    # Service-specific routes
+    - match:
+        service: 'nexus-app'
+      receiver: 'nexus-alerts'
+    - match:
+        service: 'mongodb'
+      receiver: 'database-alerts'
+    - match:
+        service: 'prometheus'
+      receiver: 'monitoring-alerts'
+    - match:
+        service: 'grafana'
+      receiver: 'grafana-alerts'
+
+# Inhibition rules
+inhibit_rules:
+  # Inhibit warning alerts if critical alert is firing
+  - source_match:
+      severity: 'critical'
+    target_match:
+      severity: 'warning'
+    equal: ['alertname', 'cluster', 'service']
+
+  # Inhibit info alerts if high alert is firing
+  - source_match:
+      severity: 'high'
+    target_match:
+      severity: 'info'
+    equal: ['alertname', 'cluster', 'service']
+
+  # Inhibit database alerts if application is down
+  - source_match:
+      alertname: 'NexusAppDown'
+    target_match:
+      service: 'mongodb'
+    equal: ['cluster']
+
+# Receivers configuration
+receivers:
+  # Default receiver
+  - name: 'default'
+    email_configs:
+      - to: 'admin@nexus-support.com'
+        subject: '[NEXUS] {{ .GroupLabels.alertname }} - {{ .Status }}'
+        body: |
+          {{ range .Alerts }}
+          Alert: {{ .Annotations.summary }}
+          Description: {{ .Annotations.description }}
+          Labels: {{ range .Labels.SortedPairs }}{{ .Name }}={{ .Value }} {{ end }}
+          {{ end }}
+        from: '${SMTP_FROM}'
+        require_tls: true
+
+  # Critical alerts receiver
+  - name: 'critical-alerts'
+    email_configs:
+      - to: 'alerts@nexus-support.com,oncall@nexus-support.com'
+        subject: '[CRITICAL] NEXUS - {{ .GroupLabels.alertname }}'
+        body: |
+          CRITICAL ALERT FIRING
+          
+          {{ range .Alerts }}
+          Alert: {{ .Annotations.summary }}
+          Description: {{ .Annotations.description }}
+          Severity: {{ .Labels.severity }}
+          Service: {{ .Labels.service }}
+          Instance: {{ .Labels.instance }}
+          Started: {{ .StartsAt }}
+          Labels: {{ range .Labels.SortedPairs }}{{ .Name }}={{ .Value }} {{ end }}
+          {{ end }}
+          
+          IMMEDIATE ACTION REQUIRED
+        from: '${SMTP_FROM}'
+        require_tls: true
+    slack_configs:
+      - api_url: '${SLACK_WEBHOOK_URL}'
+        channel: '#nexus-critical'
+        title: '🚨 CRITICAL: {{ .GroupLabels.alertname }}'
+        text: |
+          {{ range .Alerts }}
+          *Alert*: {{ .Annotations.summary }}
+          *Description*: {{ .Annotations.description }}
+          *Service*: {{ .Labels.service }}
+          *Instance*: {{ .Labels.instance }}
+          {{ end }}
+        send_resolved: true
+        color: 'danger'
+    pagerduty_configs:
+      - service_key: '${PAGERDUTY_SERVICE_KEY}'
+        severity: 'critical'
+        description: '{{ .GroupLabels.alertname }} - {{ .Annotations.description }}'
+        details:
+          firing: '{{ .Alerts.Firing | len }}'
+          resolved: '{{ .Alerts.Resolved | len }}'
+          service: '{{ .GroupLabels.service }}'
+          instance: '{{ .GroupLabels.instance }}'
+
+  # High severity alerts receiver
+  - name: 'high-alerts'
+    email_configs:
+      - to: 'alerts@nexus-support.com'
+        subject: '[HIGH] NEXUS - {{ .GroupLabels.alertname }}'
+        body: |
+          HIGH SEVERITY ALERT
+          
+          {{ range .Alerts }}
+          Alert: {{ .Annotations.summary }}
+          Description: {{ .Annotations.description }}
+          Severity: {{ .Labels.severity }}
+          Service: {{ .Labels.service }}
+          Instance: {{ .Labels.instance }}
+          Started: {{ .StartsAt }}
+          {{ end }}
+          
+          Please investigate and take action if necessary.
+        from: '${SMTP_FROM}'
+        require_tls: true
+    slack_configs:
+      - api_url: '${SLACK_WEBHOOK_URL}'
+        channel: '#nexus-alerts'
+        title: '⚠️ HIGH: {{ .GroupLabels.alertname }}'
+        text: |
+          {{ range .Alerts }}
+          *Alert*: {{ .Annotations.summary }}
+          *Description*: {{ .Annotations.description }}
+          *Service*: {{ .Labels.service }}
+          {{ end }}
+        send_resolved: true
+        color: 'warning'
+
+  # Warning alerts receiver
+  - name: 'warning-alerts'
+    email_configs:
+      - to: 'alerts@nexus-support.com'
+        subject: '[WARNING] NEXUS - {{ .GroupLabels.alertname }}'
+        body: |
+          WARNING ALERT
+          
+          {{ range .Alerts }}
+          Alert: {{ .Annotations.summary }}
+          Description: {{ .Annotations.description }}
+          Service: {{ .Labels.service }}
+          Instance: {{ .Labels.instance }}
+          Started: {{ .StartsAt }}
+          {{ end }}
+        from: '${SMTP_FROM}'
+        require_tls: true
+    slack_configs:
+      - api_url: '${SLACK_WEBHOOK_URL}'
+        channel: '#nexus-alerts'
+        title: '⚠️ WARNING: {{ .GroupLabels.alertname }}'
+        text: |
+          {{ range .Alerts }}
+          *Alert*: {{ .Annotations.summary }}
+          *Description*: {{ .Annotations.description }}
+          {{ end }}
+        send_resolved: true
+        color: 'warning'
+
+  # Info alerts receiver
+  - name: 'info-alerts'
+    slack_configs:
+      - api_url: '${SLACK_WEBHOOK_URL}'
+        channel: '#nexus-info'
+        title: 'ℹ️ INFO: {{ .GroupLabels.alertname }}'
+        text: |
+          {{ range .Alerts }}
+          *Alert*: {{ .Annotations.summary }}
+          *Description*: {{ .Annotations.description }}
+          {{ end }}
+        send_resolved: true
+        color: 'good'
+
+  # Nexus-specific alerts
+  - name: 'nexus-alerts'
+    email_configs:
+      - to: 'nexus-team@nexus-support.com'
+        subject: '[NEXUS] {{ .GroupLabels.alertname }}'
+        body: |
+          NEXUS APPLICATION ALERT
+          
+          {{ range .Alerts }}
+          Alert: {{ .Annotations.summary }}
+          Description: {{ .Annotations.description }}
+          Severity: {{ .Labels.severity }}
+          Instance: {{ .Labels.instance }}
+          Started: {{ .StartsAt }}
+          {{ end }}
+        from: '${SMTP_FROM}'
+        require_tls: true
+    slack_configs:
+      - api_url: '${SLACK_WEBHOOK_URL}'
+        channel: '#nexus-alerts'
+        title: 'NEXUS: {{ .GroupLabels.alertname }}'
+        text: |
+          {{ range .Alerts }}
+          *Alert*: {{ .Annotations.summary }}
+          *Description*: {{ .Annotations.description }}
+          *Severity*: {{ .Labels.severity }}
+          {{ end }}
+        send_resolved: true
+        color: '{{ if eq .Labels.severity "critical" }}danger{{ else if eq .Labels.severity "high" }}warning{{ else }}good{{ end }}'
+
+  # Database alerts
+  - name: 'database-alerts'
+    email_configs:
+      - to: 'database-team@nexus-support.com'
+        subject: '[DATABASE] {{ .GroupLabels.alertname }}'
+        body: |
+          DATABASE ALERT
+          
+          {{ range .Alerts }}
+          Alert: {{ .Annotations.summary }}
+          Description: {{ .Annotations.description }}
+          Severity: {{ .Labels.severity }}
+          Instance: {{ .Labels.instance }}
+          Started: {{ .StartsAt }}
+          {{ end }}
+        from: '${SMTP_FROM}'
+        require_tls: true
+    slack_configs:
+      - api_url: '${SLACK_WEBHOOK_URL}'
+        channel: '#database-alerts'
+        title: 'DATABASE: {{ .GroupLabels.alertname }}'
+        text: |
+          {{ range .Alerts }}
+          *Alert*: {{ .Annotations.summary }}
+          *Description*: {{ .Annotations.description }}
+          *Severity*: {{ .Labels.severity }}
+          {{ end }}
+        send_resolved: true
+        color: '{{ if eq .Labels.severity "critical" }}danger{{ else if eq .Labels.severity "high" }}warning{{ else }}good{{ end }}'
+
+  # Monitoring alerts
+  - name: 'monitoring-alerts'
+    email_configs:
+      - to: 'ops-team@nexus-support.com'
+        subject: '[MONITORING] {{ .GroupLabels.alertname }}'
+        body: |
+          MONITORING SYSTEM ALERT
+          
+          {{ range .Alerts }}
+          Alert: {{ .Annotations.summary }}
+          Description: {{ .Annotations.description }}
+          Severity: {{ .Labels.severity }}
+          Instance: {{ .Labels.instance }}
+          Started: {{ .StartsAt }}
+          {{ end }}
+        from: '${SMTP_FROM}'
+        require_tls: true
+    slack_configs:
+      - api_url: '${SLACK_WEBHOOK_URL}'
+        channel: '#monitoring-alerts'
+        title: 'MONITORING: {{ .GroupLabels.alertname }}'
+        text: |
+          {{ range .Alerts }}
+          *Alert*: {{ .Annotations.summary }}
+          *Description*: {{ .Annotations.description }}
+          *Severity*: {{ .Labels.severity }}
+          {{ end }}
+        send_resolved: true
+        color: '{{ if eq .Labels.severity "critical" }}danger{{ else if eq .Labels.severity "high" }}warning{{ else }}good{{ end }}'
+
+  # Grafana alerts
+  - name: 'grafana-alerts'
+    email_configs:
+      - to: 'grafana-team@nexus-support.com'
+        subject: '[GRAFANA] {{ .GroupLabels.alertname }}'
+        body: |
+          GRAFANA ALERT
+          
+          {{ range .Alerts }}
+          Alert: {{ .Annotations.summary }}
+          Description: {{ .Annotations.description }}
+          Severity: {{ .Labels.severity }}
+          Instance: {{ .Labels.instance }}
+          Started: {{ .StartsAt }}
+          {{ end }}
+        from: '${SMTP_FROM}'
+        require_tls: true
+    slack_configs:
+      - api_url: '${SLACK_WEBHOOK_URL}'
+        channel: '#grafana-alerts'
+        title: 'GRAFANA: {{ .GroupLabels.alertname }}'
+        text: |
+          {{ range .Alerts }}
+          *Alert*: {{ .Annotations.summary }}
+          *Description*: {{ .Annotations.description }}
+          *Severity*: {{ .Labels.severity }}
+          {{ end }}
+        send_resolved: true
+        color: 'info'
+
+  # Service-specific critical receivers
+  - name: 'nexus-critical'
+    pagerduty_configs:
+      - service_key: '${PAGERDUTY_SERVICE_KEY}'
+        severity: 'critical'
+        description: 'NEXUS Application Critical Alert: {{ .GroupLabels.alertname }}'
+        details:
+          alertname: '{{ .GroupLabels.alertname }}'
+          service: 'nexus-app'
+          instance: '{{ .GroupLabels.instance }}'
+    slack_configs:
+      - api_url: '${SLACK_WEBHOOK_URL}'
+        channel: '#nexus-critical'
+        title: '🚨 NEXUS CRITICAL: {{ .GroupLabels.alertname }}'
+        text: 'Critical alert for NEXUS application. Immediate attention required.'
+        send_resolved: true
+        color: 'danger'
+
+  - name: 'database-critical'
+    pagerduty_configs:
+      - service_key: '${PAGERDUTY_SERVICE_KEY}'
+        severity: 'critical'
+        description: 'Database Critical Alert: {{ .GroupLabels.alertname }}'
+        details:
+          alertname: '{{ .GroupLabels.alertname }}'
+          service: 'mongodb'
+          instance: '{{ .GroupLabels.instance }}'
+    slack_configs:
+      - api_url: '${SLACK_WEBHOOK_URL}'
+        channel: '#nexus-critical'
+        title: '🚨 DATABASE CRITICAL: {{ .GroupLabels.alertname }}'
+        text: 'Critical alert for database. Immediate attention required.'
+        send_resolved: true
+        color: 'danger'
+
+  - name: 'monitoring-critical'
+    pagerduty_configs:
+      - service_key: '${PAGERDUTY_SERVICE_KEY}'
+        severity: 'critical'
+        description: 'Monitoring System Critical Alert: {{ .GroupLabels.alertname }}'
+        details:
+          alertname: '{{ .GroupLabels.alertname }}'
+          service: 'prometheus'
+          instance: '{{ .GroupLabels.instance }}'
+    slack_configs:
+      - api_url: '${SLACK_WEBHOOK_URL}'
+        channel: '#nexus-critical'
+        title: '🚨 MONITORING CRITICAL: {{ .GroupLabels.alertname }}'
+        text: 'Critical alert for monitoring system. Immediate attention required.'
+        send_resolved: true
+        color: 'danger'
+
+# Templates
+templates:
+  - '/etc/alertmanager/templates/*.tmpl'

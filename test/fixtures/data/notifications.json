@@ -1,0 +1,37 @@
+[
+  {
+    "type": "welcome",
+    "channels": [
+      "email",
+      "inapp"
+    ],
+    "data": {
+      "title": "Welcome to NEXUS",
+      "message": "Thank you for joining our platform!"
+    }
+  },
+  {
+    "type": "ticket_assigned",
+    "channels": [
+      "email",
+      "inapp",
+      "push"
+    ],
+    "data": {
+      "title": "New Ticket Assigned",
+      "message": "A new ticket has been assigned to you"
+    }
+  },
+  {
+    "type": "system_alert",
+    "channels": [
+      "email",
+      "sms",
+      "push"
+    ],
+    "data": {
+      "title": "System Maintenance",
+      "message": "System will be under maintenance"
+    }
+  }
+]

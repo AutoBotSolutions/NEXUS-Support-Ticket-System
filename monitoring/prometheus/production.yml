@@ -1,0 +1,178 @@
+# Prometheus Production Configuration
+# Production-ready Prometheus configuration for NEXUS monitoring
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'nexus-production'
+    environment: 'production'
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          - alertmanager:9093
+    - timeout: 10s
+    - api_version: v2
+
+# Rule files
+rule_files:
+  - "rules/*.yml"
+
+# Scrape configurations
+scrape_configs:
+  # Prometheus itself
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+    scrape_interval: 30s
+    metrics_path: '/metrics'
+    honor_labels: true
+
+  # NEXUS Application
+  - job_name: 'nexus-app'
+    static_configs:
+      - targets: ['nexus-app:3000']
+    scrape_interval: 15s
+    metrics_path: '/metrics'
+    honor_labels: true
+    params:
+      format: ['prometheus']
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'nexus-app-production'
+      - source_labels: [__param_format]
+        target_label: format
+        replacement: 'prometheus'
+
+  # Node Exporter
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
+    scrape_interval: 30s
+    metrics_path: '/metrics'
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'nexus-production-node'
+
+  # MongoDB Exporter
+  - job_name: 'mongodb-exporter'
+    static_configs:
+      - targets: ['mongodb-exporter:9216']
+    scrape_interval: 30s
+    metrics_path: '/metrics'
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'nexus-mongodb-production'
+
+  # Grafana
+  - job_name: 'grafana'
+    static_configs:
+      - targets: ['grafana:3000']
+    scrape_interval: 30s
+    metrics_path: '/metrics'
+    honor_labels: true
+    basic_auth:
+      username: admin
+      password: ${GRAFANA_ADMIN_PASSWORD}
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'nexus-grafana-production'
+
+  # AlertManager
+  - job_name: 'alertmanager'
+    static_configs:
+      - targets: ['alertmanager:9093']
+    scrape_interval: 30s
+    metrics_path: '/metrics'
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'nexus-alertmanager-production'
+
+  # Nginx
+  - job_name: 'nginx'
+    static_configs:
+      - targets: ['nginx:9113']
+    scrape_interval: 30s
+    metrics_path: '/metrics'
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'nexus-nginx-production'
+
+  # Redis
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis:6379']
+    scrape_interval: 30s
+    metrics_path: '/metrics'
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'nexus-redis-production'
+
+  # Elasticsearch
+  - job_name: 'elasticsearch'
+    static_configs:
+      - targets: ['elasticsearch:9200']
+    scrape_interval: 30s
+    metrics_path: '/_prometheus/metrics'
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'nexus-elasticsearch-production'
+
+  # Logstash
+  - job_name: 'logstash'
+    static_configs:
+      - targets: ['logstash:9600']
+    scrape_interval: 30s
+    metrics_path: '/_node/stats'
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'nexus-logstash-production'
+
+  # Kibana
+  - job_name: 'kibana'
+    static_configs:
+      - targets: ['kibana:5601']
+    scrape_interval: 30s
+    metrics_path: '/api/status'
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'nexus-kibana-production'
+
+# Remote write configuration (optional for long-term storage)
+# remote_write:
+#   - url: "https://your-remote-prometheus/api/v1/write"
+#     basic_auth:
+#       username: your-username
+#       password: your-password
+#     queue_config:
+#       max_samples_per_send: 1000
+#       max_shards: 200
+#       capacity: 2500
+
+# Storage configuration
+storage:
+  tsdb:
+    retention.time: 30d
+    retention.size: 50GB
+    wal.compression: true

@@ -1,0 +1,90 @@
+{
+  "timestamp": "2026-05-16T02:33:39.493Z",
+  "summary": {
+    "total": 13,
+    "passed": 3,
+    "failed": 10,
+    "successRate": "23.1",
+    "duration": 98.722048
+  },
+  "details": [
+    {
+      "name": "Server Health Check",
+      "status": "FAILED",
+      "duration": 0,
+      "error": "Health check failed"
+    },
+    {
+      "name": "APM Monitoring",
+      "status": "FAILED",
+      "duration": 0,
+      "error": "Expected status 200, got 404"
+    },
+    {
+      "name": "Comprehensive Monitoring Overview",
+      "status": "PASSED",
+      "duration": 4.191405000000003,
+      "error": null
+    },
+    {
+      "name": "System Metrics",
+      "status": "PASSED",
+      "duration": 3.3846690000000024,
+      "error": null
+    },
+    {
+      "name": "Database Monitoring",
+      "status": "PASSED",
+      "duration": 10.234701000000001,
+      "error": null
+    },
+    {
+      "name": "Security Monitoring",
+      "status": "FAILED",
+      "duration": 0,
+      "error": "Missing security dashboard data"
+    },
+    {
+      "name": "Business Intelligence",
+      "status": "FAILED",
+      "duration": 0,
+      "error": "read ECONNRESET"
+    },
+    {
+      "name": "Alerting System",
+      "status": "FAILED",
+      "duration": 0,
+      "error": ""
+    },
+    {
+      "name": "Logging Infrastructure",
+      "status": "FAILED",
+      "duration": 0,
+      "error": ""
+    },
+    {
+      "name": "Distributed Tracing",
+      "status": "FAILED",
+      "duration": 0,
+      "error": ""
+    },
+    {
+      "name": "Session Replay",
+      "status": "FAILED",
+      "duration": 0,
+      "error": ""
+    },
+    {
+      "name": "Comprehensive Dashboard",
+      "status": "FAILED",
+      "duration": 0,
+      "error": ""
+    },
+    {
+      "name": "Monitoring Middleware Integration",
+      "status": "FAILED",
+      "duration": 0,
+      "error": ""
+    }
+  ]
+}

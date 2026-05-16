@@ -1,0 +1,22 @@
+{
+  "subject": "Support Ticket Created",
+  "channels": [
+    "email",
+    "inapp"
+  ],
+  "templates": {
+    "email": {
+      "html": "<h2>Ticket Created</h2><p>Hi {{name}},</p><p>Your support ticket \"{{ticketTitle}}\" has been created successfully.</p><p>Ticket ID: {{ticketId}}</p>",
+      "text": "Ticket Created. Hi {{name}}, Your support ticket \"{{ticketTitle}}\" has been created successfully. Ticket ID: {{ticketId}}"
+    },
+    "inapp": {
+      "title": "Ticket Created",
+      "message": "Your support ticket \"{{ticketTitle}}\" has been created successfully.",
+      "icon": "ticket",
+      "action": {
+        "text": "View Ticket",
+        "url": "/tickets/{{ticketId}}"
+      }
+    }
+  }
+}

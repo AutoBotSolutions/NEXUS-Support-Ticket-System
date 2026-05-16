@@ -1,0 +1,18 @@
+{
+  "subject": "Welcome to NEXUS Support System",
+  "channels": [
+    "email",
+    "inapp"
+  ],
+  "templates": {
+    "email": {
+      "html": "<h1>Welcome to NEXUS!</h1><p>Hi {{name}},</p><p>Welcome to the NEXUS Support System. We're excited to have you on board!</p>",
+      "text": "Welcome to NEXUS! Hi {{name}}, Welcome to the NEXUS Support System."
+    },
+    "inapp": {
+      "title": "Welcome to NEXUS!",
+      "message": "Welcome to the NEXUS Support System. We're excited to have you on board!",
+      "icon": "welcome"
+    }
+  }
+}

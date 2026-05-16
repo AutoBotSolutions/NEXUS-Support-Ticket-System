@@ -1,0 +1,45 @@
+{
+  "users": [
+    {
+      "username": "admin",
+      "email": "admin@example.com",
+      "password": "admin123",
+      "role": "admin"
+    },
+    {
+      "username": "agent",
+      "email": "agent@example.com",
+      "password": "agent123",
+      "role": "agent"
+    },
+    {
+      "username": "user",
+      "email": "user@example.com",
+      "password": "user123",
+      "role": "user"
+    }
+  ],
+  "tickets": [
+    {
+      "title": "Bug Report",
+      "description": "Found a bug in the system",
+      "priority": "high",
+      "status": "open",
+      "category": "bug"
+    },
+    {
+      "title": "Feature Request",
+      "description": "Would like to see this feature added",
+      "priority": "medium",
+      "status": "pending",
+      "category": "feature"
+    },
+    {
+      "title": "General Question",
+      "description": "How do I use this feature?",
+      "priority": "low",
+      "status": "closed",
+      "category": "general"
+    }
+  ]
+}

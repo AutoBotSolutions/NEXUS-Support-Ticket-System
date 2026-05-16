@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Login Issue",
+    "description": "User cannot login to the system",
+    "priority": "high",
+    "category": "bug",
+    "status": "open"
+  },
+  {
+    "title": "Feature Request",
+    "description": "Add dark mode to the application",
+    "priority": "medium",
+    "category": "feature",
+    "status": "in_progress"
+  },
+  {
+    "title": "Documentation Update",
+    "description": "Update API documentation",
+    "priority": "low",
+    "category": "support",
+    "status": "closed"
+  }
+]
