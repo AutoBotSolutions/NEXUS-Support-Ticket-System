@@ -1,10 +1,13 @@
+# Essential file exclusions only
 node_modules/
 .env
 *.log
-logs/
 .DS_Store
-coverage/
-dist/
-build/
 .env.local
 .env.production
+
+# Allow all directories to be uploaded
+# logs/
+# coverage/
+# dist/
+# build/
