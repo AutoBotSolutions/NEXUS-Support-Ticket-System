@@ -3,180 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS Support System | Sci-Fi Ticket Management</title>
+    <title>NEXUS Support System</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav-container">
-        <div class="nav-content">
-            <div class="logo">
-                <span class="logo-text">NEXUS</span>
-                <span class="logo-subtitle">SUPPORT SYSTEM</span>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <span class="logo-text">NEXUS</span>
+                    <span class="logo-subtitle">SUPPORT SYSTEM</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link active">HOME</a></li>
+                    <li><a href="features.html" class="nav-link">FEATURES</a></li>
+                    <li><a href="docs.html" class="nav-link">DOCS</a></li>
+                    <li><a href="contact.html" class="nav-link">CONTACT</a></li>
+                </ul>
+                <button class="cta-button" onclick="window.location.href='docs.html'">GET STARTED</button>
             </div>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">HOME</a></li>
-                <li><a href="features.html" class="nav-link">FEATURES</a></li>
-                <li><a href="docs.html" class="nav-link">DOCS</a></li>
-                <li><a href="contact.html" class="nav-link">CONTACT</a></li>
-            </ul>
-            <button class="cta-button" onclick="window.location.href='docs.html'">GET STARTED</button>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-background">
-            <div class="grid-overlay"></div>
-            <div class="particles"></div>
-        </div>
-        <div class="hero-content">
-            <h1 class="hero-title">
-                <span class="title-line">WELCOME TO</span>
-                <span class="title-line title-main">NEXUS</span>
-                <span class="title-line">SUPPORT SYSTEM</span>
-            </h1>
-            <p class="hero-subtitle">Advanced Ticket Management with GitHub Integration</p>
-            <div class="hero-buttons">
-                <button class="primary-button">LAUNCH DEMO</button>
-                <button class="secondary-button">VIEW DOCS</button>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <span class="stat-number">10K+</span>
-                    <span class="stat-label">Tickets</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">99.9%</span>
-                    <span class="stat-label">Uptime</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">50ms</span>
-                    <span class="stat-label">Response</span>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">NEXUS Support System</h1>
+                <p class="hero-subtitle">Advanced Support Ticket Management with Streamlined Processes</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="window.location.href='docs.html'">Get Started</button>
+                    <button class="btn-secondary" onclick="window.location.href='features.html'">View Features</button>
                 </div>
             </div>
-        </div>
-    </section>
+            <div class="hero-visual">
+                <div class="hero-graphic"></div>
+            </div>
+        </section>
 
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="section-header">
-            <h2 class="section-title">SYSTEM CAPABILITIES</h2>
-            <p class="section-subtitle">Advanced Features for Modern Support</p>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">◉</div>
-                <h3 class="feature-title">Ticket Management</h3>
-                <p class="feature-description">Create, track, and manage support tickets with advanced filtering and categorization.</p>
+        <section class="features-overview">
+            <div class="container">
+                <h2 class="section-title">Why Choose NEXUS?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon icon-rocket"></div>
+                        <h3>Lightning Fast</h3>
+                        <p>Sub-100ms response times with optimized performance</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon icon-gear"></div>
+                        <h3>Process Automation</h3>
+                        <p>Streamlined automation and efficient ticket routing</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon icon-chart"></div>
+                        <h3>Advanced Analytics</h3>
+                        <p>Real-time insights and comprehensive reporting</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon icon-lock"></div>
+                        <h3>Enterprise Security</h3>
+                        <p>Bank-level security with end-to-end encryption</p>
+                    </div>
+                </div>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">⌬</div>
-                <h3 class="feature-title">GitHub Integration</h3>
-                <p class="feature-description">Seamless synchronization with GitHub issues for enhanced collaboration.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⍙</div>
-                <h3 class="feature-title">Security First</h3>
-                <p class="feature-description">Enterprise-grade security with encryption, rate limiting, and audit logging.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3 class="feature-title">Real-time Updates</h3>
-                <p class="feature-description">Instant notifications and real-time ticket status updates.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">▦</div>
-                <h3 class="feature-title">Analytics Dashboard</h3>
-                <p class="feature-description">Comprehensive analytics and reporting for support metrics.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⚙</div>
-                <h3 class="feature-title">API Access</h3>
-                <p class="feature-description">Full REST API for custom integrations and automation.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Documentation Section -->
-    <section id="docs" class="docs">
-        <div class="section-header">
-            <h2 class="section-title">DOCUMENTATION</h2>
-            <p class="section-subtitle">Comprehensive Guides for Integration</p>
-        </div>
-        <div class="docs-grid">
-            <div class="doc-card">
-                <h3 class="doc-title">Quick Start</h3>
-                <p class="doc-description">Get up and running in minutes with our quick start guide.</p>
-                <a href="docs.html" class="doc-link">READ MORE →</a>
+        <section class="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">99.9%</div>
+                        <div class="stat-label">Uptime</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">10M+</div>
+                        <div class="stat-label">Tickets Processed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Enterprise Clients</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Support</div>
+                    </div>
+                </div>
             </div>
-            <div class="doc-card">
-                <h3 class="doc-title">API Reference</h3>
-                <p class="doc-description">Complete API documentation with examples and endpoints.</p>
-                <a href="docs.html" class="doc-link">READ MORE →</a>
-            </div>
-            <div class="doc-card">
-                <h3 class="doc-title">Security Guide</h3>
-                <p class="doc-description">Learn about security features and best practices.</p>
-                <a href="docs.html" class="doc-link">READ MORE →</a>
-            </div>
-            <div class="doc-card">
-                <h3 class="doc-title">Deployment</h3>
-                <p class="doc-description">Deploy NEXUS to any cloud platform with ease.</p>
-                <a href="docs.html" class="doc-link">READ MORE →</a>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="contact-content">
-            <h2 class="contact-title">INITIALIZE CONTACT</h2>
-            <p class="contact-subtitle">Connect with our support team</p>
-            <form class="contact-form">
-                <input type="text" placeholder="YOUR NAME" class="form-input">
-                <input type="email" placeholder="YOUR EMAIL" class="form-input">
-                <textarea placeholder="YOUR MESSAGE" class="form-textarea"></textarea>
-                <button type="submit" class="submit-button">TRANSMIT MESSAGE</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3 class="footer-title">NEXUS</h3>
-                <p class="footer-text">Advanced Support Ticket System</p>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>NEXUS</h4>
+                    <p>Advanced support ticket management system for modern enterprises.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="docs.html">Documentation</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="docs.html">API Docs</a></li>
+                        <li><a href="docs.html">Tutorials</a></li>
+                        <li><a href="docs.html">Support</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer-section">
-                <h3 class="footer-title">RESOURCES</h3>
-                <ul class="footer-links">
-                    <li><a href="docs.html">Documentation</a></li>
-                    <li><a href="docs.html">API Reference</a></li>
-                    <li><a href="https://github.com/AutoBotSolutions/NEXUS-Support-Ticket-System">GitHub</a></li>
-                    <li><a href="../licences/MIT">License</a></li>
-                </ul>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NEXUS Support System. All rights reserved.</p>
             </div>
-            <div class="footer-section">
-                <h3 class="footer-title">LEGAL</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3 class="footer-title">CONNECT</h3>
-                <ul class="footer-links">
-                    <li><a href="https://twitter.com">Twitter</a></li>
-                    <li><a href="https://github.com/AutoBotSolutions/NEXUS-Support-Ticket-System">GitHub</a></li>
-                    <li><a href="#">Discord</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 NEXUS Support System. All rights reserved.</p>
         </div>
     </footer>
 
