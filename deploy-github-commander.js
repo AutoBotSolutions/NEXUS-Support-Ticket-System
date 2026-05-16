@@ -30,7 +30,6 @@ const deploymentFiles = [
     'package.json',
     'package-lock.json',
     'README.md',
-    'README_GITHUB_COMMANDER.md',
     'DEPLOYMENT_REPORT.md',
     '.env.example',
     '.gitignore',
