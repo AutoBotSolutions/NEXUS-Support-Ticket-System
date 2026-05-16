@@ -1,5 +1,6 @@
 const axios = require('axios');
 const Ticket = require('../models/Ticket');
+const { trackGitHubApiCall, trackTicketCreated } = require('../middleware/apmMonitoringSimple');
 
 // @desc    Handle GitHub webhook events
 // @route   POST /api/github/webhook
@@ -55,6 +56,8 @@ const handleIssueEvent = async (payload) => {
         githubIssueUrl: issue.html_url,
         tags: repository ? [repository.name] : []
       });
+      // Track ticket creation from GitHub
+      trackTicketCreated(ticket.priority, ticket.category);
       console.log(`Created ticket for GitHub issue #${issue.number}`);
     } else {
       ticket.status = action === 'opened' ? 'open' : 'in_progress';
@@ -141,14 +144,19 @@ const syncTicketToGitHub = async (req, res) => {
         state: ticket.status === 'closed' ? 'closed' : 'open'
       };
 
-      await axios.patch(updateUrl, updateData, {
-        headers: {
-          'Authorization': `token ${process.env.GITHUB_TOKEN}`,
-          'Accept': 'application/vnd.github.v3+json'
-        }
-      });
-
-      return res.status(200).json({ success: true, message: 'Issue updated on GitHub' });
+      try {
+        await axios.patch(updateUrl, updateData, {
+          headers: {
+            'Authorization': `token ${process.env.GITHUB_TOKEN}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+        trackGitHubApiCall('PATCH /issues/:number', 'success');
+        return res.status(200).json({ success: true, message: 'Issue updated on GitHub' });
+      } catch (error) {
+        trackGitHubApiCall('PATCH /issues/:number', 'error');
+        throw error;
+      }
     }
 
     // Create new issue
@@ -160,18 +168,24 @@ const syncTicketToGitHub = async (req, res) => {
       labels: ticket.tags || []
     };
 
-    const response = await axios.post(createUrl, issueData, {
-      headers: {
-        'Authorization': `token ${process.env.GITHUB_TOKEN}`,
-        'Accept': 'application/vnd.github.v3+json'
-      }
-    });
+    try {
+      const response = await axios.post(createUrl, issueData, {
+        headers: {
+          'Authorization': `token ${process.env.GITHUB_TOKEN}`,
+          'Accept': 'application/vnd.github.v3+json'
+        }
+      });
+      trackGitHubApiCall('POST /issues', 'success');
+      
+      ticket.githubIssueNumber = response.data.number;
+      ticket.githubIssueUrl = response.data.html_url;
+      await ticket.save();
 
-    ticket.githubIssueNumber = response.data.number;
-    ticket.githubIssueUrl = response.data.html_url;
-    await ticket.save();
-
-    res.status(200).json({ success: true, data: response.data });
+      res.status(200).json({ success: true, data: response.data });
+    } catch (error) {
+      trackGitHubApiCall('POST /issues', 'error');
+      throw error;
+    }
   } catch (error) {
     console.error('GitHub sync error:', error.response?.data || error.message);
     res.status(500).json({ success: false, error: error.message });

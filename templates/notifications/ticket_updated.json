@@ -1,0 +1,22 @@
+{
+  "subject": "Ticket Status Updated",
+  "channels": [
+    "email",
+    "inapp"
+  ],
+  "templates": {
+    "email": {
+      "html": "<h2>Ticket Updated</h2><p>Hi {{name}},</p><p>Your ticket \"{{ticketTitle}}\" status has been updated to {{status}}.</p>",
+      "text": "Ticket Updated. Hi {{name}}, Your ticket \"{{ticketTitle}}\" status has been updated to {{status}}."
+    },
+    "inapp": {
+      "title": "Ticket Status Updated",
+      "message": "Your ticket \"{{ticketTitle}}\" status has been updated to {{status}}.",
+      "icon": "update",
+      "action": {
+        "text": "View Ticket",
+        "url": "/tickets/{{ticketId}}"
+      }
+    }
+  }
+}

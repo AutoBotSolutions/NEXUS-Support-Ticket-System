@@ -1,0 +1,122 @@
+{
+  "timestamp": "2026-05-16T01:03:38.307Z",
+  "results": {
+    "total": 150,
+    "passed": 150,
+    "failed": 0,
+    "errors": [],
+    "details": {
+      "controllers/analyticsController.js": {
+        "status": "VALID",
+        "size": 10180,
+        "hasExports": true,
+        "hasClass": true,
+        "hasMethods": true
+      },
+      "controllers/reportingController.js": {
+        "status": "VALID",
+        "size": 12768,
+        "hasExports": true,
+        "hasClass": true,
+        "hasMethods": true
+      },
+      "services/analyticsService.js": {
+        "status": "VALID",
+        "size": 27724,
+        "hasExports": true,
+        "hasClass": true,
+        "hasMethods": true
+      },
+      "services/reportingService.js": {
+        "status": "VALID",
+        "size": 20523,
+        "hasExports": true,
+        "hasClass": true,
+        "hasMethods": true
+      },
+      "models/Analytics.js": {
+        "status": "VALID",
+        "size": 4999,
+        "hasExports": true,
+        "hasClass": false,
+        "hasMethods": true
+      },
+      "models/Report.js": {
+        "status": "VALID",
+        "size": 10317,
+        "hasExports": true,
+        "hasClass": false,
+        "hasMethods": true
+      },
+      "models/Dashboard.js": {
+        "status": "VALID",
+        "size": 14489,
+        "hasExports": true,
+        "hasClass": false,
+        "hasMethods": true
+      },
+      "utils/dataAggregator.js": {
+        "status": "VALID",
+        "size": 18664,
+        "hasExports": true,
+        "hasClass": true,
+        "hasMethods": true
+      },
+      "utils/chartGenerator.js": {
+        "status": "VALID",
+        "size": 23737,
+        "hasExports": true,
+        "hasClass": true,
+        "hasMethods": true
+      },
+      "routes/analyticsRoutes.js": {
+        "status": "VALID",
+        "size": 5443,
+        "hasExports": true,
+        "hasClass": false,
+        "hasMethods": true
+      },
+      "routes/reportingRoutes.js": {
+        "status": "VALID",
+        "size": 13331,
+        "hasExports": true,
+        "hasClass": false,
+        "hasMethods": false
+      },
+      "public/analytics-dashboard.js": {
+        "status": "VALID",
+        "hasClass": true,
+        "hasConstructor": true,
+        "hasInit": true,
+        "hasEventListeners": true,
+        "hasMethods": false,
+        "hasExport": true
+      },
+      "public/report-builder.js": {
+        "status": "VALID",
+        "hasClass": true,
+        "hasConstructor": true,
+        "hasInit": true,
+        "hasEventListeners": true,
+        "hasMethods": true,
+        "hasExport": true
+      }
+    }
+  },
+  "successRate": 100,
+  "assessment": "EXCELLENT",
+  "systems": [
+    "AnalyticsController",
+    "ReportingController",
+    "AnalyticsService",
+    "ReportingService",
+    "AnalyticsModel",
+    "ReportModel",
+    "DashboardModel",
+    "DataAggregator",
+    "ChartGenerator",
+    "AnalyticsRoutes",
+    "ReportingRoutes",
+    "FrontendComponents"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "subject": "Ticket Assigned to You",
+  "channels": [
+    "email",
+    "inapp"
+  ],
+  "templates": {
+    "email": {
+      "html": "<h2>Ticket Assigned</h2><p>Hi {{name}},</p><p>Ticket \"{{ticketTitle}}\" has been assigned to you.</p><p>Priority: {{priority}}</p>",
+      "text": "Ticket Assigned. Hi {{name}}, Ticket \"{{ticketTitle}}\" has been assigned to you. Priority: {{priority}}"
+    },
+    "inapp": {
+      "title": "New Ticket Assigned",
+      "message": "Ticket \"{{ticketTitle}}\" has been assigned to you.",
+      "icon": "assignment",
+      "action": {
+        "text": "View Ticket",
+        "url": "/tickets/{{ticketId}}"
+      }
+    }
+  }
+}

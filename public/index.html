@@ -486,6 +486,7 @@
             color: #00ffff;
         }
     </style>
+<script src="/frontend-monitoring.js"></script>
 </head>
 <body>
     <div class="container">
@@ -576,6 +577,15 @@
         </div>
     </div>
 
+    <!-- System Error Management Section -->
+    <div style="margin: 20px; padding: 20px; border-top: 2px solid #00ffff; background: rgba(10, 10, 30, 0.9); border-radius: 8px;">
+        <h3 style="color: #00ffff; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px;">System Error Management</h3>
+        <p style="color: #00cccc; margin-bottom: 10px;">Captured Errors: <span id="errorCount" style="color: #00ffff; font-weight: bold;">0</span></p>
+        <button onclick="sendErrorsToWindsurf()" style="background: linear-gradient(45deg, #ff6b35, #ff8c42); color: white; padding: 12px 24px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 0 15px rgba(255, 107, 53, 0.5);">Send Element to Windsurf</button>
+        <button onclick="clearErrors()" style="background: linear-gradient(45deg, #6c757d, #868e96); color: white; padding: 12px 24px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-left: 10px; box-shadow: 0 0 15px rgba(108, 117, 125, 0.5);">Clear Errors</button>
+        <div id="errorStatus" style="margin-top: 15px; padding: 10px; border-radius: 4px; font-family: 'Courier New', monospace;"></div>
+    </div>
+
     <script>
         const API_BASE = '/api';
 
@@ -660,16 +670,16 @@
             }
 
             container.innerHTML = tickets.map(ticket => `
-                <div class="ticket-card" onclick="viewTicket('${ticket.ticketId}')">
+                <div class="ticket-card" onclick="viewTicket('${ticket.id}')">
                     <div class="ticket-header">
-                        <span class="ticket-id">${ticket.ticketId}</span>
+                        <span class="ticket-id">#${ticket.id}</span>
                         <span class="status ${ticket.status}">${ticket.status.replace('_', ' ')}</span>
                     </div>
                     <div class="ticket-title">${escapeHtml(ticket.title)}</div>
                     <div class="ticket-meta">
                         <span class="priority ${ticket.priority}">${ticket.priority}</span>
-                        <span>Date: ${new Date(ticket.createdAt).toLocaleDateString()}</span>
-                        <span>Created by: ${escapeHtml(ticket.createdBy)}</span>
+                        <span>Date: ${new Date(ticket.created).toLocaleDateString()}</span>
+                        <span>Created by: ${escapeHtml(ticket.name)}</span>
                         ${ticket.githubIssueNumber ? `<span>GitHub #${ticket.githubIssueNumber}</span>` : ''}
                     </div>
                 </div>
@@ -697,7 +707,7 @@
             
             body.innerHTML = `
                 <div class="ticket-header">
-                    <span class="ticket-id">${ticket.ticketId}</span>
+                    <span class="ticket-id">#${ticket.id}</span>
                     <span class="status ${ticket.status}">${ticket.status.replace('_', ' ')}</span>
                 </div>
                 <h3>${escapeHtml(ticket.title)}</h3>
@@ -707,12 +717,9 @@
                 <br>
                 <div class="ticket-meta">
                     <p><strong>Priority:</strong> <span class="priority ${ticket.priority}">${ticket.priority}</span></p>
-                    <p><strong>Category:</strong> ${escapeHtml(ticket.category)}</p>
-                    <p><strong>Created by:</strong> ${escapeHtml(ticket.createdBy)} (${escapeHtml(ticket.createdByEmail)})</p>
-                    <p><strong>Created at:</strong> ${new Date(ticket.createdAt).toLocaleString()}</p>
-                    ${ticket.assignedTo ? `<p><strong>Assigned to:</strong> ${escapeHtml(ticket.assignedTo)}</p>` : ''}
+                    <p><strong>Created by:</strong> ${escapeHtml(ticket.name)} (${escapeHtml(ticket.email)})</p>
+                    <p><strong>Created at:</strong> ${new Date(ticket.created).toLocaleString()}</p>
                 </div>
-                ${ticket.tags.length ? `<p><strong>Tags:</strong> ${ticket.tags.map(t => escapeHtml(t)).join(', ')}</p>` : ''}
                 ${ticket.githubIssueUrl ? `
                     <br>
                     <a href="${ticket.githubIssueUrl}" target="_blank" class="github-link">
@@ -721,7 +728,7 @@
                 ` : ''}
                 ${ticket.githubIssueUrl ? `
                     <br><br>
-                    <button onclick="syncTicket('${ticket.ticketId}')">Sync with GitHub</button>
+                    <button onclick="syncTicket('${ticket.id}')">Sync with GitHub</button>
                 ` : ''}
                 <div class="comments-section">
                     <h3>Comments (${ticket.comments.length})</h3>
@@ -805,10 +812,76 @@
             return div.innerHTML;
         }
 
+        // Windsurf integration functions
+        function sendErrorsToWindsurf() {
+            const statusDiv = document.getElementById('errorStatus');
+            statusDiv.innerHTML = '🌊 Sending errors to Windsurf...';
+            statusDiv.style.color = '#00ffff';
+            
+            fetch('/api/send-to-windsurf', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then(response => response.json())
+            .then(result => {
+                statusDiv.innerHTML = '✅ ' + result.message;
+                statusDiv.style.color = '#00ff00';
+                statusDiv.style.background = 'rgba(0, 255, 0, 0.1)';
+                statusDiv.style.border = '1px solid #00ff00';
+            })
+            .catch(error => {
+                statusDiv.innerHTML = '❌ Network error: ' + error.message;
+                statusDiv.style.color = '#ff4444';
+                statusDiv.style.background = 'rgba(255, 68, 68, 0.1)';
+                statusDiv.style.border = '1px solid #ff4444';
+            });
+        }
+
+        function clearErrors() {
+            const statusDiv = document.getElementById('errorStatus');
+            statusDiv.innerHTML = '🧹 Clearing errors...';
+            statusDiv.style.color = '#00ffff';
+            
+            fetch('/api/clear-errors', { method: 'DELETE' })
+            .then(response => response.json())
+            .then(result => {
+                document.getElementById('errorCount').textContent = '0';
+                statusDiv.innerHTML = '✅ ' + result.message;
+                statusDiv.style.color = '#00ff00';
+                statusDiv.style.background = 'rgba(0, 255, 0, 0.1)';
+                statusDiv.style.border = '1px solid #00ff00';
+            })
+            .catch(error => {
+                statusDiv.innerHTML = '❌ Network error: ' + error.message;
+                statusDiv.style.color = '#ff4444';
+                statusDiv.style.background = 'rgba(255, 68, 68, 0.1)';
+                statusDiv.style.border = '1px solid #ff4444';
+            });
+        }
+
+        // Update error count
+        function updateErrorCount() {
+            fetch('/api/errors')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('errorCount').textContent = data.totalErrors || 0;
+            })
+            .catch(error => {
+                console.error('Failed to update error count:', error);
+            });
+        }
+
+        // Update error count every 5 seconds
+        setInterval(updateErrorCount, 5000);
+        updateErrorCount();
+
         // Load tickets on page load
         window.onload = () => {
             loadTickets();
         };
     </script>
+    
+    <!-- Session Replay Script -->
+    <script src="/session-replay.js"></script>
 </body>
 </html>

@@ -1,0 +1,52 @@
+{
+  "timestamp": "2026-05-15T20:56:20.655Z",
+  "results": {
+    "total": 25,
+    "passed": 25,
+    "failed": 0,
+    "categories": {
+      "userModel": {
+        "total": 6,
+        "passed": 6,
+        "failed": 0
+      },
+      "teamModel": {
+        "total": 5,
+        "passed": 5,
+        "failed": 0
+      },
+      "controller": {
+        "total": 2,
+        "passed": 2,
+        "failed": 0
+      },
+      "routes": {
+        "total": 2,
+        "passed": 2,
+        "failed": 0
+      },
+      "authentication": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0
+      },
+      "search": {
+        "total": 2,
+        "passed": 2,
+        "failed": 0
+      },
+      "analytics": {
+        "total": 2,
+        "passed": 2,
+        "failed": 0
+      },
+      "bulk": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0
+      }
+    }
+  },
+  "overallPercentage": 100,
+  "status": "NEEDS_ATTENTION"
+}

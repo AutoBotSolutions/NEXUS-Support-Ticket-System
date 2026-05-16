@@ -1,4 +1,6 @@
 const Ticket = require('../models/Ticket');
+const { trackTicketCreated } = require('../middleware/apmMonitoringSimple');
+const { sendNotification } = require('../middleware/notificationSystem');
 
 const generateTicketId = () => {
   return 'TCK-' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).substr(2, 4).toUpperCase();
@@ -34,6 +36,27 @@ const createTicket = async (req, res) => {
       createdBy,
       createdByEmail
     });
+
+    // Track ticket creation metric
+    trackTicketCreated(ticket.priority, ticket.category);
+
+    // Send ticket created notification
+    try {
+      await sendNotification({
+        userId: createdBy,
+        type: 'ticket_created',
+        data: {
+          name: createdBy,
+          email: createdByEmail,
+          ticketId: ticket._id,
+          ticketTitle: title,
+          priority: priority || 'medium',
+          category: category || 'general'
+        }
+      });
+    } catch (notificationError) {
+      console.error('Failed to send ticket created notification:', notificationError);
+    }
 
     res.status(201).json({
       success: true,

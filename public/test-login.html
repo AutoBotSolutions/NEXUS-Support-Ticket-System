@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Login</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .container { max-width: 400px; margin: 0 auto; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input { width: 100%; padding: 10px; border: 1px solid #ccc; }
+        button { width: 100%; padding: 10px; background: #007bff; color: white; border: none; }
+        .message { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .dashboard { display: none; padding: 20px; background: #f8f9fa; border-radius: 5px; }
+        .auth-panel { display: block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>NEXUS Test Login</h1>
+        
+        <div id="message"></div>
+        
+        <div id="authPanel" class="auth-panel">
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" id="email" value="test3@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input type="password" id="password" value="password123" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        
+        <div id="dashboardPanel" class="dashboard">
+            <h2>Welcome!</h2>
+            <p>Username: <span id="username"></span></p>
+            <p>Email: <span id="email"></span></p>
+            <p>Full Name: <span id="fullName"></span></p>
+            <button onclick="logout()">Logout</button>
+            <button onclick="goToTickets()">Manage Tickets</button>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = '/api';
+        let authToken = null;
+
+        function showMessage(text, type) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.innerHTML = `<div class="message ${type}">${text}</div>`;
+            setTimeout(() => {
+                messageDiv.innerHTML = '';
+            }, 5000);
+        }
+
+        function showDashboard(user) {
+            console.log('=== SHOW DASHBOARD CALLED ===');
+            console.log('User data:', user);
+            
+            // Hide auth panel
+            const authPanel = document.getElementById('authPanel');
+            const dashboardPanel = document.getElementById('dashboardPanel');
+            
+            console.log('Auth panel before:', authPanel.style.display);
+            console.log('Dashboard panel before:', dashboardPanel.style.display);
+            
+            authPanel.style.display = 'none';
+            dashboardPanel.style.display = 'block';
+            
+            console.log('Auth panel after:', authPanel.style.display);
+            console.log('Dashboard panel after:', dashboardPanel.style.display);
+            
+            // Update user info
+            document.getElementById('username').textContent = user.username;
+            document.getElementById('email').textContent = user.email;
+            document.getElementById('fullName').textContent = user.fullName;
+            
+            console.log('Dashboard should now be visible!');
+        }
+
+        function logout() {
+            localStorage.removeItem('nexus_token');
+            authToken = null;
+            document.getElementById('authPanel').style.display = 'block';
+            document.getElementById('dashboardPanel').style.display = 'none';
+            showMessage('Logged out', 'success');
+        }
+
+        function goToTickets() {
+            window.open(`/ticket-system.html?token=${authToken}`, '_blank');
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            console.log('=== LOGIN ATTEMPT ===');
+            console.log('Email:', email);
+            
+            try {
+                const response = await fetch(`${API_BASE}/users/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                const data = await response.json();
+                console.log('Login response:', data);
+                
+                if (data.success) {
+                    authToken = data.data.token;
+                    localStorage.setItem('nexus_token', authToken);
+                    showMessage('Login successful!', 'success');
+                    
+                    console.log('About to call showDashboard...');
+                    setTimeout(() => {
+                        showDashboard(data.data.user);
+                    }, 1000);
+                } else {
+                    showMessage('Login failed: ' + data.error, 'error');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                showMessage('Network error: ' + error.message, 'error');
+            }
+        });
+    </script>
+</body>
+</html>

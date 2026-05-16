@@ -1,0 +1,55 @@
+{
+  "name": "nexus-test-scripts",
+  "description": "Test scripts for NEXUS system",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:unit": "jest test/unit",
+    "test:integration": "jest test/integration",
+    "test:e2e": "jest test/e2e",
+    "test:performance": "node test/performance/load-test.js",
+    "test:security": "node test/security/security-test.js",
+    "test:ci": "jest --ci --coverage --watchAll=false",
+    "test:runner": "node test-runner.js",
+    "test:all": "npm run test:unit && npm run test:integration && npm run test:e2e",
+    "test:full": "npm run test:all && npm run test:performance && npm run test:security"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "supertest": "^6.3.3",
+    "mongodb-memory-server": "^8.13.0",
+    "nock": "^13.3.1",
+    "sinon": "^15.2.0",
+    "faker": "^6.6.6",
+    "artillery": "^2.0.0",
+    "@jest/globals": "^29.5.0",
+    "jest-environment-node": "^29.5.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": ["<rootDir>/test/setup.js"],
+    "collectCoverageFrom": [
+      "controllers/**/*.js",
+      "middleware/**/*.js",
+      "models/**/*.js",
+      "routes/**/*.js",
+      "services/**/*.js",
+      "!**/node_modules/**",
+      "!**/coverage/**",
+      "!**/test/**"
+    ],
+    "coverageDirectory": "coverage",
+    "coverageReporters": ["text", "lcov", "html", "json"],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
+    },
+    "testTimeout": 30000,
+    "verbose": true
+  }
+}

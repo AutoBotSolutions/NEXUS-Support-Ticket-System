@@ -1,0 +1,207 @@
+{
+  "apm": {
+    "status": "failed",
+    "tests": [
+      {
+        "name": "New Relic Configuration",
+        "status": "passed",
+        "message": "New Relic configuration file exists and is properly formatted"
+      },
+      {
+        "name": "APM Middleware",
+        "status": "passed",
+        "message": "APM middleware exists with Prometheus client"
+      },
+      {
+        "name": "Metrics Endpoint",
+        "status": "passed",
+        "message": "Metrics endpoint is working and returning data"
+      },
+      {
+        "name": "New Relic Agent",
+        "status": "failed",
+        "message": "New Relic license key not configured (set NEW_RELIC_LICENSE_KEY)"
+      }
+    ],
+    "issues": [
+      "New Relic license key not configured (set NEW_RELIC_LICENSE_KEY)"
+    ]
+  },
+  "infrastructure": {
+    "status": "failed",
+    "tests": [
+      {
+        "name": "Prometheus Configuration",
+        "status": "failed",
+        "message": "Prometheus configuration is incomplete"
+      },
+      {
+        "name": "Grafana Dashboard",
+        "status": "passed",
+        "message": "Grafana dashboard configuration exists"
+      },
+      {
+        "name": "Prometheus Service",
+        "status": "failed",
+        "message": "Prometheus is not running or not accessible on port 9090"
+      },
+      {
+        "name": "Grafana Service",
+        "status": "failed",
+        "message": "Grafana is not running or not accessible on port 3001"
+      }
+    ],
+    "issues": [
+      "Prometheus configuration is incomplete",
+      "Prometheus is not running or not accessible on port 9090",
+      "Grafana is not running or not accessible on port 3001"
+    ]
+  },
+  "database": {
+    "status": "failed",
+    "tests": [
+      {
+        "name": "Database Monitoring Middleware",
+        "status": "failed",
+        "message": "Database monitoring middleware is incomplete"
+      },
+      {
+        "name": "Database Health Endpoint",
+        "status": "passed",
+        "message": "Database health endpoint is working"
+      },
+      {
+        "name": "MongoDB Connection",
+        "status": "failed",
+        "message": "MongoDB connection failed: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017"
+      }
+    ],
+    "issues": [
+      "Database monitoring middleware is incomplete",
+      "MongoDB connection failed: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017"
+    ]
+  },
+  "frontend": {
+    "status": "failed",
+    "tests": [
+      {
+        "name": "Frontend Monitoring Script",
+        "status": "passed",
+        "message": "Frontend monitoring script exists with performance tracking"
+      },
+      {
+        "name": "HTML Integration",
+        "status": "passed",
+        "message": "Frontend monitoring script is included in HTML"
+      },
+      {
+        "name": "Monitoring API Routes",
+        "status": "passed",
+        "message": "Frontend monitoring API routes exist"
+      }
+    ],
+    "issues": []
+  },
+  "security": {
+    "status": "failed",
+    "tests": [
+      {
+        "name": "Security Monitoring Middleware",
+        "status": "passed",
+        "message": "Security monitoring middleware exists with threat detection"
+      },
+      {
+        "name": "Security Dashboard Endpoint",
+        "status": "failed",
+        "message": "Security dashboard endpoint exists but not returning expected data"
+      },
+      {
+        "name": "Security Alert Rules",
+        "status": "passed",
+        "message": "Security alert rules are configured"
+      }
+    ],
+    "issues": [
+      "Security dashboard endpoint exists but not returning expected data"
+    ]
+  },
+  "business": {
+    "status": "failed",
+    "tests": [
+      {
+        "name": "Business Intelligence Middleware",
+        "status": "passed",
+        "message": "Business intelligence middleware exists with KPI tracking"
+      },
+      {
+        "name": "Business Analytics Endpoint",
+        "status": "failed",
+        "message": "Business analytics endpoint exists but not returning expected data"
+      },
+      {
+        "name": "KPI Dashboard Endpoint",
+        "status": "passed",
+        "message": "KPI dashboard endpoint is working"
+      }
+    ],
+    "issues": [
+      "Business analytics endpoint exists but not returning expected data"
+    ]
+  },
+  "alerting": {
+    "status": "failed",
+    "tests": [
+      {
+        "name": "Alerting System Middleware",
+        "status": "passed",
+        "message": "Alerting system middleware exists with PagerDuty integration"
+      },
+      {
+        "name": "Alert Status Endpoint",
+        "status": "failed",
+        "message": "Alert status endpoint exists but not returning expected data"
+      },
+      {
+        "name": "AlertManager Configuration",
+        "status": "passed",
+        "message": "AlertManager configuration exists"
+      },
+      {
+        "name": "Environment Variables",
+        "status": "passed",
+        "message": "Alerting environment variables template exists"
+      }
+    ],
+    "issues": [
+      "Alert status endpoint exists but not returning expected data"
+    ]
+  },
+  "logging": {
+    "status": "failed",
+    "tests": [
+      {
+        "name": "Logging Infrastructure Middleware",
+        "status": "passed",
+        "message": "Logging infrastructure middleware exists with Winston"
+      },
+      {
+        "name": "ELK Configuration",
+        "status": "passed",
+        "message": "All ELK configuration files exist"
+      },
+      {
+        "name": "Log Directory",
+        "status": "passed",
+        "message": "Logs directory exists"
+      },
+      {
+        "name": "Elasticsearch Service",
+        "status": "failed",
+        "message": "Elasticsearch is not running or not accessible on port 9200"
+      }
+    ],
+    "issues": [
+      "Elasticsearch is not running or not accessible on port 9200"
+    ]
+  }
+}

@@ -1,0 +1,98 @@
+# NEXUS Production Dockerfile
+# Multi-stage build for production deployment
+
+# Base image with Node.js
+FROM node:18-alpine AS base
+
+# Install dependencies
+RUN apk add --no-cache \
+    curl \
+    dumb-init \
+    && rm -rf /var/cache/apk/*
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci --only=production && npm cache clean --force
+
+# Development stage
+FROM base AS development
+
+# Install all dependencies
+RUN npm ci
+
+# Copy source code
+COPY . .
+
+# Expose port
+EXPOSE 3000
+
+# Start application
+CMD ["npm", "start"]
+
+# Production stage
+FROM node:18-alpine AS production
+
+# Install production dependencies
+RUN apk add --no-cache \
+    curl \
+    dumb-init \
+    && rm -rf /var/cache/apk/*
+
+# Create app user
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S nexus -u 1001
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install production dependencies
+RUN npm ci --only=production && npm cache clean --force
+
+# Copy source code
+COPY --chown=nexus:nodejs . .
+
+# Create necessary directories
+RUN mkdir -p /var/log/nexus /var/uploads/nexus /var/log/nexus/reports && \
+    chown -R nexus:nodejs /var/log/nexus /var/uploads/nexus /var/log/nexus/reports
+
+# Switch to non-root user
+USER nexus
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD curl -f http://localhost:3000/api/health || exit 1
+
+# Expose port
+EXPOSE 3000
+
+# Start application with dumb-init
+ENTRYPOINT ["dumb-init", "--"]
+CMD ["node", "server-standalone.js"]
+
+# Security scanner stage
+FROM production AS security-scan
+
+# Install security scanning tools
+RUN npm install -g npm-audit-ci snyk
+
+# Run security scans
+RUN npm audit --audit-level=high || true && \
+    snyk test --severity-threshold=high || true
+
+# Final production image
+FROM production AS final
+
+# Add labels for metadata
+LABEL maintainer="NEXUS Team" \
+      version="1.0.0" \
+      description="NEXUS Support System - Production" \
+      org.opencontainers.image.source="https://github.com/nexus/support-system" \
+      org.opencontainers.image.licenses="MIT"

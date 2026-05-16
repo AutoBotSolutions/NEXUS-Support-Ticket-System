@@ -1,0 +1,52 @@
+{
+  "timestamp": "2026-05-15T22:16:28.384Z",
+  "testResults": {
+    "infrastructure": {
+      "passed": 3,
+      "failed": 0,
+      "total": 3
+    },
+    "email": {
+      "passed": 3,
+      "failed": 0,
+      "total": 3
+    },
+    "inapp": {
+      "passed": 2,
+      "failed": 1,
+      "total": 3
+    },
+    "push": {
+      "passed": 3,
+      "failed": 0,
+      "total": 3
+    },
+    "sms": {
+      "passed": 4,
+      "failed": 0,
+      "total": 4
+    },
+    "webhook": {
+      "passed": 4,
+      "failed": 0,
+      "total": 4
+    },
+    "templates": {
+      "passed": 2,
+      "failed": 1,
+      "total": 3
+    },
+    "api": {
+      "passed": 3,
+      "failed": 0,
+      "total": 3
+    }
+  },
+  "summary": {
+    "total": 26,
+    "passed": 24,
+    "failed": 2,
+    "percentage": "92.3"
+  },
+  "status": "NEEDS_ATTENTION"
+}

@@ -1,0 +1,1417 @@
+{
+  "timestamp": "2026-05-16T00:20:21.464Z",
+  "duration": 19,
+  "overall": {
+    "total": 168,
+    "passed": 168,
+    "failed": 0,
+    "successRate": 100
+  },
+  "categories": {
+    "core": [
+      {
+        "name": "Authentication System",
+        "key": "authentication",
+        "fileTests": {
+          "total": 2,
+          "passed": 2,
+          "failed": 0,
+          "details": [
+            {
+              "file": "middleware/auth.js",
+              "exists": true,
+              "size": 949
+            },
+            {
+              "file": "middleware/roleBasedAccess.js",
+              "exists": true,
+              "size": 1556
+            }
+          ]
+        },
+        "functionalityTests": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "details": [
+            {
+              "functionality": "JWT authentication",
+              "available": true
+            },
+            {
+              "functionality": "Role-based access control",
+              "available": true
+            },
+            {
+              "functionality": "Session management",
+              "available": true
+            }
+          ]
+        },
+        "apiTests": {
+          "total": 0,
+          "passed": 0,
+          "failed": 0,
+          "details": []
+        },
+        "successRate": 100,
+        "status": "PASS"
+      },
+      {
+        "name": "Ticket Management System",
+        "key": "ticketManagement",
+        "fileTests": {
+          "total": 2,
+          "passed": 2,
+          "failed": 0,
+          "details": [
+            {
+              "file": "controllers/ticketController.js",
+              "exists": true,
+              "size": 7737
+            },
+            {
+              "file": "controllers/ticketController-simple.js",
+              "exists": true,
+              "size": 6981
+            }
+          ]
+        },
+        "functionalityTests": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "details": [
+            {
+              "functionality": "Ticket CRUD operations",
+              "available": true
+            },
+            {
+              "functionality": "Ticket status management",
+              "available": true
+            },
+            {
+              "functionality": "Ticket assignment",
+              "available": true
+            }
+          ]
+        },
+        "apiTests": {
+          "total": 0,
+          "passed": 0,
+          "failed": 0,
+          "details": []
+        },
+        "successRate": 100,
+        "status": "PASS"
+      },
+      {
+        "name": "GitHub Integration System",
+        "key": "githubIntegration",
+        "fileTests": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "details": [
+            {
+              "file": "controllers/githubController.js",
+              "exists": true,
+              "size": 6496
+            },
+            {
+              "file": "middleware/githubWebhook.js",
+              "exists": true,
+              "size": 1121
+            },
+            {
+              "file": "routes/githubRoutes.js",
+              "exists": true,
+              "size": 453
+            }
+          ]
+        },
+        "functionalityTests": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "details": [
+            {
+              "functionality": "GitHub webhook handling",
+              "available": true
+            },
+            {
+              "functionality": "Repository integration",
+              "available": true
+            },
+            {
+              "functionality": "Issue synchronization",
+              "available": true
+            }
+          ]
+        },
+        "apiTests": {
+          "total": 0,
+          "passed": 0,
+          "failed": 0,
+          "details": []
+        },
+        "successRate": 100,
+        "status": "PASS"
+      },
+      {
+        "name": "Database System",
+        "key": "database",
+        "fileTests": {
+          "total": 4,
+          "passed": 4,
+          "failed": 0,
+          "details": [
+            {
+              "file": "config/database.js",
+              "exists": true,
+              "size": 1369
+            },
+            {
+              "file": "models/Ticket.js",
+              "exists": true,
+              "size": 1466
+            },
+            {
+              "file": "models/User.js",
+              "exists": true,
+              "size": 5709
+            },
+            {
+              "file": "models/Team.js",
+              "exists": true,
+              "size": 5485
+            }
+          ]
+        },
+        "functionalityTests": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "details": [
+            {
+              "functionality": "MongoDB connection",
+              "available": true
+            },
+            {
+              "functionality": "Mongoose models",
+              "available": true
+            },
+            {
+              "functionality": "Database operations",
+              "available": true
+            }
+          ]
+        },
+        "apiTests": {
+          "total": 0,
+          "passed": 0,
+          "failed": 0,
+          "details": []
+        },
+        "successRate": 100,
+        "status": "PASS"
+      },
+      {
+        "name": "Frontend System",
+        "key": "frontend",
+        "fileTests": {
+          "total": 2,
+          "passed": 2,
+          "failed": 0,
+          "details": [
+            {
+              "file": "public/frontend-monitoring.js",
+              "exists": true,
+              "size": 11612
+            },
+            {
+              "file": "public/session-replay.js",
+              "exists": true,
+              "size": 21836
+            }
+          ]
+        },
+        "functionalityTests": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "details": [
+            {
+              "functionality": "Frontend monitoring",
+              "available": true
+            },
+            {
+              "functionality": "Session replay",
+              "available": true
+            },
+            {
+              "functionality": "User interface",
+              "available": true
+            }
+          ]
+        },
+        "apiTests": {
+          "total": 0,
+          "passed": 0,
+          "failed": 0,
+          "details": []
+        },
+        "successRate": 100,
+        "status": "PASS"
+      },
+      {
+        "name": "Security System",
+        "key": "security",
+        "fileTests": {
+          "total": 4,
+          "passed": 4,
+          "failed": 0,
+          "details": [
+            {
+              "file": "middleware/securityLogger.js",
+              "exists": true,
+              "size": 2277
+            },
+            {
+              "file": "middleware/securityMonitoring.js",
+              "exists": true,
+              "size": 15025
+            },
+            {
+              "file": "middleware/vulnerabilityScanning.js",
+              "exists": true,
+              "size": 32304
+            },
+            {
+              "file": "middleware/threatIntelligence.js",
+              "exists": true,
+              "size": 28939
+            }
+          ]
+        },
+        "functionalityTests": {
+          "total": 4,
+          "passed": 4,
+          "failed": 0,
+          "details": [
+            {
+              "functionality": "Security logging",
+              "available": true
+            },
+            {
+              "functionality": "Security monitoring",
+              "available": true
+            },
+            {
+              "functionality": "Vulnerability scanning",
+              "available": true
+            },
+            {
+              "functionality": "Threat intelligence",
+              "available": true
+            }
+          ]
+        },
+        "apiTests": {
+          "total": 0,
+          "passed": 0,
+          "failed": 0,
+          "details": []
+        },
+        "successRate": 100,
+        "status": "PASS"
+      },
+      {
+        "name": "Deployment System",
+        "key": "deployment",
+        "fileTests": {
+          "total": 2,
+          "passed": 2,
+          "failed": 0,
+          "details": [
+            {
+              "file": "install.js",
+              "exists": true,
+              "size": 9114
+            },
+            {
+              "file": "jest.config.js",
+              "exists": true,
+              "size": 2405
+            }
+          ]
+        },
+        "functionalityTests": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "details": [
+            {
+              "functionality": "Installation scripts",
+              "available": true
+            },
+            {
+              "functionality": "Testing configuration",
+              "available": true
+            },
+            {
+              "functionality": "Deployment readiness",
+              "available": true
+            }
+          ]
+        },
+        "apiTests": {
+          "total": 0,
+          "passed": 0,
+          "failed": 0,
+          "details": []
+        },
+        "successRate": 100,
+        "status": "PASS"
+      },
+      {
+        "name": "Documentation System",
+        "key": "documentation",
+        "fileTests": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "details": [
+            {
+              "file": "docs/README.md",
+              "exists": true,
+              "size": 17665
+            },
+            {
+              "file": "docs/API_DOCUMENTATION.md",
+              "exists": true,
+              "size": 16709
+            },
+            {
+              "file": "docs/DEPLOYMENT_GUIDE.md",
+              "exists": true,
+              "size": 9963
+            }
+          ]
+        },
+        "functionalityTests": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "details": [
+            {
+              "functionality": "API documentation",
+              "available": true
+            },
+            {
+              "functionality": "Deployment guides",
+              "available": true
+            },
+            {
+              "functionality": "System documentation",
+              "available": true
+            }
+          ]
+        },
+        "apiTests": {
+          "total": 0,
+          "passed": 0,
+          "failed": 0,
+          "details": []
+        },
+        "successRate": 100,
+        "status": "PASS"
+      }
+    ],
+    "enterprise": [
+      {
+        "name": "User Management System",
+        "key": "userManagement",
+        "fileTests": {
+          "total": 4,
+          "passed": 4,
+          "failed": 0,
+          "details": [
+            {
+              "file": "models/User.js",
+              "exists": true,
+              "size": 5709
+            },
+            {
+              "file": "models/Team.js",
+              "exists": true,
+              "size": 5485
+            },
+            {
+              "file": "controllers/userManagementController.js",
+              "exists": true,
+              "size": 14744
+            },
+            {
+              "file": "routes/userManagementEnhancedRoutes.js",
+              "exists": true,
+              "size": 12705
+            }
+          ]
+        },
+        "functionalityTests": {
+          "total": 4,
+          "passed": 4,
+          "failed": 0,
+          "details": [
+            {
+              "functionality": "User profiles",
+              "available": true
+            },
+            {
+              "functionality": "Team management",
+              "available": true
+            },
+            {
+              "functionality": "User analytics",
+              "available": true
+            },
+            {
+              "functionality": "Advanced search",
+              "available": true
+            }
+          ]
+        },
+        "apiTests": {
+          "total": 4,
+          "passed": 4,
+          "failed": 0,
+          "details": [
+            {
+              "endpoint": "/api/users/management/profile",
+              "available": true
+            },
+            {
+              "endpoint": "/api/users/management/preferences",
+              "available": true
+            },
+            {
+              "endpoint": "/api/users/management/search",
+              "available": true
+            },
+            {
+              "endpoint": "/api/users/management/analytics",
+              "available": true
+            }
+          ]
+        },
+        "successRate": 100,
+        "status": "PASS"
+      },
+      {
+        "name": "Testing System",
+        "key": "testing",
+        "fileTests": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "details": [
+            {
+              "file": "jest.config.js",
+              "exists": true,
+              "size": 2405
+            },
+            {
+              "file": "docs/TESTING_SYSTEM.md",
+              "exists": true,
+              "size": 6961
+            },
+            {
+              "file": "docs/TESTING_SYSTEM_COMPLETE.md",
+              "exists": true,
+              "size": 14724
+            }
+          ]
+        },
+        "functionalityTests": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "details": [
+            {
+              "functionality": "Unit testing",
+              "available": true
+            },
+            {
+              "functionality": "Integration testing",
+              "available": true
+            },
+            {
+              "functionality": "Test configuration",
+              "available": true
+            }
+          ]
+        },
+        "apiTests": {
+          "total": 0,
+          "passed": 0,
+          "failed": 0,
+          "details": []
+        },
+        "successRate": 100,
+        "status": "PASS"
+      },
+      {
+        "name": "Monitoring System",
+        "key": "monitoring",
+        "fileTests": {
+          "total": 6,
+          "passed": 6,
+          "failed": 0,
+          "details": [
+            {
+              "file": "middleware/apmMonitoring.js",
+              "exists": true,
+              "size": 7811
+            },
+            {
+              "file": "middleware/apmMonitoringSimple.js",
+              "exists": true,
+              "size": 7360
+            },
+            {
+              "file": "middleware/databaseMonitoring.js",
+              "exists": true,
+              "size": 4071
+            },
+            {
+              "file": "middleware/systemMetrics.js",
+              "exists": true,
+              "size": 9292
+            },
+            {
+              "file": "routes/comprehensiveMonitoringRoutes.js",
+              "exists": true,
+              "size": 14870
+            },
+            {
+              "file": "routes/monitoringRoutes.js",
+              "exists": true,
+              "size": 9010
+            }
+          ]
+        },
+        "functionalityTests": {
+          "total": 4,
+          "passed": 4,
+          "failed": 0,
+          "details": [
+            {
+              "functionality": "APM monitoring",
+              "available": true
+            },
+            {
+              "functionality": "Database monitoring",
+              "available": true
+            },
+            {
+              "functionality": "System metrics",
+              "available": true
+            },
+            {
+              "functionality": "Performance tracking",
+              "available": true
+            }
+          ]
+        },
+        "apiTests": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "details": [
+            {
+              "endpoint": "/api/monitoring/status",
+              "available": true
+            },
+            {
+              "endpoint": "/api/monitoring/metrics",
+              "available": true
+            },
+            {
+              "endpoint": "/api/monitoring/health",
+              "available": true
+            }
+          ]
+        },
+        "successRate": 100,
+        "status": "PASS"
+      },
+      {
+        "name": "Search System",
+        "key": "search",
+        "fileTests": {
+          "total": 2,
+          "passed": 2,
+          "failed": 0,
+          "details": [
+            {
+              "file": "middleware/searchSystemEnhanced.js",
+              "exists": true,
+              "size": 31363
+            },
+            {
+              "file": "routes/searchEnhancedRoutes.js",
+              "exists": true,
+              "size": 16784
+            }
+          ]
+        },
+        "functionalityTests": {
+          "total": 4,
+          "passed": 4,
+          "failed": 0,
+          "details": [
+            {
+              "functionality": "Full-text search",
+              "available": true
+            },
+            {
+              "functionality": "Advanced faceting",
+              "available": true
+            },
+            {
+              "functionality": "Search analytics",
+              "available": true
+            },
+            {
+              "functionality": "Fuzzy matching",
+              "available": true
+            }
+          ]
+        },
+        "apiTests": {
+          "total": 4,
+          "passed": 4,
+          "failed": 0,
+          "details": [
+            {
+              "endpoint": "/api/search",
+              "available": true
+            },
+            {
+              "endpoint": "/api/search/advanced",
+              "available": true
+            },
+            {
+              "endpoint": "/api/search/suggestions",
+              "available": true
+            },
+            {
+              "endpoint": "/api/search/stats",
+              "available": true
+            }
+          ]
+        },
+        "successRate": 100,
+        "status": "PASS"
+      },
+      {
+        "name": "Reporting System",
+        "key": "reporting",
+        "fileTests": {
+          "total": 2,
+          "passed": 2,
+          "failed": 0,
+          "details": [
+            {
+              "file": "middleware/reportingSystemEnhanced.js",
+              "exists": true,
+              "size": 59020
+            },
+            {
+              "file": "routes/reportingEnhancedRoutes.js",
+              "exists": true,
+              "size": 18952
+            }
+          ]
+        },
+        "functionalityTests": {
+          "total": 4,
+          "passed": 4,
+          "failed": 0,
+          "details": [
+            {
+              "functionality": "Report generation",
+              "available": true
+            },
+            {
+              "functionality": "Business intelligence",
+              "available": true
+            },
+            {
+              "functionality": "Data visualization",
+              "available": true
+            },
+            {
+              "functionality": "Custom reports",
+              "available": true
+            }
+          ]
+        },
+        "apiTests": {
+          "total": 4,
+          "passed": 4,
+          "failed": 0,
+          "details": [
+            {
+              "endpoint": "/api/reports/templates",
+              "available": true
+            },
+            {
+              "endpoint": "/api/reports/generate",
+              "available": true
+            },
+            {
+              "endpoint": "/api/reports/analytics",
+              "available": true
+            },
+            {
+              "endpoint": "/api/reports/dashboard",
+              "available": true
+            }
+          ]
+        },
+        "successRate": 100,
+        "status": "PASS"
+      },
+      {
+        "name": "Notification System",
+        "key": "notification",
+        "fileTests": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "details": [
+            {
+              "file": "middleware/notificationSystem.js",
+              "exists": true,
+              "size": 33047
+            },
+            {
+              "file": "routes/notificationRoutes.js",
+              "exists": true,
+              "size": 10691
+            },
+            {
+              "file": "middleware/notificationDatabasePool.js",
+              "exists": true,
+              "size": 12530
+            }
+          ]
+        },
+        "functionalityTests": {
+          "total": 4,
+          "passed": 4,
+          "failed": 0,
+          "details": [
+            {
+              "functionality": "Multi-channel notifications",
+              "available": true
+            },
+            {
+              "functionality": "Template system",
+              "available": true
+            },
+            {
+              "functionality": "Queue management",
+              "available": true
+            },
+            {
+              "functionality": "User preferences",
+              "available": true
+            }
+          ]
+        },
+        "apiTests": {
+          "total": 5,
+          "passed": 5,
+          "failed": 0,
+          "details": [
+            {
+              "endpoint": "/api/notifications/preferences",
+              "available": true
+            },
+            {
+              "endpoint": "/api/notifications/inapp",
+              "available": true
+            },
+            {
+              "endpoint": "/api/notifications/history",
+              "available": true
+            },
+            {
+              "endpoint": "/api/notifications/send",
+              "available": true
+            },
+            {
+              "endpoint": "/api/notifications/templates",
+              "available": true
+            }
+          ]
+        },
+        "successRate": 100,
+        "status": "PASS"
+      },
+      {
+        "name": "Workflow Automation System",
+        "key": "workflow",
+        "fileTests": {
+          "total": 2,
+          "passed": 2,
+          "failed": 0,
+          "details": [
+            {
+              "file": "middleware/workflowAutomation.js",
+              "exists": true,
+              "size": 23778
+            },
+            {
+              "file": "routes/workflowAutomationRoutes.js",
+              "exists": true,
+              "size": 14304
+            }
+          ]
+        },
+        "functionalityTests": {
+          "total": 4,
+          "passed": 4,
+          "failed": 0,
+          "details": [
+            {
+              "functionality": "Event triggers",
+              "available": true
+            },
+            {
+              "functionality": "Condition evaluation",
+              "available": true
+            },
+            {
+              "functionality": "Action execution",
+              "available": true
+            },
+            {
+              "functionality": "Workflow templates",
+              "available": true
+            }
+          ]
+        },
+        "apiTests": {
+          "total": 4,
+          "passed": 4,
+          "failed": 0,
+          "details": [
+            {
+              "endpoint": "/api/workflows",
+              "available": true
+            },
+            {
+              "endpoint": "/api/workflows/:id",
+              "available": true
+            },
+            {
+              "endpoint": "/api/workflows/:id/execute",
+              "available": true
+            },
+            {
+              "endpoint": "/api/workflows/metrics",
+              "available": true
+            }
+          ]
+        },
+        "successRate": 100,
+        "status": "PASS"
+      }
+    ],
+    "supporting": [
+      {
+        "name": "Business Intelligence System",
+        "key": "businessIntelligence",
+        "fileTests": {
+          "total": 1,
+          "passed": 1,
+          "failed": 0,
+          "details": [
+            {
+              "file": "middleware/businessIntelligence.js",
+              "exists": true,
+              "size": 21688
+            }
+          ]
+        },
+        "functionalityTests": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "details": [
+            {
+              "functionality": "Data analytics",
+              "available": true
+            },
+            {
+              "functionality": "Business insights",
+              "available": true
+            },
+            {
+              "functionality": "Reporting dashboards",
+              "available": true
+            }
+          ]
+        },
+        "apiTests": {
+          "total": 0,
+          "passed": 0,
+          "failed": 0,
+          "details": []
+        },
+        "successRate": 100,
+        "status": "PASS"
+      },
+      {
+        "name": "Alerting System",
+        "key": "alerting",
+        "fileTests": {
+          "total": 1,
+          "passed": 1,
+          "failed": 0,
+          "details": [
+            {
+              "file": "middleware/alertingSystem.js",
+              "exists": true,
+              "size": 29382
+            }
+          ]
+        },
+        "functionalityTests": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "details": [
+            {
+              "functionality": "Alert management",
+              "available": true
+            },
+            {
+              "functionality": "Notification alerts",
+              "available": true
+            },
+            {
+              "functionality": "System alerts",
+              "available": true
+            }
+          ]
+        },
+        "apiTests": {
+          "total": 0,
+          "passed": 0,
+          "failed": 0,
+          "details": []
+        },
+        "successRate": 100,
+        "status": "PASS"
+      },
+      {
+        "name": "Session Replay System",
+        "key": "sessionReplay",
+        "fileTests": {
+          "total": 2,
+          "passed": 2,
+          "failed": 0,
+          "details": [
+            {
+              "file": "middleware/sessionReplay.js",
+              "exists": true,
+              "size": 10819
+            },
+            {
+              "file": "public/session-replay.js",
+              "exists": true,
+              "size": 21836
+            }
+          ]
+        },
+        "functionalityTests": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "details": [
+            {
+              "functionality": "Session recording",
+              "available": true
+            },
+            {
+              "functionality": "User session replay",
+              "available": true
+            },
+            {
+              "functionality": "Performance analysis",
+              "available": true
+            }
+          ]
+        },
+        "apiTests": {
+          "total": 0,
+          "passed": 0,
+          "failed": 0,
+          "details": []
+        },
+        "successRate": 100,
+        "status": "PASS"
+      },
+      {
+        "name": "Distributed Tracing",
+        "key": "distributedTracing",
+        "fileTests": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "details": [
+            {
+              "file": "middleware/distributedTracing.js",
+              "exists": true,
+              "size": 12758
+            },
+            {
+              "file": "docs/DISTRIBUTED_TRACING.md",
+              "exists": true,
+              "size": 8255
+            },
+            {
+              "file": "docs/DISTRIBUTED_TRACING_ENHANCED.md",
+              "exists": true,
+              "size": 18780
+            }
+          ]
+        },
+        "functionalityTests": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "details": [
+            {
+              "functionality": "Request tracing",
+              "available": true
+            },
+            {
+              "functionality": "Performance monitoring",
+              "available": true
+            },
+            {
+              "functionality": "Distributed system tracking",
+              "available": true
+            }
+          ]
+        },
+        "apiTests": {
+          "total": 0,
+          "passed": 0,
+          "failed": 0,
+          "details": []
+        },
+        "successRate": 100,
+        "status": "PASS"
+      },
+      {
+        "name": "Vulnerability Scanning",
+        "key": "vulnerabilityScanning",
+        "fileTests": {
+          "total": 1,
+          "passed": 1,
+          "failed": 0,
+          "details": [
+            {
+              "file": "middleware/vulnerabilityScanning.js",
+              "exists": true,
+              "size": 32304
+            }
+          ]
+        },
+        "functionalityTests": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "details": [
+            {
+              "functionality": "Security scanning",
+              "available": true
+            },
+            {
+              "functionality": "Vulnerability detection",
+              "available": true
+            },
+            {
+              "functionality": "Security assessment",
+              "available": true
+            }
+          ]
+        },
+        "apiTests": {
+          "total": 0,
+          "passed": 0,
+          "failed": 0,
+          "details": []
+        },
+        "successRate": 100,
+        "status": "PASS"
+      },
+      {
+        "name": "Threat Intelligence",
+        "key": "threatIntelligence",
+        "fileTests": {
+          "total": 1,
+          "passed": 1,
+          "failed": 0,
+          "details": [
+            {
+              "file": "middleware/threatIntelligence.js",
+              "exists": true,
+              "size": 28939
+            }
+          ]
+        },
+        "functionalityTests": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "details": [
+            {
+              "functionality": "Threat detection",
+              "available": true
+            },
+            {
+              "functionality": "Security intelligence",
+              "available": true
+            },
+            {
+              "functionality": "Risk assessment",
+              "available": true
+            }
+          ]
+        },
+        "apiTests": {
+          "total": 0,
+          "passed": 0,
+          "failed": 0,
+          "details": []
+        },
+        "successRate": 100,
+        "status": "PASS"
+      },
+      {
+        "name": "OnCall Management",
+        "key": "onCallManagement",
+        "fileTests": {
+          "total": 2,
+          "passed": 2,
+          "failed": 0,
+          "details": [
+            {
+              "file": "middleware/onCallManagement.js",
+              "exists": true,
+              "size": 26710
+            },
+            {
+              "file": "docs/ONCALL_MANAGEMENT.md",
+              "exists": true,
+              "size": 12665
+            }
+          ]
+        },
+        "functionalityTests": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "details": [
+            {
+              "functionality": "On-call scheduling",
+              "available": true
+            },
+            {
+              "functionality": "Alert routing",
+              "available": true
+            },
+            {
+              "functionality": "Incident management",
+              "available": true
+            }
+          ]
+        },
+        "apiTests": {
+          "total": 0,
+          "passed": 0,
+          "failed": 0,
+          "details": []
+        },
+        "successRate": 100,
+        "status": "PASS"
+      },
+      {
+        "name": "Automated Reporting",
+        "key": "automatedReporting",
+        "fileTests": {
+          "total": 2,
+          "passed": 2,
+          "failed": 0,
+          "details": [
+            {
+              "file": "middleware/automatedReporting.js",
+              "exists": true,
+              "size": 32510
+            },
+            {
+              "file": "docs/AUTOMATED_REPORTING.md",
+              "exists": true,
+              "size": 13298
+            }
+          ]
+        },
+        "functionalityTests": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "details": [
+            {
+              "functionality": "Automated report generation",
+              "available": true
+            },
+            {
+              "functionality": "Scheduled reports",
+              "available": true
+            },
+            {
+              "functionality": "Report distribution",
+              "available": true
+            }
+          ]
+        },
+        "apiTests": {
+          "total": 0,
+          "passed": 0,
+          "failed": 0,
+          "details": []
+        },
+        "successRate": 100,
+        "status": "PASS"
+      },
+      {
+        "name": "Logging Infrastructure",
+        "key": "loggingInfrastructure",
+        "fileTests": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "details": [
+            {
+              "file": "middleware/loggingInfrastructure.js",
+              "exists": true,
+              "size": 16751
+            },
+            {
+              "file": "middleware/loggingInfrastructureSimple.js",
+              "exists": true,
+              "size": 7664
+            },
+            {
+              "file": "docs/LOGGING_INFRASTRUCTURE.md",
+              "exists": true,
+              "size": 16500
+            }
+          ]
+        },
+        "functionalityTests": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "details": [
+            {
+              "functionality": "System logging",
+              "available": true
+            },
+            {
+              "functionality": "Log aggregation",
+              "available": true
+            },
+            {
+              "functionality": "Log analysis",
+              "available": true
+            }
+          ]
+        },
+        "apiTests": {
+          "total": 0,
+          "passed": 0,
+          "failed": 0,
+          "details": []
+        },
+        "successRate": 100,
+        "status": "PASS"
+      },
+      {
+        "name": "Database Monitoring",
+        "key": "databaseMonitoring",
+        "fileTests": {
+          "total": 2,
+          "passed": 2,
+          "failed": 0,
+          "details": [
+            {
+              "file": "middleware/databaseMonitoring.js",
+              "exists": true,
+              "size": 4071
+            },
+            {
+              "file": "docs/DATABASE_MONITORING.md",
+              "exists": true,
+              "size": 15413
+            }
+          ]
+        },
+        "functionalityTests": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0,
+          "details": [
+            {
+              "functionality": "Database performance monitoring",
+              "available": true
+            },
+            {
+              "functionality": "Query analysis",
+              "available": true
+            },
+            {
+              "functionality": "Database health checks",
+              "available": true
+            }
+          ]
+        },
+        "apiTests": {
+          "total": 0,
+          "passed": 0,
+          "failed": 0,
+          "details": []
+        },
+        "successRate": 100,
+        "status": "PASS"
+      }
+    ]
+  },
+  "serverIntegration": {
+    "passed": 1,
+    "total": 1,
+    "details": [
+      {
+        "integrated": true
+      }
+    ]
+  }
+}

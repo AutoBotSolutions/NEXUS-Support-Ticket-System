@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 20px;
+            color: white;
+        }
+        .test-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .tab:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        .tab.active {
+            background: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+        .panel {
+            display: none;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .panel.active {
+            display: block;
+        }
+        .btn {
+            padding: 12px 24px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+        .message {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            background: rgba(0, 255, 0, 0.2);
+            border: 1px solid rgba(0, 255, 0, 0.5);
+        }
+        .error {
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid rgba(255, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Button & CSS Test</h1>
+        <p>Testing if buttons work and CSS is applied properly.</p>
+        
+        <div id="message"></div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="showPanel('test1', this)">Test 1</button>
+            <button class="tab" onclick="showPanel('test2', this)">Test 2</button>
+            <button class="tab" onclick="showPanel('test3', this)">Test 3</button>
+        </div>
+        
+        <div id="test1Panel" class="panel active">
+            <h3>Test Panel 1</h3>
+            <p>This is the first test panel. CSS should be applied with gradient background and styled elements.</p>
+            <button class="btn" onclick="testAction('Button 1 clicked!')">Test Button 1</button>
+            <button class="btn" onclick="testAction('Button 2 clicked!')">Test Button 2</button>
+        </div>
+        
+        <div id="test2Panel" class="panel">
+            <h3>Test Panel 2</h3>
+            <p>This is the second test panel. If you see this, tab switching is working!</p>
+            <button class="btn" onclick="testAction('Panel 2 button works!')">Panel 2 Button</button>
+        </div>
+        
+        <div id="test3Panel" class="panel">
+            <h3>Test Panel 3</h3>
+            <p>This is the third test panel. All functionality should be working.</p>
+            <button class="btn" onclick="testAPI()">Test API Call</button>
+        </div>
+    </div>
+
+    <script>
+        function showPanel(panel, buttonElement) {
+            console.log('showPanel called with:', panel, buttonElement);
+            
+            // Remove active class from all tabs and panels
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            
+            // Add active class to clicked button and corresponding panel
+            if (buttonElement) {
+                buttonElement.classList.add('active');
+            }
+            document.getElementById(panel + 'Panel').classList.add('active');
+            
+            showMessage('Switched to ' + panel, 'success');
+        }
+        
+        function testAction(message) {
+            console.log('testAction called with:', message);
+            showMessage(message, 'success');
+        }
+        
+        function testAPI() {
+            showMessage('Testing API call...', 'info');
+            
+            fetch('/api/health')
+                .then(response => response.json())
+                .then(data => {
+                    showMessage('API Success: ' + data.message, 'success');
+                })
+                .catch(error => {
+                    showMessage('API Error: ' + error.message, 'error');
+                });
+        }
+        
+        function showMessage(text, type = 'success') {
+            const messageDiv = document.getElementById('message');
+            messageDiv.innerHTML = `<div class="message ${type === 'error' ? 'error' : ''}">${text}</div>`;
+            
+            setTimeout(() => {
+                messageDiv.innerHTML = '';
+            }, 3000);
+        }
+        
+        // Test on load
+        window.onload = () => {
+            showMessage('Page loaded successfully! CSS and JavaScript working.', 'success');
+        };
+    </script>
+</body>
+</html>

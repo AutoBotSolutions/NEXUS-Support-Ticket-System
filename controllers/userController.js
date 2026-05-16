@@ -2,6 +2,8 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const validator = require('validator');
+const { trackUserRegistered } = require('../middleware/apmMonitoringSimple');
+const { sendNotification } = require('../middleware/notificationSystem');
 
 // Generate JWT Token
 const generateToken = (userId) => {
@@ -78,6 +80,24 @@ const register = async (req, res) => {
       role: role || 'user'
     });
 
+    // Track user registration metric
+    trackUserRegistered();
+
+    // Send welcome notification
+    try {
+      await sendNotification({
+        userId: user._id,
+        type: 'welcome',
+        data: {
+          name: user.username,
+          email: user.email,
+          userId: user._id
+        }
+      });
+    } catch (notificationError) {
+      console.error('Failed to send welcome notification:', notificationError);
+    }
+
     const token = generateToken(user._id);
 
     res.status(201).json({
@@ -110,14 +130,17 @@ const login = async (req, res) => {
 
     const user = await User.findOne({ username });
     if (!user) {
+      trackAuthenticationAttempt('false', 'username');
       return res.status(401).json({ success: false, error: 'Invalid credentials' });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
+      trackAuthenticationAttempt('false', 'password');
       return res.status(401).json({ success: false, error: 'Invalid credentials' });
     }
 
+    trackAuthenticationAttempt('true', 'login');
     const token = generateToken(user._id);
 
     res.status(200).json({
@@ -133,6 +156,7 @@ const login = async (req, res) => {
       }
     });
   } catch (error) {
+    trackAuthenticationAttempt('false', 'error');
     res.status(400).json({ success: false, error: error.message });
   }
 };

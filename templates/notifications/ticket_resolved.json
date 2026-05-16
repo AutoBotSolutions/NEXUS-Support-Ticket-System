@@ -1,0 +1,22 @@
+{
+  "subject": "Ticket Resolved",
+  "channels": [
+    "email",
+    "inapp"
+  ],
+  "templates": {
+    "email": {
+      "html": "<h2>Ticket Resolved</h2><p>Hi {{name}},</p><p>Your ticket \"{{ticketTitle}}\" has been resolved.</p><p>Resolution: {{resolution}}</p>",
+      "text": "Ticket Resolved. Hi {{name}}, Your ticket \"{{ticketTitle}}\" has been resolved. Resolution: {{resolution}}"
+    },
+    "inapp": {
+      "title": "Ticket Resolved",
+      "message": "Your ticket \"{{ticketTitle}}\" has been resolved.",
+      "icon": "check-circle",
+      "action": {
+        "text": "View Ticket",
+        "url": "/tickets/{{ticketId}}"
+      }
+    }
+  }
+}

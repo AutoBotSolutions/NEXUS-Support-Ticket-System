@@ -1,0 +1,90 @@
+{
+  "timestamp": "2026-05-16T02:40:05.302Z",
+  "summary": {
+    "total": 13,
+    "passed": 13,
+    "failed": 0,
+    "successRate": "100.0",
+    "duration": 130.23287399999998
+  },
+  "details": [
+    {
+      "name": "Server Health Check",
+      "status": "PASSED",
+      "duration": 31.81209799999999,
+      "error": null
+    },
+    {
+      "name": "APM Monitoring",
+      "status": "PASSED",
+      "duration": 9.208659000000011,
+      "error": null
+    },
+    {
+      "name": "Comprehensive Monitoring Overview",
+      "status": "PASSED",
+      "duration": 3.7359149999999772,
+      "error": null
+    },
+    {
+      "name": "System Metrics",
+      "status": "PASSED",
+      "duration": 3.55795599999999,
+      "error": null
+    },
+    {
+      "name": "Database Monitoring",
+      "status": "PASSED",
+      "duration": 7.51226299999999,
+      "error": null
+    },
+    {
+      "name": "Security Monitoring",
+      "status": "PASSED",
+      "duration": 3.7233269999999834,
+      "error": null
+    },
+    {
+      "name": "Business Intelligence",
+      "status": "PASSED",
+      "duration": 3.6981719999999996,
+      "error": null
+    },
+    {
+      "name": "Alerting System",
+      "status": "PASSED",
+      "duration": 30.02514199999999,
+      "error": null
+    },
+    {
+      "name": "Logging Infrastructure",
+      "status": "PASSED",
+      "duration": 11.06486099999998,
+      "error": null
+    },
+    {
+      "name": "Distributed Tracing",
+      "status": "PASSED",
+      "duration": 4.085405999999978,
+      "error": null
+    },
+    {
+      "name": "Session Replay",
+      "status": "PASSED",
+      "duration": 11.978152000000023,
+      "error": null
+    },
+    {
+      "name": "Comprehensive Dashboard",
+      "status": "PASSED",
+      "duration": 4.102704000000017,
+      "error": null
+    },
+    {
+      "name": "Monitoring Middleware Integration",
+      "status": "PASSED",
+      "duration": 2.8113890000000197,
+      "error": null
+    }
+  ]
+}

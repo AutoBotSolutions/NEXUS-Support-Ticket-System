@@ -1,0 +1,48 @@
+{
+  "timestamp": "2026-05-15T15:18:42.868Z",
+  "duration": 1825,
+  "summary": {
+    "totalTests": 5,
+    "passed": 0,
+    "failed": 5,
+    "successRate": 0
+  },
+  "results": {
+    "unit": {
+      "passed": 0,
+      "failed": 1,
+      "errors": [
+        "Command failed: npm run test:unit\nsh: 1: jest: not found\n"
+      ]
+    },
+    "integration": {
+      "passed": 0,
+      "failed": 1,
+      "errors": [
+        "Command failed: npm run test:integration\nsh: 1: jest: not found\n"
+      ]
+    },
+    "e2e": {
+      "passed": 0,
+      "failed": 1,
+      "errors": [
+        "Command failed: npm run test:e2e\nsh: 1: jest: not found\n"
+      ]
+    },
+    "performance": {
+      "passed": 0,
+      "failed": 1,
+      "errors": [
+        "Cannot find module 'supertest'\nRequire stack:\n- /home/robbie/Desktop/nexus/test/performance/load-test.js\n- /home/robbie/Desktop/nexus/test-runner.js"
+      ]
+    },
+    "security": {
+      "passed": 0,
+      "failed": 1,
+      "errors": [
+        "Cannot find module 'supertest'\nRequire stack:\n- /home/robbie/Desktop/nexus/test/security/security-test.js\n- /home/robbie/Desktop/nexus/test-runner.js"
+      ]
+    }
+  },
+  "coverage": null
+}

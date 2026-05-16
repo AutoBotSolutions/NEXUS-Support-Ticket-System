@@ -1,0 +1,123 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'nexus-monitor'
+
+rule_files:
+  - "alert_rules.yml"
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          - alertmanager:9093
+
+scrape_configs:
+  # Prometheus itself
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # NEXUS Application Metrics
+  - job_name: 'nexus-app'
+    static_configs:
+      - targets: ['localhost:3000']
+    metrics_path: '/metrics'
+    scrape_interval: 15s
+    scrape_timeout: 10s
+
+  # Node Exporter for system metrics
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['localhost:9100']
+
+  # MongoDB Exporter for database metrics
+  - job_name: 'mongodb-exporter'
+    static_configs:
+      - targets: ['localhost:9216']
+
+  # GitHub API monitoring (if external)
+  - job_name: 'github-api'
+    static_configs:
+      - targets: ['api.github.com']
+    metrics_path: '/rate_limit'
+    scrape_interval: 60s
+    scheme: https
+
+  # Custom business metrics
+  - job_name: 'nexus-business-metrics'
+    static_configs:
+      - targets: ['localhost:3000']
+    metrics_path: '/api/monitoring/business-metrics'
+    scrape_interval: 30s
+
+  # Security metrics
+  - job_name: 'nexus-security-metrics'
+    static_configs:
+      - targets: ['localhost:3000']
+    metrics_path: '/api/monitoring/security-metrics'
+    scrape_interval: 30s
+
+  # Database performance metrics
+  - job_name: 'nexus-database-metrics'
+    static_configs:
+      - targets: ['localhost:3000']
+    metrics_path: '/api/monitoring/database-metrics'
+    scrape_interval: 15s
+
+  # Frontend performance metrics
+  - job_name: 'nexus-frontend-metrics'
+    static_configs:
+      - targets: ['localhost:3000']
+    metrics_path: '/api/monitoring/frontend-metrics'
+    scrape_interval: 30s
+
+  # Alert management metrics
+  - job_name: 'nexus-alerts'
+    static_configs:
+      - targets: ['localhost:3000']
+    metrics_path: '/api/monitoring/alerts'
+    scrape_interval: 15s
+
+  # Logging metrics
+  - job_name: 'nexus-logging'
+    static_configs:
+      - targets: ['localhost:3000']
+    metrics_path: '/api/monitoring/logging'
+    scrape_interval: 30s
+
+  # Distributed tracing metrics
+  - job_name: 'nexus-tracing'
+    static_configs:
+      - targets: ['localhost:3000']
+    metrics_path: '/api/monitoring/tracing'
+    scrape_interval: 15s
+
+  # Vulnerability scanning metrics
+  - job_name: 'nexus-vulnerability'
+    static_configs:
+      - targets: ['localhost:3000']
+    metrics_path: '/api/monitoring/vulnerability'
+    scrape_interval: 300s  # Every 5 minutes
+
+  # Threat intelligence metrics
+  - job_name: 'nexus-threat-intel'
+    static_configs:
+      - targets: ['localhost:3000']
+    metrics_path: '/api/monitoring/threat-intel'
+    scrape_interval: 300s  # Every 5 minutes
+
+  # On-call management metrics
+  - job_name: 'nexus-oncall'
+    static_configs:
+      - targets: ['localhost:3000']
+    metrics_path: '/api/monitoring/oncall'
+    scrape_interval: 60s
+
+  # Automated reporting metrics
+  - job_name: 'nexus-reporting'
+    static_configs:
+      - targets: ['localhost:3000']
+    metrics_path: '/api/monitoring/reporting'
+    scrape_interval: 300s  # Every 5 minutes
