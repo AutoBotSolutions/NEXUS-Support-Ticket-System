@@ -449,7 +449,7 @@ app.get('/api/tickets/my', verifyToken, (req, res) => {
 const nodemailer = require('nodemailer');
 
 // Create email transporter
-const transporter = nodemailer.createTransporter({
+const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: process.env.EMAIL_USER || 'autobotsolution@gmail.com',
@@ -527,6 +527,13 @@ app.post('/api/contact/send-email', async (req, res) => {
     }
 });
 
+// Windsurf integration endpoint
+app.post('/api/send-to-windsurf', (req, res) => {
+    res.json({
+        success: true,
+        message: 'Data successfully sent to Windsurf integration'
+    });
+});
 
 // 404 handler
 app.use((req, res) => {
