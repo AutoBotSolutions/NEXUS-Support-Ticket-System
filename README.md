@@ -263,7 +263,7 @@ npm run test:e2e
 npm run coverage
 ```
 
-## 📝 LICENSING
+## LICENSING
 
 ### Dual License Model
 1. **MIT License** (Default) - Free for open source and commercial use
