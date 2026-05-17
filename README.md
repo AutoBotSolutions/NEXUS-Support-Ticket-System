@@ -240,7 +240,7 @@ PUT /notifications/:id
 - **ISO 27001** - Information security
 - **HIPAA Ready** - Healthcare data protection
 
-## 🧪 TESTING
+## TESTING
 
 ### Test Coverage
 - **Unit Tests** - Component-level testing
